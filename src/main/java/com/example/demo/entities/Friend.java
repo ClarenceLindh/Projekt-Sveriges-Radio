@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.*;
 
 @Entity
-@Table(name="friend_relationship")
+@Table(name="friend_relationships")
 public class Friend {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
