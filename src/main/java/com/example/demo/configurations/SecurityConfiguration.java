@@ -28,8 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/rest/users", "/rest/login").permitAll()
                 .antMatchers("/rest/**").authenticated()
                 .antMatchers("/hello").authenticated()
-//        .and()
-//        .formLogin()
+        .and()
+        .formLogin()
 //        .loginPage("/login")
         ;
     }
@@ -47,4 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
+
 }
