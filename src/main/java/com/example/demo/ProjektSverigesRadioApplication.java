@@ -10,4 +10,5 @@ public class ProjektSverigesRadioApplication {
 		SpringApplication.run(ProjektSverigesRadioApplication.class, args);
 	}
 
+	String Bengt= "Clarence";
 }
