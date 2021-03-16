@@ -24,13 +24,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/rest/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/rest/users", "/rest/login").permitAll()
+//                .antMatchers(HttpMethod.GET, "/rest/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/rest/users", "/rest/login").permitAll()
                 .antMatchers("/rest/**").authenticated()
                 .antMatchers("/hello").authenticated()
-//        .and()
-//        .formLogin()
-//        .loginPage("/login")
+                .and()
+                .formLogin()
+//                .loginPage("/login")
         ;
     }
 
@@ -47,4 +47,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 }
