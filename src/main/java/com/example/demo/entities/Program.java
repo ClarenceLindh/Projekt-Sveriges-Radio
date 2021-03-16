@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name="programs")
 public class Program{
     @Id // Berättar att det är en primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
     private long id;
     private long channel_id;
     private String programcategoryid;

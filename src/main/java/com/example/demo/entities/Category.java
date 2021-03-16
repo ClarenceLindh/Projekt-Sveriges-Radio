@@ -3,10 +3,9 @@ package com.example.demo.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="category")
+@Table(name="categories")
 public class Category {
     @Id // Berättar att det är en primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // enables auto increment
     private long id;
 
 

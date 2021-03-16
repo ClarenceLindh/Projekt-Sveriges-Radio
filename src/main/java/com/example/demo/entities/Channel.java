@@ -5,11 +5,10 @@ import org.springframework.stereotype.Service;
 import javax.persistence.*;
 
 @Entity
-@Table(name="channel")
+@Table(name="channels")
 public class Channel {
 
     @Id // Berättar att det är en primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar auto increment
     private long id;
     private String name;
     private String info;
@@ -29,6 +28,22 @@ public class Channel {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     @Override
