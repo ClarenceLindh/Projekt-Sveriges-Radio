@@ -8,7 +8,11 @@ public class ProjektSverigesRadioApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjektSverigesRadioApplication.class, args);
+
+		System.out.println("NU TAR VI FREEEEDAG!");
+
+
 	}
 
-	String Bengt= "Clarence";
+
 }
