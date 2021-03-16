@@ -1,16 +1,12 @@
-package com.example.demo.services;
-
+package com.example.demo.entities;
 
 import org.springframework.stereotype.Service;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Service
+@Entity
 @Table(name="episodes")
-public class EpisodesService {
+public class Episode {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
     private long id;
@@ -19,10 +15,10 @@ public class EpisodesService {
     String description;
     String datetime;
 
-    public EpisodesService() {
+    public Episode() {
     }
 
-    public EpisodesService(long id, long program_id, String title, String description, String datetime) {
+    public Episode(long id, long program_id, String title, String description, String datetime) {
         this.id = id;
         this.program_id = program_id;
         this.title = title;

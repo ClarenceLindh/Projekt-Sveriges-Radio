@@ -9,6 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Service
-public class ChannelService {
+public class CategoryService {
 
 }

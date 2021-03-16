@@ -1,25 +1,22 @@
-package com.example.demo.services;
+package com.example.demo.entities;
 
 import org.springframework.stereotype.Service;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Service
+@Entity
 @Table(name="friend_relationship")
-public class FriendsService {
+public class Friend {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
     private long id;
     private long user_id;
     private long friends_id;
 
-    public FriendsService() {
+    public Friend() {
     }
 
-    public FriendsService(long id, long user_id, long friends_id) {
+    public Friend(long id, long user_id, long friends_id) {
         this.id = id;
         this.user_id = user_id;
         this.friends_id = friends_id;

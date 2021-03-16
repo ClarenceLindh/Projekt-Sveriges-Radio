@@ -1,22 +1,16 @@
-package com.example.demo.services;
+package com.example.demo.entities;
 
+import javax.persistence.*;
 
-import org.springframework.stereotype.Service;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Service
+@Entity
 @Table(name="category")
-public class CategoriesService {
+public class Category {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // enables auto increment
     private long id;
 
 
-    public CategoriesService() {
+    public Category() {
     }
 
 
