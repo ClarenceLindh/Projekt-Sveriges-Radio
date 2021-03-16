@@ -1,24 +1,23 @@
 package com.example.demo.entities;
 
-import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-
 
 @Entity
 @Table(name="users")
 public class User {
-    @Id // Berättar att det är en primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
+
+    @Id // this is the primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // enable auto increment
     private long id;
     private String username;
     private String password;
 
-    public User() {
-    }
+    public User() {  }
 
-    public User(long id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -39,19 +38,21 @@ public class User {
         this.username = username;
     }
 
+    @JsonIgnore // removes password when sending FROM backend
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty // enables us to send password TO backend
     public void setPassword(String password) {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
-        return "UserService{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+        return "\nUser{" +
+                "email='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
