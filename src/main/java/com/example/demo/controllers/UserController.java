@@ -41,8 +41,6 @@ public class UserController {
         userService.updateById(id, user);
     }
 
-
-
     @PostMapping("/auth/register")
     public User register(@RequestBody User user){
         return userService.register(user);
