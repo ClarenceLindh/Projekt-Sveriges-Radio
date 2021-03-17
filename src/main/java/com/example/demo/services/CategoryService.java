@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Service
 public class CategoryService {
-    private String categoryApi = "http://api.sr.se/api/v2/programcategories";
+    private String categoryApi = "http://api.sr.se/api/v2/programcategories/";
 
     public List<Category> getAll(){
         RestTemplate template = new RestTemplate();
@@ -34,6 +34,32 @@ public class CategoryService {
 
             categories.add(category);
         }
+
+        return categories;
+    }
+
+    public List<Category> getById(int catID){
+        RestTemplate template = new RestTemplate();
+        Map response = template.getForObject(categoryApi + catID + "?format=json", Map.class);
+
+        String reply = (String)response.get("programcategory").toString();
+
+        String[] shortAnswers = reply.split("=");
+        List<String> finalAnswer = new ArrayList<>();
+        for(String answer : shortAnswers){
+            answer = answer.replace("{", "");
+            answer = answer.replace("}", "");
+            answer = answer.replace(", name", "");
+            finalAnswer.add(answer);
+        }
+
+        Long newId = Long.parseLong(finalAnswer.get(1));
+        String newName = finalAnswer.get(2);
+
+        List<Category> categories = new ArrayList<>();
+
+        Category category = new Category(newId, newName);
+        categories.add(category);
 
         return categories;
     }
