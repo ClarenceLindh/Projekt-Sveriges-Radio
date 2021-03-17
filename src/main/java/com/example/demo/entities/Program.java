@@ -8,23 +8,23 @@ import javax.persistence.*;
 @Table(name="programs")
 public class Program{
     @Id // Berättar att det är en primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // enable auto increment
     private long id;
-    private long channel_id;
+    private long channelid;
     private String programcategoryid;
     private String title;
     private String description;
-    private String publishdateutc;
+    private String broadcastinfo;
 
-    public Program() {
-    }
+    public Program() { }
 
-    public Program(long id, long channel_id, String programcategoryid, String title, String description, String publishdateutc) {
+    public Program(long id, long channelid, String programcategoryid, String title, String description, String broadcastinfo) {
         this.id = id;
-        this.channel_id = channel_id;
+        this.channelid = channelid;
         this.programcategoryid = programcategoryid;
         this.title = title;
         this.description = description;
-        this.publishdateutc = publishdateutc;
+        this.broadcastinfo = broadcastinfo;
     }
 
     public long getId() {
@@ -35,12 +35,12 @@ public class Program{
         this.id = id;
     }
 
-    public long getChannel_id() {
-        return channel_id;
+    public long getChannelId() {
+        return channelid;
     }
 
-    public void setChannel_id(long channel_id) {
-        this.channel_id = channel_id;
+    public void setChannelId(long channelId) {
+        this.channelid = channelId;
     }
 
     public String getProgramcategoryid() {
@@ -67,24 +67,24 @@ public class Program{
         this.description = description;
     }
 
-    public String getPublishdateutc() {
-        return publishdateutc;
+    public String getBroadcastinfo() {
+        return broadcastinfo;
     }
 
-    public void setPublishdateutc(String publishdateutc) {
-        this.publishdateutc = publishdateutc;
+    public void setBroadcastinfo(String broacastinfo) {
+        this.broadcastinfo = broadcastinfo;
     }
 
 
     @Override
     public String toString() {
-        return "ProgramsService{" +
+        return "/mProgramsService{" +
                 "id=" + id +
-                ", channel_id=" + channel_id +
+                ", channelid=" + channelid +
                 ", programcategoryid='" + programcategoryid + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", publishdateutc='" + publishdateutc + '\'' +
+                ", broadcastinfo='" + broadcastinfo + '\'' +
                 '}';
     }
 }
