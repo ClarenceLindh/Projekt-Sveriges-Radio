@@ -86,10 +86,13 @@ CREATE TABLE IF NOT EXISTS `friend_relationships` (
   KEY `FK_friend_relationships_users_2` (`friends_id`),
   CONSTRAINT `FK_friend_relationships_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `FK_friend_relationships_users_2` FOREIGN KEY (`friends_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table sverigesradio.friend_relationships: ~0 rows (approximately)
 /*!40000 ALTER TABLE `friend_relationships` DISABLE KEYS */;
+INSERT INTO `friend_relationships` (`id`, `user_id`, `friends_id`) VALUES
+	(1, 4, 3),
+	(2, 2, 3);
 /*!40000 ALTER TABLE `friend_relationships` ENABLE KEYS */;
 
 -- Dumping structure for table sverigesradio.programs
@@ -115,12 +118,18 @@ CREATE TABLE IF NOT EXISTS `programs` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table sverigesradio.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+	(2, 'nisse', '$2a$10$f0Bd0sgvNBKZPVA.77iEmuq6bLHwTIQkmn8ApoLLSqrcX6Bt2nmQm'),
+	(3, 'pluke', '$2a$10$qgqmNtKfNUfiN9wz7wV58eSClZX5Wbh6yEi3M9/UTuuQO84oFbqWO'),
+	(4, 'lasse', '$2a$10$P3J4ytOdMxRg0SYmymWCye4PwgQwxfy1NMwaZfMx/TpepNn7iL3kG'),
+	(5, 'maja', '$2a$10$MRmH7tnU42BNjK4hId1hl.hGzrdgDeYooc5OCgrJ1yZhz7JERy5KK'),
+	(6, 'steffe', '$2a$10$1jz9i8y/dTuyJKJZodFv8OTdIZ6WTJCxYkFiFIpZfnkQnX4NXWc3W');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
