@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
 public class UserController {
   /*
       C - @PostMapping
@@ -22,28 +21,30 @@ public class UserController {
     private UserService userService;
 
     // /rest/users
-    @GetMapping("/users")
+    @GetMapping("/rest/users")
     public List<User> getAll() {
         return userService.getAll();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/rest/users/{id}")
     public User getById(@PathVariable long id) {
         return userService.findById(id);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/rest/users/{id}")
     public void deleteById(@PathVariable long id) {
         userService.deleteById(id);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/rest/users/{id}")
     public void updateById(@RequestBody User user, @PathVariable long id) {
         userService.updateById(id, user);
     }
 
-    @PostMapping("/users")
-    public User register(@RequestBody User user) {
+
+
+    @PostMapping("/auth/register")
+    public User register(@RequestBody User user){
         return userService.register(user);
     }
 
@@ -52,7 +53,7 @@ public class UserController {
         return userService.login(user, req);
     }
 
-    @GetMapping("/whoami")
+    @GetMapping("/rest/whoami")
     public User whoAmI() {
         return userService.findCurrentUser();
     }
