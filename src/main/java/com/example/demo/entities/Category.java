@@ -6,10 +6,15 @@ import javax.persistence.*;
 @Table(name="categories")
 public class Category {
     @Id // Berättar att det är en primary key
-    private long id;
+    private Long id;
+    private String name;
 
 
-    public Category() {
+    public Category() {}
+
+    public Category(Long id, String name){
+        this.id = id;
+        this.name = name;
     }
 
 
@@ -21,11 +26,13 @@ public class Category {
         this.id = id;
     }
 
+    public String getName() {return name;}
+
+    public void setName(String name) {this.name = name;}
 
     @Override
     public String toString() {
-        return "CategoriesService{" +
-                "id=" + id +
-                '}';
+        return  "id=" + id +
+                ", name='" + name + '\'';
     }
 }
