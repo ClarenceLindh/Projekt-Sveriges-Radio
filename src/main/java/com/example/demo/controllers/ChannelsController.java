@@ -5,6 +5,7 @@ import com.example.demo.entities.Channel;
 import com.example.demo.services.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +22,17 @@ private ChannelService ChannelService;
     return "Hello from ChannelsController!";
 }
 
-@GetMapping("/channels")
-    public List<Channel> getAllChannels(){
-    return ChannelService.getAllChannels();
+
+@GetMapping("/getAllChannels")
+    public List<Channel> getAllChannelsFromServer(){
+
+    return ChannelService.getAllChannelsFromServer();
 }
+
+
+/*@GetMapping("/getChannelsFromId/{id}")
+public List<Channel> getChannelsFromId(@PathVariable long id){
+return ChannelService.getChannelsFromId(id);
+}*/
+
 }
