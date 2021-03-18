@@ -35,10 +35,11 @@ public class CategoryService {
             categories.add(category);
         }
 
+        System.out.println(categories.toString());
         return categories;
     }
 
-    public List<Category> getById(int catID){
+    public List<Category> getById(Long catID){
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(categoryApi + catID + "?format=json", Map.class);
 
@@ -61,6 +62,7 @@ public class CategoryService {
         Category category = new Category(newId, newName);
         categories.add(category);
 
+        System.out.println(categories.toString());
         return categories;
     }
 }
