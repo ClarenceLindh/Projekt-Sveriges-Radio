@@ -25,6 +25,19 @@ public class Episode {
         this.datetime = datetime;
     }
 
+    public Episode(long id, long program_id, String title, String description) {
+        this.id = id;
+        this.program_id = program_id;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Episode(long id,  String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }
