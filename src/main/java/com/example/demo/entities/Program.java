@@ -8,23 +8,27 @@ import javax.persistence.*;
 @Table(name="programs")
 public class Program{
     @Id // Berättar att det är en primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // enable auto increment
     private long id;
-    private long channelid;
-    private String programcategoryid;
-    private String title;
+    private String name;
     private String description;
-    private String broadcastinfo;
+
+
 
     public Program() { }
 
-    public Program(long id, long channelid, String programcategoryid, String title, String description, String broadcastinfo) {
+    public Program(long id, String name, String description) {
         this.id = id;
-        this.channelid = channelid;
-        this.programcategoryid = programcategoryid;
-        this.title = title;
+        this.name = name;
         this.description = description;
-        this.broadcastinfo = broadcastinfo;
+    }
+
+    @Override
+    public String toString() {
+        return "\nProgram{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     public long getId() {
@@ -35,30 +39,6 @@ public class Program{
         this.id = id;
     }
 
-    public long getChannelId() {
-        return channelid;
-    }
-
-    public void setChannelId(long channelId) {
-        this.channelid = channelId;
-    }
-
-    public String getProgramcategoryid() {
-        return programcategoryid;
-    }
-
-    public void setProgramcategoryid(String programcategoryid) {
-        this.programcategoryid = programcategoryid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -67,24 +47,12 @@ public class Program{
         this.description = description;
     }
 
-    public String getBroadcastinfo() {
-        return broadcastinfo;
+    public String getName() {
+        return name;
     }
 
-    public void setBroadcastinfo(String broacastinfo) {
-        this.broadcastinfo = broadcastinfo;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    @Override
-    public String toString() {
-        return "/mProgramsService{" +
-                "id=" + id +
-                ", channelid=" + channelid +
-                ", programcategoryid='" + programcategoryid + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", broadcastinfo='" + broadcastinfo + '\'' +
-                '}';
-    }
 }
