@@ -9,33 +9,21 @@ import javax.persistence.*;
 public class Episode {
     @Id // Berättar att det är en primary key
     private long id;
-    private long program_id;
+//    private long program_id;
     String title;
     String description;
-    String datetime;
+    String publishdateutc;
 
     public Episode() {
     }
 
-    public Episode(long id, long program_id, String title, String description, String datetime) {
-        this.id = id;
-        this.program_id = program_id;
-        this.title = title;
-        this.description = description;
-        this.datetime = datetime;
-    }
 
-    public Episode(long id, long program_id, String title, String description) {
-        this.id = id;
-        this.program_id = program_id;
-        this.title = title;
-        this.description = description;
-    }
 
-    public Episode(long id,  String title, String description) {
+    public Episode(long id,  String title, String description, String publishdateutc) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.publishdateutc = publishdateutc;
     }
 
     public long getId() {
@@ -46,13 +34,13 @@ public class Episode {
         this.id = id;
     }
 
-    public long getProgram_id() {
-        return program_id;
-    }
-
-    public void setProgram_id(long program_id) {
-        this.program_id = program_id;
-    }
+//    public long getProgram_id() {
+//        return program_id;
+//    }
+//
+//    public void setProgram_id(long program_id) {
+//        this.program_id = program_id;
+//    }
 
     public String getTitle() {
         return title;
@@ -70,22 +58,22 @@ public class Episode {
         this.description = description;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getAirTime() {
+        return publishdateutc;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setAirTime(String datetime) {
+        this.publishdateutc =datetime;
     }
 
     @Override
     public String toString() {
         return "EpisodesService{" +
                 "id=" + id +
-                ", program_id=" + program_id +
+//                ", program_id=" + program_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", datetime='" + datetime + '\'' +
+                ", datetime='" + publishdateutc + '\'' +
                 '}';
     }
 }

@@ -28,15 +28,24 @@ public class EpisodeService {
         List<Episode> episodes = new ArrayList<>();
         for (Map episode : episodeMaps){
 
+           String publishdateutc = (String)episode.get("publishdateutc");
+           String epoch = publishdateutc.substring(6,19);
+           long airtime = Long.parseLong(epoch);
+            String date = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date (airtime));
+
 
             Episode EP = new Episode(
                     (Integer)episode.get("id"),
                     (String)episode.get("title"),
-                    (String)episode.get("description")
+                    (String)episode.get("description"),
+                    date
+
+
 
             );
 
             episodes.add(EP);
+            ;
 
         }
         System.out.println(episodes);
