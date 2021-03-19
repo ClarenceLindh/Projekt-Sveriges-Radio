@@ -13,12 +13,12 @@ public class Favorite {
     private long userid;
     private long program_id;
     private long episode_id;
+    private String time_added;
 
     public Favorite() {
     }
 
-    public Favorite(long id, long user_id, long program_id, long episode_id) {
-        this.id = id;
+    public Favorite(long user_id, long program_id, long episode_id) {
         this.userid = user_id;
         this.program_id = program_id;
         this.episode_id = episode_id;
@@ -56,6 +56,14 @@ public class Favorite {
         this.episode_id = episode_id;
     }
 
+    public String getTime_added() {
+        return time_added;
+    }
+
+    public void setTime_added(String time_added) {
+        this.time_added = time_added;
+    }
+
     @Override
     public String toString() {
         return "\nFavoriteService{" +
@@ -63,6 +71,7 @@ public class Favorite {
                 ", user_id=" + userid +
                 ", program_id=" + program_id +
                 ", episode_id=" + episode_id +
+                ", time_added=" + time_added +
                 '}';
     }
 }

@@ -28,4 +28,17 @@ public class FavoriteService {
         }
         return null;
     }
+
+    public Favorite addFavorite(Favorite favorite){
+        try {
+            return favoriteRepo.save(favorite);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public void deleteById(long id) {
+        favoriteRepo.deleteById(id);
+    }
 }
