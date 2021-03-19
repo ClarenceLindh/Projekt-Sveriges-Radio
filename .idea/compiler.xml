@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Projekt Sveriges Radio" target="15" />
+      <module name="Projekt Sveriges Radio" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

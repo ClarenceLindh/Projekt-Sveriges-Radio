@@ -1,9 +1,8 @@
 package com.example.demo.controllers;
 
 
-import com.example.demo.entities.Category;
-import com.example.demo.entities.User;
-import com.example.demo.services.CategoryService;
+import com.example.demo.entities.Channel;
+import com.example.demo.services.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,15 +13,25 @@ import java.util.List;
 
 @RestController
 public class ChannelsController {
+@Autowired
+private ChannelService ChannelService;
 
-    @Autowired
-    private CategoryService categoryService;
+@GetMapping("/test")
+    public String  test(){
+    return "Hello from ChannelsController!";
+}
 
-    @GetMapping("/rest/categories")
-    public List<Category> getAll() {
-        return categoryService.getAll();
-    }
 
-    @GetMapping("/rest/categories/{id}")
-    public List<Category> getById(@PathVariable long id){ return categoryService.getById(id); }
+@GetMapping("/getAllChannels")
+    public List<Channel> getAllChannelsFromServer(){
+
+    return ChannelService.getAllChannelsFromServer();
+}
+
+
+/*@GetMapping("/getChannelsFromId/{id}")
+public List<Channel> getChannelsFromId(@PathVariable long id){
+return ChannelService.getChannelsFromId(id);
+}*/
+
 }
