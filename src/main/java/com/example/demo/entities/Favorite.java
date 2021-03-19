@@ -10,18 +10,16 @@ public class Favorite {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
     private long id;
-    private long user_id;
-    private long channel_id;
+    private long userid;
     private long program_id;
     private long episode_id;
 
     public Favorite() {
     }
 
-    public Favorite(long id, long user_id, long channel_id, long program_id, long episode_id) {
+    public Favorite(long id, long user_id, long program_id, long episode_id) {
         this.id = id;
-        this.user_id = user_id;
-        this.channel_id = channel_id;
+        this.userid = user_id;
         this.program_id = program_id;
         this.episode_id = episode_id;
     }
@@ -35,19 +33,11 @@ public class Favorite {
     }
 
     public long getUser_id() {
-        return user_id;
+        return userid;
     }
 
     public void setUser_id(long user_id) {
-        this.user_id = user_id;
-    }
-
-    public long getChannel_id() {
-        return channel_id;
-    }
-
-    public void setChannel_id(long channel_id) {
-        this.channel_id = channel_id;
+        this.userid = user_id;
     }
 
     public long getProgram_id() {
@@ -68,10 +58,9 @@ public class Favorite {
 
     @Override
     public String toString() {
-        return "FavoriteService{" +
+        return "\nFavoriteService{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", channel_id=" + channel_id +
+                ", user_id=" + userid +
                 ", program_id=" + program_id +
                 ", episode_id=" + episode_id +
                 '}';
