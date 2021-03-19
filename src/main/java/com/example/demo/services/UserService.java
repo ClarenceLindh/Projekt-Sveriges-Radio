@@ -72,7 +72,7 @@ public class UserService {
                 e.printStackTrace();
             }
 
-            userRepo.save(fromDb);
+            detailsService.updateUser(fromDb);
         }
     }
 
