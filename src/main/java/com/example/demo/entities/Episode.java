@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Episode {
     @Id // Berättar att det är en primary key
     private long id;
-//    private long program_id;
+    private long program_id;
     String title;
     String description;
     String publishdateutc;
@@ -34,13 +34,13 @@ public class Episode {
         this.id = id;
     }
 
-//    public long getProgram_id() {
-//        return program_id;
-//    }
-//
-//    public void setProgram_id(long program_id) {
-//        this.program_id = program_id;
-//    }
+    public long getProgram_id() {
+        return program_id;
+    }
+
+    public void setProgram_id(long program_id) {
+        this.program_id = program_id;
+    }
 
     public String getTitle() {
         return title;
