@@ -41,17 +41,4 @@ public List<Channel> getAllChannels(){
 return channel;
 
     }
-
-
-
-/*public List<Channel>getChannelsFromId(long id){
-    RestTemplate template = new RestTemplate();
-
-    Map response = template.getForObject(Channelsapi + "search/" + id, Map.class);
-
-            List<Channel> channels = (List<Channel>) response.get("results");
-
-    System.out.println(channels);
-    return channels;
-}*/
 }

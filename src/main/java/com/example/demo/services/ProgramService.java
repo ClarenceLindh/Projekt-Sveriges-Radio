@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.entities.Episode;
 import com.example.demo.entities.Program;
 import com.example.demo.repositories.ProgramRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class ProgramService {
         Program progs = new Program(
                 (Integer) program.get("id"),
                 (String)program.get("name"),
-                (String) program.get("description")
+                (String) program.get("description"),
+                (Long) program.get("categoryId")
         );
         // debug
         System.out.println(progs);
@@ -62,10 +64,35 @@ public class ProgramService {
             Long id = ((Number) prog.get("id")).longValue();
             String name = (String) prog.get("name");
             String description = (String) prog.get("description");
-            Program program = new Program(id, name, description);
+            Long categoryId = (Long) prog.get("categoryId");
+
+            Program program = new Program(id, name, description, categoryId);
+
             programs.add(program);
         }
         System.out.println(programs.toString());
+        return programs;
+    }
+
+    public List<Program> getByCategoryId( long categoryId) {
+        RestTemplate template = new RestTemplate();
+        // programapi + index?&programcategoryid=14&format=json
+        Map response = template.getForObject(programApi + "/index?&programcategoryid="+ categoryId + "&format=json", Map.class);
+        List<Map> programMaps = (List<Map>) response.get("programs");
+
+        List<Program> programs = new ArrayList<>();
+
+
+        for(Map progs : programMaps){
+           Long id = ((Number) progs.get("id")).longValue();
+            String name = (String) progs.get("name");
+            String description = (String) progs.get("description");
+            Program program = new Program(id, name, description, categoryId);
+
+            programs.add(program);
+        }
+
+        System.out.println(programs);
         return programs;
     }
 }
