@@ -21,7 +21,7 @@ public class ProgramsController {
     private ProgramService programService;
 
     @GetMapping("/rest/programs/{id}")
-    public List <Program> getById(@PathVariable long id){
+    public Program getById(@PathVariable long id){
         return programService.getById(id);
     }
 

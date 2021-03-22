@@ -25,68 +25,23 @@ public class ProgramService {
 
     private String programApi = "http://api.sr.se/api/v2/programs/";
 
-
-    public List<Program> getById(long id){
-        /*
+    public Program getById(long id){
         RestTemplate template = new RestTemplate();
-        Map response = template.getForObject(programApi + id + "?format=json", Map.class);
-
-        String reply = (String)response.get("program").toString();
-
-        String[] shortAnswers = reply.split("=");
-        List<String> finalAnswer = new ArrayList<>();
-        for(String answer : shortAnswers){
-            answer = answer.replace("{", "");
-            answer = answer.replace("}", "");
-            answer = answer.replace(", name", "");
-            finalAnswer.add(answer);
-        }
-
-        Long newId = Long.parseLong(finalAnswer.get(1));
-        String newName = finalAnswer.get(2);
-        String newDesc = finalAnswer.get(3);
-
-        List<Program> programs = new ArrayList<>();
-
-        Program program = new Program(newId, newName, newDesc);
-        programs.add(program);
-
-        return programs;
-         */
-
-
-
-        RestTemplate template = new RestTemplate();
-
         // convert response to a Map
         Map response = template.getForObject(programApi + id + "/?format=json", Map.class);
-
         // for easy extraction of the results data
-        List<Map> programMaps = (List<Map>) response.get("programs");
-
+        Map program = (Map) response.get("program");
         // if no match, return null
-        if(programMaps == null) return null;
-
-        List<Program> programs = new ArrayList<>();
-
-        // loop all programs and extract the data we want
-        for(Map program : programMaps) {
-
-            // create a program with extracted data
-            Program progs = new Program(
-                    Long.parseLong((String) program.get("id")),
-                    (String)program.get("name"),
-                    (String) program.get("description")
-            );
-
-            // populate list with freshly created programs
-            programs.add(progs);
-
-        }
+        if(program == null) return null;
+        // create a program with extracted data
+        Program progs = new Program(
+                (Integer) program.get("id"),
+                (String)program.get("name"),
+                (String) program.get("description")
+        );
         // debug
-        System.out.println(programs);
-        return programs;
-
+        System.out.println(progs);
+        return progs;
     }
 
     public List<Program> getAll() {
