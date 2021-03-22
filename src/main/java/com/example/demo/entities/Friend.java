@@ -10,16 +10,15 @@ public class Friend {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
     private long id;
-    private long user_id;
-    private long friends_id;
+    private long userid;
+    private long friendsid;
 
     public Friend() {
     }
 
-    public Friend(long id, long user_id, long friends_id) {
-        this.id = id;
-        this.user_id = user_id;
-        this.friends_id = friends_id;
+    public Friend(long user_id, long friends_id) {
+        this.userid = user_id;
+        this.friendsid = friends_id;
     }
 
     public long getId() {
@@ -31,27 +30,27 @@ public class Friend {
     }
 
     public long getUser_id() {
-        return user_id;
+        return userid;
     }
 
     public void setUser_id(long user_id) {
-        this.user_id = user_id;
+        this.userid = user_id;
     }
 
     public long getFriends_id() {
-        return friends_id;
+        return friendsid;
     }
 
     public void setFriends_id(long friends_id) {
-        this.friends_id = friends_id;
+        this.friendsid = friends_id;
     }
 
     @Override
     public String toString() {
         return "FriendsService{" +
                 "id=" + id +
-                ", user_id=" + user_id +
-                ", friends_id=" + friends_id +
+                ", user_id=" + userid +
+                ", friends_id=" + friendsid +
                 '}';
     }
 }
