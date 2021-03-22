@@ -48,6 +48,16 @@ public class MyUserDetailsService implements UserDetailsService {
         return null;
     }
 
+    public User updateUser(User user){
+        user.setPassword(encoder.encode(user.getPassword()));
+        try {
+            return userRepo.save(user);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     private UserDetails toUserDetails(User user) {
         // If you have a User entity you have to
         // use the userdetails User for this to work

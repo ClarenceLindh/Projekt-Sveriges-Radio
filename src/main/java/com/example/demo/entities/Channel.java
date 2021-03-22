@@ -7,19 +7,16 @@ import javax.persistence.*;
 @Entity
 @Table(name="channels")
 public class Channel {
-
-    @Id // Berättar att det är en primary key
+    @Id
     private long id;
     private String name;
-    private String info;
 
-    public Channel() {
-    }
+    public Channel() { }
 
-    public Channel(long id, String name, String info) {
+    public Channel(long id, String name) {
         this.id = id;
         this.name = name;
-        this.info = info;
+
     }
 
     public long getId() {
@@ -38,20 +35,20 @@ public class Channel {
         this.name = name;
     }
 
-    public String getInfo() {
-        return info;
-    }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
 
     @Override
     public String toString() {
         return "Channel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", info='" + info + '\'' +
+
                 '}';
     }
 }
+
+
+
+
+
+
