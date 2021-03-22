@@ -1,18 +1,11 @@
 package com.example.demo.services;
 
-import com.example.demo.ConvertToJson;
 import com.example.demo.entities.Program;
-import com.example.demo.entities.User;
 import com.example.demo.repositories.ProgramRepo;
-import com.example.demo.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
