@@ -25,7 +25,7 @@ public class EpisodeService {
     @Autowired
     private EpisodeRepo episodeRepo;
 
-    //______________________________Hämta alla episode från ett program genom id_____________________________________
+    //______________________________Hämta alla episode från ett program i api'n genom id________________________________
     public List<Episode> getbyProgramid(long id){
 
         RestTemplate restTemplate= new RestTemplate();
@@ -56,7 +56,7 @@ public class EpisodeService {
 
 
 
-    //_______________________________Hämta allt från Episodes________________________________________________________
+    //_______________________________Hämta allt från Episodes i databsen________________________________________________
     // Skapa en lista som tar emot allt från databasen genom episoderepos inbyggda metod från jpa.
     // Koppla sedan till controller för att kunna kalla på och få ut värdena.
     public List<Episode> getAllEpisodesFromDb(){
@@ -64,11 +64,13 @@ public class EpisodeService {
 }
 
 
-    //---------------------------------------Hämta alla episodes baserad på en viss titel-------------------------------
+    //-------------------------------Hämta alla episodes i databasen baserad på en viss titel---------------------------
 public List <Episode> getWithTitle(String title){
        return episodeRepo.getWithTitle(title);
 }
 
-
+public Episode addEpisode(Episode episode){
+        return episodeRepo.save(episode);
+}
 
 }

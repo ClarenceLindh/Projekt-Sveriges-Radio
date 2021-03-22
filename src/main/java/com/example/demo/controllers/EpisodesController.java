@@ -4,10 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.entities.Episode;
 import com.example.demo.services.EpisodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,5 +36,11 @@ public class EpisodesController {
     @GetMapping("/rest/episodes/all/{title}")
     public List <Episode> getByTitle(@PathVariable String title){
         return episodeService.getWithTitle(title);
+    }
+
+//--------------------------------------Post en episode till db---------------------------------------------------------
+    @PostMapping("/rest/episodess")
+    private Episode createEpisode (@RequestBody Episode episode){
+        return episodeService.addEpisode(episode);
     }
 }

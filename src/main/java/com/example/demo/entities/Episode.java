@@ -26,6 +26,14 @@ public class Episode {
         this.publishdateutc = publishdateutc;
     }
 
+    public Episode(long id, long program_id, String title, String description, String publishdateutc) {
+        this.id = id;
+        this.program_id = program_id;
+        this.title = title;
+        this.description = description;
+        this.publishdateutc = publishdateutc;
+    }
+
     public long getId() {
         return id;
     }
@@ -62,8 +70,8 @@ public class Episode {
         return publishdateutc;
     }
 
-    public void setAirTime(String datetime) {
-        this.publishdateutc =datetime;
+    public void setAirTime(String publishdateutc) {
+        this.publishdateutc =publishdateutc;
     }
 
     @Override
