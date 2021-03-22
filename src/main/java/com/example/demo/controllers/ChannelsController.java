@@ -22,10 +22,10 @@ private ChannelService ChannelService;
 }
 
 
-@GetMapping("/getAllChannels")
-    public List<Channel> getAllChannelsFromServer(){
+@GetMapping("/rest/channels")
+    public List<Channel> getAllChannels(){
 
-    return ChannelService.getAllChannelsFromServer();
+    return ChannelService.getAllChannels();
 }
 
 

@@ -21,7 +21,7 @@ public class ChannelService {
 private ChannelRepo ChannelRepo;
    // Main Method for pulling data from api.
 private String Channelsapi = "http://api.sr.se/api/v2/channels?format=json";
-public List<Channel> getAllChannelsFromServer(){
+public List<Channel> getAllChannels(){
     RestTemplate template = new RestTemplate();
 
     Map response = template.getForObject(Channelsapi , Map.class);
