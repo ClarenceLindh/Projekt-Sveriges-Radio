@@ -59,34 +59,33 @@ public class ProgramService {
         RestTemplate template = new RestTemplate();
 
         // convert response to a Map
-        Map response = template.getForObject(programApi + id + "?format=json", Map.class);
+        Map response = template.getForObject(programApi + id + "/?format=json", Map.class);
 
         // for easy extraction of the results data
-        List<Map> progMaps = (List<Map>) response.get("programs");
+        List<Map> programMaps = (List<Map>) response.get("programs");
 
         // if no match, return null
-        if(progMaps == null) return null;
+        if(programMaps == null) return null;
 
-        List<Program> progs = new ArrayList<>(); 
+        List<Program> programs = new ArrayList<>();
 
         // loop all programs and extract the data we want
-        for(Map prog : progMaps) {
+        for(Map program : programMaps) {
 
             // create a program with extracted data
-            Program program = new Program(
-                    Long.parseLong((String) prog.get("id")),
-                    (String)prog.get("name"),
-                    (String) prog.get("description")
+            Program progs = new Program(
+                    Long.parseLong((String) program.get("id")),
+                    (String)program.get("name"),
+                    (String) program.get("description")
             );
 
             // populate list with freshly created programs
-            progs.add(program);
+            programs.add(progs);
 
         }
         // debug
-        System.out.println(progs);
-        return progs;
-
+        System.out.println(programs);
+        return programs;
 
     }
 

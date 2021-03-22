@@ -20,6 +20,8 @@ public class ProjektSverigesRadioApplication {
 
 		progServ.getById(35);
 
+		progServ.getAll();
+
 
 
 
