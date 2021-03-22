@@ -9,22 +9,26 @@ import javax.persistence.*;
 public class Program{
     @Id // Berättar att det är en primary key
     private long id;
-    private long channel_id;
-    private String programcategoryid;
-    private String title;
+    private String name;
     private String description;
-    private String publishdateutc;
 
-    public Program() {
+
+
+    public Program() { }
+
+    public Program(long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
-    public Program(long id, long channel_id, String programcategoryid, String title, String description, String publishdateutc) {
-        this.id = id;
-        this.channel_id = channel_id;
-        this.programcategoryid = programcategoryid;
-        this.title = title;
-        this.description = description;
-        this.publishdateutc = publishdateutc;
+    @Override
+    public String toString() {
+        return "\nProgram{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     public long getId() {
@@ -35,30 +39,6 @@ public class Program{
         this.id = id;
     }
 
-    public long getChannel_id() {
-        return channel_id;
-    }
-
-    public void setChannel_id(long channel_id) {
-        this.channel_id = channel_id;
-    }
-
-    public String getProgramcategoryid() {
-        return programcategoryid;
-    }
-
-    public void setProgramcategoryid(String programcategoryid) {
-        this.programcategoryid = programcategoryid;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -67,24 +47,12 @@ public class Program{
         this.description = description;
     }
 
-    public String getPublishdateutc() {
-        return publishdateutc;
+    public String getName() {
+        return name;
     }
 
-    public void setPublishdateutc(String publishdateutc) {
-        this.publishdateutc = publishdateutc;
+    public void setName(String name) {
+        this.name = name;
     }
 
-
-    @Override
-    public String toString() {
-        return "ProgramsService{" +
-                "id=" + id +
-                ", channel_id=" + channel_id +
-                ", programcategoryid='" + programcategoryid + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", publishdateutc='" + publishdateutc + '\'' +
-                '}';
-    }
 }
