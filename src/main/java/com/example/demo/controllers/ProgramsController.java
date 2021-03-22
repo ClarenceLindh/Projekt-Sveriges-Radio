@@ -32,4 +32,8 @@ public class ProgramsController {
     }
 
 
+
+    @GetMapping("/rest/programsByCategoryId/{categoryId}")
+    public List<Program> getByCategoryId(@PathVariable Long categoryId){
+        return  programService.getByCategoryId(categoryId);    }
 }

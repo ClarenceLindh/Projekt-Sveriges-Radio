@@ -11,24 +11,17 @@ public class Program{
     private long id;
     private String name;
     private String description;
+    private long categoryId;
 
 
 
     public Program() { }
 
-    public Program(long id, String name, String description) {
+    public Program(long id, String name, String description, long categoryId) {
         this.id = id;
         this.name = name;
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "\nProgram{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        this.categoryId = categoryId;
     }
 
     public long getId() {
@@ -39,6 +32,14 @@ public class Program{
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -47,12 +48,22 @@ public class Program{
         this.description = description;
     }
 
-    public String getName() {
-        return name;
+    public long getCategoryId() {
+        return categoryId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    @Override
+    public String toString() {
+        return "\nProgram{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", categoryId=" + categoryId +
+                '}';
     }
 
 }
