@@ -48,7 +48,7 @@ public class ProgramService {
             Long progId = ((Number) prog.get("id")).longValue();
             String name = (String) prog.get("name");
             String description = (String) prog.get("description");
-            Program program = new Program(progId, name, description);
+            Program program = new Program(progId, name, description, id);
             programs.add(program);
         }
         System.out.println(programs.toString());

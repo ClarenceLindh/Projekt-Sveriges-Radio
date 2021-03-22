@@ -34,10 +34,6 @@ public class ProgramsController {
         public List<Program> getByChannelId(@PathVariable long id){
             return programService.getByChannelId(id);
         }
-}
-
-
-
 
     @GetMapping("/rest/programsByCategoryId/{categoryId}")
     public List<Program> getByCategoryId(@PathVariable Long categoryId){

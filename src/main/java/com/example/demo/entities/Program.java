@@ -24,6 +24,12 @@ public class Program{
         this.categoryId = categoryId;
     }
 
+    public Program(long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }
