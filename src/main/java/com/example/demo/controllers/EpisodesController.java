@@ -44,4 +44,10 @@ public class EpisodesController {
         System.out.println(episode);
         return episodeService.addEpisode(episode);
     }
+ //----------------------------------Hitta en episode beroende på dag---------------------------------------------------
+
+    @GetMapping("/rest/episodes/day/{id}/{date}")
+    private List<Episode> getEpisodesByDay(@PathVariable long id, @PathVariable String date){
+        return episodeService.getByDate(id,date);
+    }
 }

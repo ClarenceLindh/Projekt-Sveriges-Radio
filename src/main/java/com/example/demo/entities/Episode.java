@@ -15,6 +15,8 @@ public class Episode {
     String title;
     String description;
     String publishdateutc;
+    String name;
+
 
     public Episode() {
     }
@@ -35,6 +37,17 @@ public class Episode {
         this.description = description;
         this.publishdateutc = publishdateutc;
     }
+
+    public Episode(long id, long program_id, String title, String description, String publishdateutc, String name) {
+        this.id = id;
+        this.program_id = program_id;
+        this.title = title;
+        this.description = description;
+        this.publishdateutc = publishdateutc;
+        this.name = name;
+    }
+
+
 
     public long getId() {
         return id;
@@ -78,14 +91,24 @@ public class Episode {
         this.publishdateutc = publishdateutc;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "EpisodesService{" +
+        return "Episode{" +
                 "id=" + id +
-//                ", program_id=" + program_id +
+                ", program_id=" + program_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ",  publishdateutc='" + publishdateutc + '\'' +
+                ", publishdateutc='" + publishdateutc + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
