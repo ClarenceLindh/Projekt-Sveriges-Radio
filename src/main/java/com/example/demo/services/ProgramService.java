@@ -37,6 +37,19 @@ public class ProgramService {
         return progs;
     }
 
+    public Program getByChannelId(long id){
+        RestTemplate template = new RestTemplate();
+        Map response = template.getForObject(programApi + "index?channelid=" + id + "&format=json", Map.class);
+        Map program = (Map) response.get("programs");
+        Program progs = new Program(
+                (Integer) program.get("id"),
+                (String) program.get("name"),
+                (String) program.get("description")
+        );
+        System.out.println(progs);
+        return progs;
+    }
+
     public List<Program> getAll() {
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(programApi + "?format=json", Map.class);
