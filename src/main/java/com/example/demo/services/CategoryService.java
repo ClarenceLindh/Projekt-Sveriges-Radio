@@ -4,11 +4,6 @@ import com.example.demo.entities.Category;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.rmi.MarshalledObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
