@@ -27,6 +27,35 @@ public class ProgramService {
 
 
     public List<Program> getById(long id){
+        /*
+        RestTemplate template = new RestTemplate();
+        Map response = template.getForObject(programApi + id + "?format=json", Map.class);
+
+        String reply = (String)response.get("program").toString();
+
+        String[] shortAnswers = reply.split("=");
+        List<String> finalAnswer = new ArrayList<>();
+        for(String answer : shortAnswers){
+            answer = answer.replace("{", "");
+            answer = answer.replace("}", "");
+            answer = answer.replace(", name", "");
+            finalAnswer.add(answer);
+        }
+
+        Long newId = Long.parseLong(finalAnswer.get(1));
+        String newName = finalAnswer.get(2);
+        String newDesc = finalAnswer.get(3);
+
+        List<Program> programs = new ArrayList<>();
+
+        Program program = new Program(newId, newName, newDesc);
+        programs.add(program);
+
+        return programs;
+         */
+
+
+
         RestTemplate template = new RestTemplate();
 
         // convert response to a Map
@@ -38,7 +67,7 @@ public class ProgramService {
         // if no match, return null
         if(progMaps == null) return null;
 
-        List<Program> progs = new ArrayList<>();
+        List<Program> progs = new ArrayList<>(); 
 
         // loop all programs and extract the data we want
         for(Map prog : progMaps) {
@@ -57,6 +86,7 @@ public class ProgramService {
         // debug
         System.out.println(progs);
         return progs;
+
 
     }
 
