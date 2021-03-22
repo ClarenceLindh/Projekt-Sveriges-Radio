@@ -37,39 +37,35 @@ public class ProgramService {
         return progs;
     }
 
-    public Program getByChannelId(long id){
+    public List<Program> getByChannelId(long id){
         RestTemplate template = new RestTemplate();
-        Map response = template.getForObject(programApi + "index?channelid=" + id + "&format=json", Map.class);
-        Map program = (Map) response.get("programs");
-        Program progs = new Program(
-                (Integer) program.get("id"),
-                (String) program.get("name"),
-                (String) program.get("description")
-        );
-        System.out.println(progs);
-        return progs;
+        Map response = template.getForObject(programApi + "/index?channelid=" + id + "&format=json", Map.class);
+        List<Map>  progMaps = (List<Map>) response.get("programs");
+        List<Program> programs = new ArrayList<>();
+        for (Map prog: progMaps){
+            Long progId = ((Number) prog.get("id")).longValue();
+            String name = (String) prog.get("name");
+            String description = (String) prog.get("description");
+            Program program = new Program(progId, name, description);
+            programs.add(program);
+        }
+        System.out.println(programs.toString());
+        return programs;
     }
 
     public List<Program> getAll() {
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(programApi + "?format=json", Map.class);
-
         List<Map>  progMaps = (List<Map>) response.get("programs");
-
         List<Program> programs = new ArrayList<>();
-
         for (Map prog: progMaps){
             Long id = ((Number) prog.get("id")).longValue();
             String name = (String) prog.get("name");
             String description = (String) prog.get("description");
-
             Program program = new Program(id, name, description);
-
             programs.add(program);
         }
-
         System.out.println(programs.toString());
         return programs;
-
     }
 }

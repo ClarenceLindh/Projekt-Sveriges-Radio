@@ -20,16 +20,21 @@ public class ProgramsController {
     @Autowired
     private ProgramService programService;
 
-    @GetMapping("/rest/programs/{id}")
-    public Program getById(@PathVariable long id){
-        return programService.getById(id);
-    }
-
-
     @GetMapping("/rest/programs")
     public List<Program> getAll() {
         return programService.getAll();
     }
 
+    @GetMapping("/rest/programs/{id}")
+    public Program getById(@PathVariable long id){
+        return programService.getById(id);
+    }
 
+    @GetMapping("/rest/programs/channel/{id}")
+        public List<Program> getByChannelId(@PathVariable long id){
+            return programService.getByChannelId(id);
+        }
 }
+
+
+
