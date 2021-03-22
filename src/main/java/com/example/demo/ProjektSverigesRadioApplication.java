@@ -14,17 +14,7 @@ public class ProjektSverigesRadioApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjektSverigesRadioApplication.class, args);
 
-//		EpisodeService episodeService = new EpisodeService();
-//		List<Episode> episodes = episodeService.getbyProgramid(96);
-
 		System.out.println("NU TAR VI FREEEEDAG!");
-
-		ProgramService progServ = new ProgramService();
-
-
-		progServ.getById(35);
-
-
 
 
 

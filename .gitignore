@@ -9,9 +9,3 @@ sites/site*/public/theme/
 textpattern/
 HISTORY.txt
 README.txt
-src/main/resources/application.properties
-
-
-### Application properties ###
-target/classes/application.properties/
-target/classes/application.properties
