@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    // /rest/users
+
     @GetMapping("/rest/users")
     public List<User> getAll() {
         return userService.getAll();
@@ -30,7 +30,7 @@ public class UserController {
     public User getById(@PathVariable long id) {
         return userService.findById(id);
     }
-
+/*
     @DeleteMapping("/rest/users/{id}")
     public void deleteById(@PathVariable long id) {
         userService.deleteById(id);
@@ -40,6 +40,7 @@ public class UserController {
     public void updateById(@RequestBody User user, @PathVariable long id) {
         userService.updateById(id, user);
     }
+    */
 
     @PostMapping("/auth/register")
     public User register(@RequestBody User user){
