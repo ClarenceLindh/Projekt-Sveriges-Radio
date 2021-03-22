@@ -38,57 +38,26 @@ public class ProgramService {
         // if no match, return null
         if(progMaps == null) return null;
 
-        List<Program> programs = new ArrayList<>();
+        List<Program> progs = new ArrayList<>();
 
-        // loop all heroes and extract the data we want
+        // loop all programs and extract the data we want
         for(Map prog : progMaps) {
 
-            // create a hero with extracted data
+            // create a program with extracted data
             Program program = new Program(
                     Long.parseLong((String) prog.get("id")),
                     (String)prog.get("name"),
                     (String) prog.get("description")
             );
 
-            // populate list with freshly created heroes
-            programs.add(program);
+            // populate list with freshly created programs
+            progs.add(program);
 
         }
-
         // debug
-        System.out.println(programs);
-        return programs;
+        System.out.println(progs);
+        return progs;
 
-
-        /*
-        RestTemplate template = new RestTemplate();
-        Map response = template.getForObject(programApi  + id + "?format=json", Map.class);
-
-        String reply = (String)response.get("programs").toString();
-
-        String[] shortAnswer = reply.split("=");
-        List<String> finalAnswer = new ArrayList<>();
-
-        for(String answer : shortAnswer){
-            answer = answer.replace("{", "");
-            answer = answer.replace("}", "");
-            answer = answer.replace(", name", "");
-            finalAnswer.add(answer);
-        }
-
-
-        Long newID = Long.parseLong(finalAnswer.get(1));
-        String newName = finalAnswer.get(2);
-        String newDescription = finalAnswer.get(3);
-
-        List<Program> programs = new ArrayList<>();
-        Program program = new Program(id, newName, newDescription);
-        programs.add(program);
-
-        System.out.println(programs.toString());
-
-        return programs;
-        */
     }
 
     public List<Program> getAll() {
