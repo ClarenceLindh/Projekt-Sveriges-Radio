@@ -65,10 +65,12 @@ public class EpisodeService {
 
 
     //-------------------------------Hämta alla episodes i databasen baserad på en viss titel---------------------------
-public List <Episode> getWithTitle(String title){
+    public List <Episode> getWithTitle(String title){
        return episodeRepo.getWithTitle(title);
 }
 
+
+//-----------------------------------Post en episode till databasen-----------------------------------------------------
 public Episode addEpisode(Episode episode){
         return episodeRepo.save(episode);
 }

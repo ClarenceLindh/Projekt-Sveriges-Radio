@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
@@ -66,12 +68,14 @@ public class Episode {
         this.description = description;
     }
 
-    public String getAirTime() {
+
+    @JsonProperty("Airtime")
+    public String getPublishdateutc() {
         return publishdateutc;
     }
 
-    public void setAirTime(String publishdateutc) {
-        this.publishdateutc =publishdateutc;
+    public void setPublishdateutc(String publishdateutc) {
+        this.publishdateutc = publishdateutc;
     }
 
     @Override
@@ -81,7 +85,7 @@ public class Episode {
 //                ", program_id=" + program_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", datetime='" + publishdateutc + '\'' +
+                ",  publishdateutc='" + publishdateutc + '\'' +
                 '}';
     }
 }

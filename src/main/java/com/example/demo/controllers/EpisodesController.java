@@ -39,8 +39,9 @@ public class EpisodesController {
     }
 
 //--------------------------------------Post en episode till db---------------------------------------------------------
-    @PostMapping("/rest/episodess")
+    @PostMapping("/rest/episodes")
     private Episode createEpisode (@RequestBody Episode episode){
+        System.out.println(episode);
         return episodeService.addEpisode(episode);
     }
 }
