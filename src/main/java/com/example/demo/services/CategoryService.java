@@ -1,6 +1,5 @@
 package com.example.demo.services;
 
-import com.example.demo.ConvertToJson;
 import com.example.demo.entities.Category;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
