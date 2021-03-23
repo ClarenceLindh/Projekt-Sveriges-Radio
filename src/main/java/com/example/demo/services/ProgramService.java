@@ -8,6 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Service
@@ -58,5 +59,30 @@ public class ProgramService {
         System.out.println(programs.toString());
         return programs;
 
+    }
+
+    public List<Program> getByName(String phrase) {
+        RestTemplate template = new RestTemplate();
+        Map response = template.getForObject(programApi + "?pagination=false&format=json", Map.class);
+
+        List<Map> progMaps = (List<Map>) response.get("programs");
+
+        List<Program> programs = new ArrayList<>();
+
+        for(Map prog : progMaps){
+            if(prog.get("name").toString().toLowerCase().contains(phrase.toLowerCase())){
+                Long id = ((Number) prog.get("id")).longValue();
+                String name = (String) prog.get("name");
+                String description = (String) prog.get("description");
+
+                Program program = new Program(id, name, description);
+
+                programs.add(program);
+            }
+        }
+
+        System.out.println(programs.toString());
+
+        return programs;
     }
 }

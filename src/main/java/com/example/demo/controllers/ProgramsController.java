@@ -31,5 +31,6 @@ public class ProgramsController {
         return programService.getAll();
     }
 
-
+    @GetMapping("/rest/programs/search/{phrase}")
+    public List<Program> getByName(@PathVariable String phrase){ return programService.getByName(phrase); }
 }
