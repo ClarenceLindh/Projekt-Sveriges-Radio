@@ -79,36 +79,29 @@ public Episode addEpisode(Episode episode){
 
 //--------------------------------------Get episode by date-------------------------------------------------------------
 
+    //http://api.sr.se/api/v2/episodes/index?programid=3718&fromdate=2012-08-27&todate=2012-08-31
     public List<Episode> getByDate(long id, String date){
         RestTemplate restTemplate= new RestTemplate();
 
         Integer date1 = Integer.parseInt(date);
         Integer date2 = Integer.parseInt(date);
         date2++;
-//        System.out.println("date1=" + date1);
-//        System.out.println("date2=" + date2);
-        Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&fromdate=" + date1 + "&todate=" + date2 + "&format=Json" , Map.class);
+        String newDate1 = ""+ date1;
+        String newDate2 = ""+ date2;
+        newDate1 = newDate1.substring(0, 4) + "-" +
+                newDate1.substring(4, 6) + "-" + newDate1.substring(6, 8);
+        newDate2 = newDate2.substring(0, 4) + "-" +
+                newDate2.substring(4, 6) + "-" + newDate2.substring(6, 8);
+        Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&fromdate=" + newDate1
+                + "&todate=" + newDate2 + "&format=Json" , Map.class);
 
-//        System.out.println("TEEST:" + response.toString());
         List<Map> episodeMaps = (List<Map>) response.get("episodes");
-
         List<Episode> episodes = new ArrayList<>();
-
-
         for (Map episode : episodeMaps){
-
             String publishdateutc = (String)episode.get("publishdateutc");
             String epoch = publishdateutc.substring(6,19);
             long airtime = Long.parseLong(epoch);
             String broadcasttime = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date (airtime));
-
-//            Map program = (Map) episode.get("program");
-//            Long program_id = (Long) program.get(0);
-//            String name = (String) program.get(1);
-//
-//            System.out.println("name = " + name);
-//            System.out.println("Progrma id är följande " + program_id);
-
 
             Episode EP = new Episode(
                     (Integer)episode.get("id"),

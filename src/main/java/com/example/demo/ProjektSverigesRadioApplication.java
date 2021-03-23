@@ -15,6 +15,7 @@ public class ProjektSverigesRadioApplication {
 		SpringApplication.run(ProjektSverigesRadioApplication.class, args);
 
 
+
 		System.out.println("Fredag!");
 
 	}
