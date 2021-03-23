@@ -35,6 +35,9 @@ public class ProgramsController {
             return programService.getByChannelId(id);
         }
 
+    @GetMapping("/rest/programs/search/{phrase}")
+    public List<Program> getByName(@PathVariable String phrase){ return programService.getByName(phrase); }
+
     @GetMapping("/rest/programsByCategoryId/{categoryId}")
     public List<Program> getByCategoryId(@PathVariable Long categoryId){
         return  programService.getByCategoryId(categoryId);    }
