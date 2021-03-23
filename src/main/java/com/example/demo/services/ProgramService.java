@@ -66,9 +66,7 @@ public class ProgramService {
             String name = (String) prog.get("name");
             String description = (String) prog.get("description");
             Long categoryId = (Long) prog.get("categoryId");
-
             Program program = new Program(id, name, description, categoryId);
-
             programs.add(program);
         }
         System.out.println(programs.toString());
@@ -80,19 +78,14 @@ public class ProgramService {
         // programapi + index?&programcategoryid=14&format=json
         Map response = template.getForObject(programApi + "/index?&programcategoryid="+ categoryId + "&format=json", Map.class);
         List<Map> programMaps = (List<Map>) response.get("programs");
-
         List<Program> programs = new ArrayList<>();
-
-
         for(Map progs : programMaps){
            Long id = ((Number) progs.get("id")).longValue();
             String name = (String) progs.get("name");
             String description = (String) progs.get("description");
             Program program = new Program(id, name, description, categoryId);
-
             programs.add(program);
         }
-
         System.out.println(programs);
         return programs;
     }
