@@ -79,6 +79,13 @@ public Episode addEpisode(Episode episode){
 
 //--------------------------------------Get episode by date-------------------------------------------------------------
 
+    private String parseDate(String date, int index){
+//Insert "-" into string to form a date, using index to describe where to split
+        date = date.substring(0, index) + "-" +
+                date.substring(index, index + 2) + "-" + date.substring(index + 2, 8);
+        return date;
+    }
+
     //http://api.sr.se/api/v2/episodes/index?programid=3718&fromdate=2012-08-27&todate=2012-08-31
     public List<Episode> getByDate(long id, String date){
         RestTemplate restTemplate= new RestTemplate();
@@ -88,10 +95,9 @@ public Episode addEpisode(Episode episode){
         date2++;
         String newDate1 = ""+ date1;
         String newDate2 = ""+ date2;
-        newDate1 = newDate1.substring(0, 4) + "-" +
-                newDate1.substring(4, 6) + "-" + newDate1.substring(6, 8);
-        newDate2 = newDate2.substring(0, 4) + "-" +
-                newDate2.substring(4, 6) + "-" + newDate2.substring(6, 8);
+        newDate1 = parseDate(newDate1, 4);
+        newDate2 = parseDate(newDate2, 4);
+
         Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&fromdate=" + newDate1
                 + "&todate=" + newDate2 + "&format=Json" , Map.class);
 
