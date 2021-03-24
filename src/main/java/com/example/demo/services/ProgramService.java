@@ -32,8 +32,7 @@ public class ProgramService {
         Program progs = new Program(
                 (Integer) program.get("id"),
                 (String)program.get("name"),
-                (String) program.get("description"),
-                (Long) program.get("categoryId")
+                (String) program.get("description")
         );
         // debug
         System.out.println(progs);
