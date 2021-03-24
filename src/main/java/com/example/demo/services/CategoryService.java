@@ -12,6 +12,7 @@ import java.util.Map;
 public class CategoryService {
     private String categoryApi = "http://api.sr.se/api/v2/programcategories/";
 
+//_______________________________Hämta alla kategorier________________________________________________
     public List<Category> getAll(){
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(categoryApi + "?format=json", Map.class);
@@ -33,6 +34,7 @@ public class CategoryService {
         return categories;
     }
 
+//______________________________Hämta alla kategorier i api'n genom id________________________________
     public List<Category> getById(Long catID){
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(categoryApi + catID + "?format=json", Map.class);

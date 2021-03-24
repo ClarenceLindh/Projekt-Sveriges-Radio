@@ -13,6 +13,7 @@ public class FavoriteService {
     @Autowired
     private FavoriteRepo favoriteRepo;
 
+//______________________________Find Favorite by user_id_______________________________
     public List<Favorite> findById(long user_id) {
         if(favoriteRepo.findByUserid(user_id) != null){
             List<Favorite> favoriteList = favoriteRepo.findByUserid(user_id);
@@ -21,6 +22,7 @@ public class FavoriteService {
         return null;
     }
 
+//______________________________Add a Favorite from a JSON body________________________
     public Favorite addFavorite(Favorite favorite){
         try {
             return favoriteRepo.save(favorite);
@@ -30,5 +32,6 @@ public class FavoriteService {
         return null;
     }
 
+//______________________________Delete a Favorite from the database____________________
     public void deleteById(long id) { favoriteRepo.deleteById(id); }
 }

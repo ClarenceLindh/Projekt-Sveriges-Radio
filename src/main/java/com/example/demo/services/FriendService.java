@@ -20,6 +20,7 @@ public class FriendService {
     @Autowired
     private UserRepo userRepo;
 
+//______________________________Find Friend by user_id_______________________________
     public List<Friend> findById(long user_id) {
         if(friendRepo.findByUserid(user_id) != null){
             List<Friend> friendList = friendRepo.findByUserid(user_id);
@@ -28,6 +29,7 @@ public class FriendService {
         return null;
     }
 
+//______________________________Add a Friend from a JSON body________________________
     public Friend addFavorite(Friend friend) {
         try{
             return friendRepo.save(friend);
@@ -37,6 +39,7 @@ public class FriendService {
         return null;
     }
 
+//____________________Check if the user to be deleted is logged in___________________
     public Boolean checkIfUser(Long id){
         UserService userService = new UserService();
         Optional<Friend> friendList = friendRepo.findById(id);
@@ -50,6 +53,7 @@ public class FriendService {
             return false;
     }
 
+//______________________________Delete a Friend from the database____________________
     public void deleteById(long id) {
         if(checkIfUser(id)) {
             System.out.println("Deleting friendship " + id);

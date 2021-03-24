@@ -13,6 +13,7 @@ public class ShareService {
     @Autowired
     private ShareRepo shareRepo;
 
+//______________________________Find Shares by user_id_______________________________
     public List<Share> findById(long user_id) {
         if(shareRepo.findByUserid(user_id) != null){
             List<Share> shareList = shareRepo.findByUserid(user_id);
@@ -21,6 +22,7 @@ public class ShareService {
         return null;
     }
 
+//______________________________Add a Shares from a JSON body________________________
     public Share addShare(Share share){
         try {
             return shareRepo.save(share);
@@ -30,5 +32,6 @@ public class ShareService {
         return null;
     }
 
+//______________________________Delete a Shares from the database____________________
     public void deleteById(long id) { shareRepo.deleteById(id); }
 }

@@ -14,14 +14,17 @@ public class ShareController {
     @Autowired
     private ShareService shareService;
 
+//______________________________Get all Shares by user_id_______________________________
     @GetMapping("/shares/{id}")
     public List<Share> getAllShares(@PathVariable long id){ return shareService.findById(id); }
 
+//__________________________Add a new Shares from a JSON object__________________________
     @PostMapping("/shares")
     public Share register(@RequestBody Share share){
         return shareService.addShare(share);
     }
 
+//_________________________________Delete a Shares by ID_________________________________
     @DeleteMapping("/shares/{id}")
     public void deleteById(@PathVariable long id) {
         shareService.deleteById(id);

@@ -14,12 +14,15 @@ public class FriendsController {
     @Autowired
     private FriendService friendService;
 
+//______________________________Get all Friends by user_id_______________________________
     @GetMapping("/friends/{id}")
     public List<Friend> getAll(@PathVariable long id){ return friendService.findById(id); }
 
+//__________________________Add a new Friends from a JSON object__________________________
     @PostMapping("/friends")
     public Friend register(@RequestBody Friend friend){ return friendService.addFavorite(friend); }
 
+//_________________________________Delete a Friends by ID_________________________________
     @DeleteMapping("/friends/{id}")
     public void deleteById(@PathVariable long id) {
         friendService.deleteById(id);

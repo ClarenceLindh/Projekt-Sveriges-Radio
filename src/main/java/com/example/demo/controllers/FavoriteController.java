@@ -14,14 +14,17 @@ public class FavoriteController {
     @Autowired
     private FavoriteService favoriteService;
 
+//______________________________Get all favorites by user_id_______________________________
     @GetMapping("/favorites/{id}")
     public List<Favorite> getAllFavorites(@PathVariable long id){ return favoriteService.findById(id); }
 
+//__________________________Add a new favorite from a JSON object__________________________
     @PostMapping("/favorites")
     public Favorite register(@RequestBody Favorite favorite){
         return favoriteService.addFavorite(favorite);
     }
 
+//_________________________________Delete a favorite by ID_________________________________
     @DeleteMapping("/favorites/{id}")
     public void deleteById(@PathVariable long id) {
         favoriteService.deleteById(id);

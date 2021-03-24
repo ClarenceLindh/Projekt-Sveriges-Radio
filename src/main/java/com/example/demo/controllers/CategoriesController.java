@@ -17,11 +17,13 @@ public class CategoriesController {
     @Autowired
     private CategoryService categoryService;
 
+//______________________________Get all categories_______________________________
     @GetMapping("/categories")
     public List<Category> getAll() {
         return categoryService.getAll();
     }
 
+//_________________________Get a specific category by id_________________________
     @GetMapping("/categories/{id}")
     public List<Category> getById(@PathVariable long id){ return categoryService.getById(id); }
 }
