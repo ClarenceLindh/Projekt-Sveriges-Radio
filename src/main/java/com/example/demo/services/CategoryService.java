@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.Category;
+import com.example.demo.entities.Program;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,30 +36,18 @@ public class CategoryService {
     }
 
 //______________________________Hämta alla kategorier i api'n genom id________________________________
-    public List<Category> getById(Long catID){
+    public Category getById(Long catID){
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(categoryApi + catID + "?format=json", Map.class);
+        Map catMap = (Map) response.get("programcategory");
 
-        String reply = (String)response.get("programcategory").toString();
+        if(catMap == null) return null;
 
-        String[] shortAnswers = reply.split("=");
-        List<String> finalAnswer = new ArrayList<>();
-        for(String answer : shortAnswers){
-            answer = answer.replace("{", "");
-            answer = answer.replace("}", "");
-            answer = answer.replace(", name", "");
-            finalAnswer.add(answer);
-        }
+        Category cat = new Category(
+                ((Number)catMap.get("id")).longValue(),
+                (String)catMap.get("name")
+        );
 
-        Long newId = Long.parseLong(finalAnswer.get(1));
-        String newName = finalAnswer.get(2);
-
-        List<Category> categories = new ArrayList<>();
-
-        Category category = new Category(newId, newName);
-        categories.add(category);
-
-        System.out.println(categories.toString());
-        return categories;
+        return cat;
     }
 }

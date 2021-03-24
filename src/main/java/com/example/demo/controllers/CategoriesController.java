@@ -25,5 +25,5 @@ public class CategoriesController {
 
 //_________________________Get a specific category by id_________________________
     @GetMapping("/categories/{id}")
-    public List<Category> getById(@PathVariable long id){ return categoryService.getById(id); }
+    public Category getById(@PathVariable long id){ return categoryService.getById(id); }
 }
