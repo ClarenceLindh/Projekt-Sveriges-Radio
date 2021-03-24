@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface EpisodeRepo extends JpaRepository<Episode, Long> {
 
+    // Skapar en query för att få ut all info från en episode baserat på titel som man skickar in.(EJ AKTUELL LÄNGRE)
 @Query(value = "SELECT * FROM episodes where title LIKE %?1%", nativeQuery = true)
 List<Episode>getWithTitle (String title);
 
