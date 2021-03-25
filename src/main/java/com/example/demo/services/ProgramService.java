@@ -89,26 +89,29 @@ public class ProgramService {
 
     public List<Program> getByName(String phrase) {
         RestTemplate template = new RestTemplate();
+        // convert response to map
         Map response = template.getForObject(programApi + "?pagination=false&format=json", Map.class);
-
+        // create list of maps of programs from api
         List<Map> progMaps = (List<Map>) response.get("programs");
-
+        // create list of program named programs
         List<Program> programs = new ArrayList<>();
-
         for(Map prog : progMaps){
             if(prog.get("name").toString().toLowerCase().contains(phrase.toLowerCase())){
+                // get id
                 Long id = ((Number) prog.get("id")).longValue();
+                //get name
                 String name = (String) prog.get("name");
+                // get description
                 String description = (String) prog.get("description");
-
+                // create a Program
                 Program program = new Program(id, name, description);
-
+                // populate list with Program
                 programs.add(program);
             }
         }
 
+        //debug
         System.out.println(programs.toString());
-
         return programs;
     }
 }
