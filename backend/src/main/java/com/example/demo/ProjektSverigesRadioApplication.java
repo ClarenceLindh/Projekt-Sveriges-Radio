@@ -18,5 +18,4 @@ public class ProjektSverigesRadioApplication {
 		System.out.println("Fredag!");
 
 	}
-
 }
