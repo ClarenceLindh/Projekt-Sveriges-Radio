@@ -25,8 +25,6 @@ export default {
 
 <style>
 
-select{
-    
-}
+
 
 </style>
