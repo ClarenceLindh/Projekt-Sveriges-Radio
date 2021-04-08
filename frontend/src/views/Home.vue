@@ -1,10 +1,19 @@
 <template>
+<body>
+  
+
   <div class="home">
-    <h1>Home</h1>
-    <Programs/>
-    <Categories/>
-    <Episodes/>
+    
+    
+    <div id="Categories"><Categories/></div>
+    
+    <div id="Programs"><Programs/></div>
+    
+    <div id="Episodes"><Episodes/></div>
+    
+    
   </div>
+  </body>
 </template>
 
 <script>
@@ -21,3 +30,36 @@ export default {
   },
 };
 </script>
+
+
+<style scoped>
+
+.home{
+  display: flex;
+  justify-content: space-between;
+  
+}
+#Episodes {
+  background-color: rgb(9, 18, 71) ;
+  color: aliceblue;
+  margin: 2vw;
+
+}
+#Programs {
+  background-color: rgb(16, 4, 68) ;
+  color: aliceblue;
+  margin: 2vw;
+
+}
+#Categories {
+  background-color: rgba(8, 2, 68, 0.568) ;
+  color: aliceblue;
+  margin: 2vw;
+
+}
+body{
+  background-color: black;
+  color: black;
+}
+
+</style>

@@ -8,10 +8,19 @@ export default createStore({
     program: [],
     category:[],
     channel:[],
-    episodes:[]
+    episodes:[],
+    channelId: 163,
+    programId: 4821
   },
 
   mutations: {
+    addChannelID(state,payload){
+      state.channelId = payload;
+    }
+  ,  addProgramID(state,payload){
+      state.programId = payload;
+    }
+  ,
     setProgram(state, payload){
       state.program = payload;
     },
@@ -30,9 +39,11 @@ export default createStore({
     
   },
 
+  //http://localhost:3000/rest/programs/channel/163 
+
   actions: {
     async fetchProgram(){
-      await axios.get("http://localhost:3000/rest/programs")
+      await axios.get("http://localhost:3000/rest/programs/channel/" + this.state.channelId)
       .then(response => {
         this.commit("setProgram", response.data)
         console.log(response.data)
@@ -55,12 +66,16 @@ export default createStore({
     },
 
     async fetchAllEpisodes(){
-      await axios.get("http://localhost:3000/rest/episodes/4821")
+      await axios.get("http://localhost:3000/rest/episodes/" + this.state.programId)
       .then(response => {
         this.commit("setAllEpisodes", response.data)
         console.log(response.data)
       })
     },
+
+    async actionWithValue(store,data){
+      console.log(data)
+    }
 
   },
 

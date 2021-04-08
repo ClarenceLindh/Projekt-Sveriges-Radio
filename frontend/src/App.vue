@@ -19,6 +19,8 @@ export default {
 <style>
 body{
     margin: 0;
+    background-color: #000000;
+    
 }
 
 #app {
@@ -26,7 +28,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #a4b4c4d5;
 }
 
 #nav {

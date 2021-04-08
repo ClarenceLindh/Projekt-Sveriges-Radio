@@ -4,6 +4,8 @@
     <input class="searchbar" type="text" placeholder="Search..">
     <h3> Program searched for: <br> {{ searchProgram }}</h3>
     
+
+    <h3 style="color:red">Program baserat på channel P2</h3>
     <ol>
         <li v-for="(program, index) in getProgram" :key="index"> 
             {{program.name}} - {{program.description}}
