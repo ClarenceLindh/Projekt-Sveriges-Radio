@@ -3,8 +3,8 @@
     <h1>Programs</h1>
     
     <ol>
-        <li v-for="(program, index) in getProgram"  
-        :key="index"> {{program.name}}
+        <li v-for="(program, index) in getProgram" :key="index"> 
+            {{program.name}} - {{program.description}}
         </li>
     </ol>
 </div>    
