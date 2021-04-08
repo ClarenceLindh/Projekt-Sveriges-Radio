@@ -1,5 +1,5 @@
 <template>
-  <h1 id="title">Sveries Radio API</h1>
+  <h1 id="title">Sveriges Radio</h1>
   <Navbar/>
   <router-view />
 </template>
