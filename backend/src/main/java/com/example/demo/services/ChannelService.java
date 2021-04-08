@@ -20,7 +20,7 @@ public class ChannelService {
 @Autowired // Allows Spring to import the class
 private ChannelRepo ChannelRepo;
    // Main Method for pulling data from api.
-private String Channelsapi = "http://api.sr.se/api/v2/channels?format=json";
+private String Channelsapi = "http://api.sr.se/api/v2/channels?format=json&pagination=false";
 public List<Channel> getAllChannels(){
     RestTemplate template = new RestTemplate();
 

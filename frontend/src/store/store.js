@@ -6,12 +6,16 @@ export default createStore({
 
   state: {
     program: [],
+    channel: [],
     
   },
 
   mutations: {
     setProgram(state, payload){
       state.program = payload;
+    },
+    setChannel(state, payload){
+      state.channel = payload;
     },
 
     
@@ -25,12 +29,22 @@ export default createStore({
         console.log(response.data)
       })
     },
+    async fetchChannels(){
+      await axios.get("http://localhost:3000/rest/channels")
+      .then(response => {
+        this.commit("setChannel", response.data)
+        console.log(response.data)
+      })
+    },
     
   },
 
   getters: {
     getProgram(state){
       return state.program
+    },
+    getChannel(state){
+      return state.channel
     },
 
   },
