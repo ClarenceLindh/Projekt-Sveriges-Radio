@@ -7,6 +7,8 @@ export default createStore({
   state: {
     program: [],
     category:[],
+    channel:[],
+    episodes:[]
   },
 
   mutations: {
@@ -16,6 +18,14 @@ export default createStore({
     setAllCategories(state, payload){
       state.category=payload;
     },
+    setAllEpisodes(state, payload){
+      state.episodes=payload;
+    },
+    
+      setChannel(state,payload){
+        state.channel=payload
+      }
+    
 
     
   },
@@ -44,6 +54,14 @@ export default createStore({
       })
     },
 
+    async fetchAllEpisodes(){
+      await axios.get("http://localhost:3000/rest/episodes/4821")
+      .then(response => {
+        this.commit("setAllEpisodes", response.data)
+        console.log(response.data)
+      })
+    },
+
   },
 
   getters: {
@@ -57,7 +75,15 @@ export default createStore({
     getAllCategories(state){
       return state.category
     },
-  },
+    
+    getAllEpisodes(state){
+      console.log(state.episodes)
+    return state.episodes
+
+   
+  }
+
+},
 
   modules: {
 

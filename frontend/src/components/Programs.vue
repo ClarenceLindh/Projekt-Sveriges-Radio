@@ -32,8 +32,8 @@ export default {
     async mounted(){
         this.$store.dispatch("fetchProgram")
 
-        console.log(this.$route.params.searchPhrase)
-        this.id = this.$route.params.searchPhrase
+        // console.log(this.$route.params.searchPhrase )
+        // this.id = this.$route.params.searchPhrase
         let searchProgram = await fetch('/rest/programs/search/' + this.searchPhrase)
         this.searchProgram = await searchProgram.json()
         console.log(this.searchProgram)
