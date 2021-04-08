@@ -6,12 +6,15 @@ export default createStore({
 
   state: {
     program: [],
-    
+    category:[],
   },
 
   mutations: {
     setProgram(state, payload){
       state.program = payload;
+    },
+    setAllCategories(state, payload){
+      state.category=payload;
     },
 
     
@@ -26,6 +29,14 @@ export default createStore({
       })
     },
     
+    async fetchAllCategories(){
+      await axios.get("http://localhost:3000/rest/categories")
+      .then(response => {
+        this.commit("setAllCategories", response.data)
+        console.log(response.data)
+      })
+    },
+
   },
 
   getters: {
@@ -33,6 +44,9 @@ export default createStore({
       return state.program
     },
 
+    getAllCategories(state){
+      return state.category
+    },
   },
 
   modules: {
