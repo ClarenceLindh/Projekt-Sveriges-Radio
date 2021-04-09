@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <h1>Home</h1>
+    <h4>Is logged in: {{ isLoggedIn }}</h4>
+    <h5 v-if="isLoggedIn">email: {{ loggedInUser.email }}</h5>
     <Programs/>
     <Categories/>
   </div>
@@ -12,9 +14,24 @@ import Categories from "../components/Categories.vue"
 
 export default {
   name: "Home",
+  
   components: {
     Programs,
     Categories
   },
+
+  mounted (){
+    console.log('mounted Home');
+  },
+
+  computed:{
+    loggedInUser() {
+      return this.$store.state.loggedInUser
+    },
+    isLoggedIn() {
+      return this.loggedInUser != null
+    }
+  }
+
 };
 </script>

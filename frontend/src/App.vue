@@ -11,6 +11,18 @@ export default {
   name: "App",
   components: {
     Navbar
+  },
+
+  async mounted () {
+    let user = await fetch ('/auth/whoami')
+    try {
+      user = await user.json()
+      this.$store.commit('setLoggedInUser', user)
+      console.log(user);
+    } catch {
+      console.log('Not logged in')
+    }
+    
   }
   
 }
