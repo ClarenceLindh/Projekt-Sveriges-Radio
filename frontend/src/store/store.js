@@ -6,24 +6,32 @@ export default createStore({
 
   state: {
     program: [],
+    programId: 0,
+    programName: '',
     category:[],
     channel:[],
     episodes:[],
-    channelId: 163,
-    programId: 4821
+    channelId: 0,
+    channelName: '',
   },
 
   mutations: {
     addChannelID(state,payload){
       state.channelId = payload;
-    }
-  ,  addProgramID(state,payload){
+    },
+    
+    addProgramID(state, payload) {
       state.programId = payload;
-    }
-  ,
+    },
+  
     setProgram(state, payload){
       state.program = payload;
     },
+
+    setProgramName(state, payload){
+      state.programName = payload;
+    },
+
     setAllCategories(state, payload){
       state.category=payload;
     },
@@ -31,12 +39,13 @@ export default createStore({
       state.episodes=payload;
     },
     
-      setChannel(state,payload){
-        state.channel=payload
-      }
-    
-
-    
+    setChannel(state,payload){
+      state.channel=payload
+    },
+      
+    setChannelName(state,payload) {
+      state.channelName=payload
+    }
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -83,6 +92,11 @@ export default createStore({
     getProgram(state){
       return state.program
     },
+
+    getProgramName(state){
+      return state.programName
+    },
+    
     getChannel(state){
       return state.channel
     },
@@ -98,8 +112,15 @@ export default createStore({
     
     getChannelId(state) {
       return state.channelId
-    }
+    },
 
+    getChannelName(state) {
+      return state.channelName
+    },
+
+    getProgramId(state) {
+      return state.programId
+    }
 },
 
   modules: {

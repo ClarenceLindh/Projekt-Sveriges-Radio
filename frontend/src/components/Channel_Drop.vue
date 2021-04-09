@@ -32,6 +32,7 @@ export default {
           var strUser = e.options[e.selectedIndex].value;
             this.$store.commit('addChannelID',strUser);
             this.$store.dispatch("fetchProgram")
+            this.$store.commit('setChannelName', e.options[e.selectedIndex].text)
       }
     },
 
