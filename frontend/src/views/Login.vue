@@ -51,6 +51,9 @@ export default {
       } catch {
         alert ('Wrong username/password')
       }
+      if(response.url.includes('error')){
+        console.log('Wrong username/password')
+      }
     },
 
     async register() {
@@ -63,6 +66,9 @@ export default {
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       })
+      if(response.url.includes('error')){
+        console.log('Wrong username/password')
+      }
     }
 
   },
