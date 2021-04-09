@@ -10,7 +10,8 @@ export default createStore({
     channel:[],
     episodes:[],
     channelId: 163,
-    programId: 4821
+    programId: 4821,
+    friends:[]
   },
 
   mutations: {
@@ -31,9 +32,13 @@ export default createStore({
       state.episodes=payload;
     },
     
-      setChannel(state,payload){
-        state.channel=payload
-      }
+    setChannel(state,payload){
+      state.channel=payload;
+    },
+
+    setFriends(state,payload){
+      state.Friends=payload;
+    }
     
 
     
@@ -73,6 +78,14 @@ export default createStore({
       })
     },
 
+    async fetchAllFriends(){
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.Userid)
+      .then(response => {
+        this.commit("setAllFriends", response.data)
+        console.log(response.data)
+      })
+    },
+
     async actionWithValue(store,data){
       console.log(data)
     }
@@ -98,6 +111,9 @@ export default createStore({
     
     getChannelId(state) {
       return state.channelId
+    },
+    getAllFriends(state){
+      return state.friends
     }
 
 },

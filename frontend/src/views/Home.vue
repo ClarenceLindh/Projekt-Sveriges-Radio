@@ -10,6 +10,9 @@
     <div id="Programs"><Programs/></div>
     
     <div id="Episodes"><Episodes/></div>
+
+    <div id="Friends"><Friends/></div>
+
     
     
   </div>
@@ -20,13 +23,15 @@
 import Programs from "../components/Programs.vue"
 import Categories from "../components/Categories.vue"
 import Episodes from "../components/Episodes.vue"
+import Friends from "../components/Friends.vue"
 
 export default {
   name: "Home",
   components: {
     Programs,
     Categories,
-    Episodes
+    Episodes,
+    Friends
   },
 };
 </script>
@@ -57,6 +62,15 @@ export default {
   margin: 2vw;
 
 }
+
+#Friends {
+  background-color: rgba(8, 2, 68, 0.568) ;
+  color: aliceblue;
+  margin: 2vw;
+
+}
+
+
 body{
   background-color: black;
   color: black;
