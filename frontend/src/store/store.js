@@ -94,9 +94,11 @@ export default createStore({
     getAllEpisodes(state){
       console.log(state.episodes)
     return state.episodes
-
-   
-  }
+    },
+    
+    getChannelId(state) {
+      return state.channelId
+    }
 
 },
 

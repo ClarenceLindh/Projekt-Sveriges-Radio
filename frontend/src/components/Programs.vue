@@ -3,14 +3,13 @@
     <h1>Programs</h1>
     <input class="searchbar" type="text" placeholder="Search..">
     <h3> Program searched for: <br> {{ searchProgram }}</h3>
-    
 
     <h3 style="color:red">Program baserat på channel P2</h3>
-    <ol>
-        <li v-for="(program, index) in getProgram" :key="index"> 
-            {{program.name}} - {{program.description}}
-        </li>
-    </ol>
+        <ol>
+            <li v-for="(program, index) in setPrograms" :key="index">
+                {{program.name}} - {{program.description}}
+            </li>
+        </ol>
 </div>    
 </template>
 
@@ -20,15 +19,20 @@ export default {
 
     data(){
         return {
+            storedPrograms: [],
             searchPhrase:'sporten p4',
-            searchProgram: {}
+            searchProgram: {},
+            componentKey: 0
         }
     },
 
     computed: {
-        getProgram(){
-            return this.$store.getters.getProgram
-        },
+        setPrograms(){
+          console.log("Retrieving new programs")
+          var programs = this.$store.getters.getProgram
+          
+          return programs
+        }
     },
 
     async mounted(){
