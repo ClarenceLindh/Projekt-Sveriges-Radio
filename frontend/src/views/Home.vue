@@ -14,6 +14,7 @@
     <div id="Friends"><Friends/></div>
 
     
+
     
   </div>
   </body>
@@ -25,13 +26,14 @@ import Categories from "../components/Categories.vue"
 import Episodes from "../components/Episodes.vue"
 import Friends from "../components/Friends.vue"
 
+
 export default {
   name: "Home",
   components: {
     Programs,
     Categories,
     Episodes,
-    Friends
+    Friends,
   },
 };
 </script>

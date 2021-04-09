@@ -11,7 +11,8 @@ export default createStore({
     episodes:[],
     channelId: 163,
     programId: 4821,
-    friends:[]
+    friends:[],
+    favorites:[]
   },
 
   mutations: {
@@ -38,10 +39,10 @@ export default createStore({
 
     setFriends(state,payload){
       state.Friends=payload;
-    }
-    
-
-    
+    },
+    setFavorites(state,payload){
+      state.favorites=payload;
+    }    
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -69,6 +70,15 @@ export default createStore({
         console.log(response.data)
       })
     },
+
+    async fetchAllFavorites(){
+      await axios.get("http://localhost:3000/rest/favorites/" + this.state.Userid)
+      .then(response => {
+        this.commit("setAllFavorites", response.data)
+        console.log(response.data)
+      })
+    },
+
 
     async fetchAllEpisodes(){
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.programId)
@@ -114,7 +124,12 @@ export default createStore({
     },
     getAllFriends(state){
       return state.friends
+    },
+
+    getAllFavorites(state){
+      return state.favorites
     }
+
 
 },
 
