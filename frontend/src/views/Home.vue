@@ -87,7 +87,7 @@ export default {
 
 
 body{
-  background-color: black;
+  background-color: rgb(12, 10, 16);
   color: black;
 }
 

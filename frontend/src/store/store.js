@@ -11,27 +11,35 @@ export default createStore({
 
   state: {
     program: [],
+    programId: 0,
+    programName: '',
     category:[],
     loggedInUser: null
     channel:[],
     episodes:[],
-    channelId: 163,
-    programId: 4821,
     friends:[],
     favorites:[]
+    channelId: 0,
+    channelName: '',
   },
 
   mutations: {
     addChannelID(state,payload){
       state.channelId = payload;
-    }
-  ,  addProgramID(state,payload){
+    },
+    
+    addProgramID(state, payload) {
       state.programId = payload;
-    }
-  ,
+    },
+  
     setProgram(state, payload){
       state.program = payload;
     },
+
+    setProgramName(state, payload){
+      state.programName = payload;
+    },
+
     setAllCategories(state, payload){
       state.category=payload;
     },
@@ -39,9 +47,6 @@ export default createStore({
       state.episodes=payload;
     },
     
-    setChannel(state,payload){
-      state.channel=payload;
-    },
     setLoggedInUser(state, user) {
       state.loggedInUser = user
     }
@@ -52,6 +57,12 @@ export default createStore({
     setFavorites(state,payload){
       state.favorites=payload;
     }    
+    setChannelName(state,payload) {
+    }
+      state.channelName=payload
+    setChannel(state,payload){
+      state.channel=payload;
+    },
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -115,6 +126,11 @@ export default createStore({
     getProgram(state){
       return state.program
     },
+
+    getProgramName(state){
+      return state.programName
+    },
+    
     getChannel(state){
       return state.channel
     },
@@ -130,6 +146,14 @@ export default createStore({
     
     getChannelId(state) {
       return state.channelId
+    },
+
+    getChannelName(state) {
+      return state.channelName
+    },
+
+    getProgramId(state) {
+      return state.programId
     },
     getAllFriends(state){
       return state.friends

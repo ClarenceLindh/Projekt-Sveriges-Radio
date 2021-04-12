@@ -36,6 +36,7 @@ export default {
     justify-content: flex-end;
     margin-top: -20px;
 }
+
 select{
     background: black;
     color: blanchedalmond;
