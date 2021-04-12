@@ -17,6 +17,7 @@ public class Episode {
     String publishdateutc;
     String name;
     String url;
+    boolean hasOnDemand;
 
 
     public Episode() {
@@ -24,22 +25,25 @@ public class Episode {
 
 
 
-    public Episode(long id,  String title, String description, String url, String publishdateutc) {
+    public Episode(long id,  String title, String description, String url, String publishdateutc,
+     boolean hasOnDemand) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.url = url;
         this.publishdateutc = publishdateutc;
+        this.hasOnDemand = hasOnDemand;
     }
 
     public Episode(long id, long program_id, String title, String description,
-                   String publishdateutc, String name) {
+                   String publishdateutc, String name, boolean hasOnDemand) {
         this.id = id;
         this.program_id = program_id;
         this.title = title;
         this.description = description;
         this.publishdateutc = publishdateutc;
         this.name = name;
+        this.hasOnDemand = hasOnDemand;
     }
 
 
@@ -80,6 +84,10 @@ public class Episode {
 
     public void setUrl(String url) { this.url = url; }
 
+    public boolean isHasOnDemand() { return hasOnDemand; }
+
+    public void setHasOnDemand(boolean hasOnDemand) { this.hasOnDemand = hasOnDemand; }
+
     @JsonProperty("Airtime")
     public String getPublishdateutc() {
         return publishdateutc;
@@ -108,6 +116,7 @@ public class Episode {
                 ", publishdateutc='" + publishdateutc + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
+                ", hasOnDemand=" + hasOnDemand +
                 '}';
     }
 }

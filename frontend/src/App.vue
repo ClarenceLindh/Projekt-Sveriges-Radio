@@ -3,16 +3,19 @@
     <p v-if="isLoggedIn" id="UserName"> {{ loggedInUser.username }}</p>
     <p v-if="!loggedInUser">Is logged in: {{ isLoggedIn }} </p> 
   <Navbar/>
+  <media-player />
   <router-view />
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
+import MediaPlayer from './components/MediaPlayer.vue'
 
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    MediaPlayer
   },
 
   async mounted () {

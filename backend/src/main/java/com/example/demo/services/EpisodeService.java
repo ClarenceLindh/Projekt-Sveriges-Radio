@@ -57,13 +57,29 @@ public class EpisodeService {
 
             //     6.Skapar en Episode med alla delar vi vill ha från episode delen i urlen. Sedan sparar vi det i vår episode lista
             //      och returnerar den!
-            Episode EP = new Episode(
-                    ((Number) episode.get("id")).longValue(),
-                    (String) episode.get("title"),
-                    (String) episode.get("description"),
-                    (String) episode.get("url"),
-                    date
-            );
+            Episode EP = new Episode();
+            if(episode.containsKey("listenpodfile")) {
+                System.out.println(episode.get("listenpodfile"));
+                EP = new Episode(
+                        ((Number) episode.get("id")).longValue(),
+                        (String) episode.get("title"),
+                        (String) episode.get("description"),
+                        (String) ((Map) episode.get("listenpodfile")).get("url"),
+                        date,
+                        true
+                );
+                System.out.println("Fetching episode with on demand URL");
+            }else{
+                EP = new Episode(
+                        ((Number) episode.get("id")).longValue(),
+                        (String) episode.get("title"),
+                        (String) episode.get("description"),
+                        (String) episode.get("url"),
+                        date,
+                        false
+                );
+                System.err.println("Fetching episode WITHOUT on demand URL");
+            }
             System.out.println(EP);
             episodes.add(EP);
         }
@@ -121,7 +137,8 @@ public class EpisodeService {
                     (String) episode.get("title"),
                     (String) episode.get("description"),
                     broadcasttime,
-                    (String) ((Map) episode.get("program")).get("name")
+                    (String) ((Map) episode.get("program")).get("name"),
+                    false
             );
             episodes.add(EP);
         }

@@ -38,7 +38,13 @@ export default {
         },
 
         Clicked(episode){
-            window.open(episode.url, '_blank').focus()
+            if(episode.hasOnDemand){
+                var e = document.getElementById("media")
+                e.setAttribute('src', episode.url)
+                console.log(episode.url)
+            }else{
+                window.open(episode.url, "_blank").focus
+            }
         }
     },
 
