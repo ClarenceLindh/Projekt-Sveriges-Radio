@@ -5,7 +5,7 @@
 
 <h3 style="color:red">Alla episodes från programid {{currentProgram}}</h3>
  <ol id="episodeList">
-        <li v-for="(Episode, index) in getAllEpisodes" :key="index" :card="Episode" id="episodeItem"> 
+        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
          <Card :card="Episode"/>
         </li>
     </ol>
@@ -54,14 +54,7 @@ export default {
     #episodeList{
         display: block;
         margin-right: 32px;
-    }
-
-    #episodeItem{
-        display: flex;
         list-style-type: none;
-        background-color: rgba(0, 0, 0, 0.2);
-        margin-bottom: 12px;
-        box-shadow: 0 -3px 1px rgba(0, 0, 0, 0.3);
     }
 
     .v1{

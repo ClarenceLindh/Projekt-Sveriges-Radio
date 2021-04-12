@@ -4,8 +4,8 @@
 
 <h3 style="color:red">Alla kategorier totalt</h3>
  <ul style="list-style-type:none;">
-        <li v-for="(Category, index) in getAllCategories" :key="index"> 
-            {{Category.name}}
+        <li v-for="(Category, index) in getAllCategories" :key="index" id="categoryList">
+            <Card :card="Category"/>
         </li>
     </ul>
 
@@ -13,8 +13,13 @@
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Categories",
+
+    components:{
+        Card
+    },
 
     computed: {
         getAllCategories(){
@@ -29,5 +34,9 @@ export default {
 </script>
 
 <style>
-
+    #categoryList{
+        display: block;
+        margin-right: 32px;
+        list-style-type: none;
+    }
 </style>
