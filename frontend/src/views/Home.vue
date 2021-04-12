@@ -3,7 +3,6 @@
   
 
   <div class="home">
-    <h1>Home</h1>
     <h4>Is logged in: {{ isLoggedIn }}</h4>
     <h5 v-if="isLoggedIn">username: {{ loggedInUser.username }}</h5>
     
