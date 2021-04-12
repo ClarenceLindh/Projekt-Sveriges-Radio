@@ -14,6 +14,7 @@ export default createStore({
     programId: 0,
     programName: '',
     category:[],
+    categoryId: 0,
     loggedInUser: null,
     channel:[],
     episodes:[],
@@ -21,6 +22,7 @@ export default createStore({
     favorites:[],
     channelId: 0,
     channelName: '',
+    programSearchPhrase: '',
   },
 
   mutations: {
@@ -40,11 +42,15 @@ export default createStore({
       state.programName = payload;
     },
 
+    setProgramSearchPhrase(state, payload) {
+      state.programSearchPhrase = payload;
+    },
+
     setAllCategories(state, payload){
-      state.category=payload;
+      state.category = payload;
     },
     setAllEpisodes(state, payload){
-      state.episodes=payload;
+      state.episodes = payload;
     },
     
     setLoggedInUser(state, user) {
@@ -52,17 +58,20 @@ export default createStore({
     },
 
     setFriends(state,payload){
-      state.Friends=payload;
+      state.Friends = payload;
     },
     setFavorites(state,payload){
-      state.favorites=payload;
+      state.favorites = payload;
     } ,   
     setChannelName(state,payload) {
-      state.channelName=payload
+      state.channelName = payload
     },
     setChannel(state,payload){
-      state.channel=payload;
+      state.channel = payload;
     },
+    setCategoryId(state, payload) {
+      state.categoryId = payload;
+    }
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -75,6 +84,15 @@ export default createStore({
         console.log(response.data)
       })
     },
+
+    async fetchProgramByCategory(){
+      await axios.get("http://localhost:3000/rest/programsByCategoryId/" + this.state.categoryId)
+      .then(response => {
+        this.commit("setProgram", response.data)
+        console.log(response.data)
+      })
+    },
+
     async fetchChannels(){
       await axios.get("http://localhost:3000/rest/channels")
       .then(response => {
@@ -121,6 +139,13 @@ export default createStore({
         this.commit("setLoggedInUser", response.data)
         console.log(response.data)
       })
+    },
+    async fetchProgramBySearchPhrase(){
+      await axios.get("http://localhost:3000/rest/programs/search/" + this.state.programSearchPhrase)
+      .then(response => {
+        this.commit("setProgram", response.data)
+        console.log(response.data)
+      })
     }
 
   },
@@ -132,6 +157,10 @@ export default createStore({
 
     getProgramName(state){
       return state.programName
+    },
+
+    getSearchPhrase(state) {
+      return state.programSearchPhrase
     },
     
     getChannel(state){
@@ -154,6 +183,10 @@ export default createStore({
     getChannelName(state) {
       return state.channelName
     },
+    
+    getCategoryId(state) {
+      return state.categoryId
+    },
 
     getProgramId(state) {
       return state.programId
@@ -169,8 +202,6 @@ export default createStore({
     getLoggedInUser(state){
       return state.loggedInUser
     }
-
-
 },
 
   modules: {

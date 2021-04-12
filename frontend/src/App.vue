@@ -1,5 +1,7 @@
 <template>
   <h1 id="title">Sveries Radio API</h1>
+    <p v-if="isLoggedIn" id="UserName"> {{ loggedInUser.username }}</p>
+    <p v-if="!loggedInUser">Is logged in: {{ isLoggedIn }} </p> 
   <Navbar/>
   <router-view />
 </template>
@@ -23,6 +25,15 @@ export default {
       console.log('Not logged in')
     }
     
+  },
+
+  computed:{
+    loggedInUser() {
+      return this.$store.state.loggedInUser
+    },
+    isLoggedIn() {
+      return this.loggedInUser != null
+    }
   }
   
 }
@@ -31,8 +42,19 @@ export default {
 <style>
 body{
     margin: 0;
-    background-color: #000000;
+    background-color: rgba(14, 10, 18, .9);
     
+}
+
+p{
+  margin-top: -28px;
+  margin-right: 5px;
+  display: flex;
+  float: right;
+}
+
+#UserName{
+  font-size: 25px;
 }
 
 #app {

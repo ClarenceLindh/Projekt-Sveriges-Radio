@@ -1,34 +1,33 @@
 <template>
 <div class="programs">
     <h1>Programs</h1>
-    <input class="searchbar" type="text" placeholder="Search..">
-    <h3> Program searched for: <br> {{ searchProgram }}</h3>
-
-    <h3 style="color:red" v-if="currentChannel">Program baserat på {{currentChannel}}</h3>
+    <input class="searchbar" type="text" placeholder="Search.." v-model="searchPhrase">
+    <button @click="searchForProgram(searchPhrase)">sök</button>
         <ol id="programList">
-            <li v-for="(program, index) in setPrograms" :key="index">
-                <div>
-                    <button @click="setButtonKey(program.id, program.name)" class="progButton" :value="program.id">{{program.name}}</button>
-                </div>
-                {{program.description}} - {{program.id}}
-                <br>
-                <br>
+            <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
+                         <Card :card="program" :type="'program'"/> 
             </li>
         </ol>
 </div>    
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Programs",
+
+    components: {
+        Card
+    },
+    
 
     data(){
         return {
             storedPrograms: [],
             currentChannel: '',
-            searchPhrase:'sporten p4',
             searchProgram: [],
-            buttonKey: 0
+            buttonKey: 0,
+            searchPhrase:'',
         }
     },
 
@@ -49,28 +48,24 @@ export default {
             this.$store.commit('addProgramID',id);
             this.$store.commit('setProgramName',name);
             this.$store.dispatch("fetchAllEpisodes")
+        },
+        searchForProgram(phrase){
+            if(phrase.length > 3){
+                this.$store.commit('setProgramSearchPhrase',phrase);
+                this.$store.dispatch("fetchProgramBySearchPhrase")
+            }else{
+                alert("Din sökfras måste vara minst 3 bokstäver långt")
+            }
         }
-    },
-
-    async mounted(){
-        this.$store.dispatch("fetchProgram")
-
-        // console.log(this.$route.params.searchPhrase )
-        // this.id = this.$route.params.searchPhrase
-        let searchProgram = await fetch('/rest/programs/search/' + this.searchPhrase)
-        this.searchProgram = await searchProgram.json()
-        console.log(this.searchProgram)
-    },
+    }
 }
 </script>
 
 <style>
     #programList{
         display: block;
+        margin-right: 32px;
         list-style-type: none;
-        background-color: rgba(0, 0, 0, 0.2);
-        margin-bottom: 0;
-        box-shadow: 0 -3px 1px rgba(0, 0, 0, 0.3);
     }
 
     .progButton{

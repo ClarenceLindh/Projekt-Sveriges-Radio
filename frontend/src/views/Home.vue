@@ -3,7 +3,6 @@
   
 
   <div class="home">
-    <h4>Is logged in: {{ isLoggedIn }}</h4>
     
     
     <div id="Categories"><Categories/></div>
@@ -58,35 +57,35 @@ export default {
   
 }
 
-h4 {
-  background-color: rgb(9, 18, 71) ;
-  color: aliceblue;
-  margin: 2vw;
-}
-
-h5 {
-  background-color: rgb(9, 18, 71) ;
-  color: aliceblue;
-  margin: 2vw;
-}
-
 #Episodes {
-  background-color: rgb(9, 18, 71) ;
+  background-color: rgba(32, 8, 136, .3) ;
   color: aliceblue;
-  margin: 2vw;
-
+  margin: 1vw;
+  width: 55vw;
+  margin-right: 0;
+  height: 100%;
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
 }
+
 #Programs {
-  background-color: rgb(16, 4, 68) ;
+  background-color: rgba(32, 8, 136, .3) ;
   color: aliceblue;
-  margin: 2vw;
-
+  margin: 1vw;
+  margin-left: 0;
+  margin-right: 0;
+  width: 60%;
+  height: 100%;
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
 }
-#Categories {
-  background-color: rgba(8, 2, 68, 0.568) ;
-  color: aliceblue;
-  margin: 2vw;
 
+#Categories {
+  background-color: rgba(32, 8, 136, .3) ;
+  color: aliceblue;
+  margin: 1vw;
+  margin-left: 0;
+  width: 10vw;
+  height: 100%;
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
 }
 
 #Friends {
@@ -96,9 +95,8 @@ h5 {
 
 }
 
-
 body{
-  background-color: rgb(12, 10, 16);
+  background-color: rgba(18, 15, 25, .5);
   color: black;
 }
 

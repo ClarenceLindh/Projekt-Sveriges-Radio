@@ -3,10 +3,10 @@
 <h1>Episodes</h1>
 
 
-<h3 style="color:red">Alla episodes från programid {{currentProgram}}</h3>
+<h3 style="color:gray">Alla episodes från programid {{currentProgram}}</h3>
  <ol id="episodeList">
-        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
-            <p>{{Episode.title}}</p> <div class="v1"></div> <p>Sändningstid: {{Episode.Airtime}}</p>
+        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+         <Card :card="Episode" :type="'episode'"/>
         </li>
     </ol>
 
@@ -14,13 +14,12 @@
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Episodes",
 
-    data(){
-        return {
-            currentProgram: ''
-        }
+    components:{
+        Card
     },
 
     computed: {
@@ -37,6 +36,10 @@ export default {
             console.log(newProgram)
             this.currentProgram = newProgram
         },
+
+        Clicked(episode){
+            alert("Du klickade på " + episode.title)
+        }
     },
 
     mounted(){
@@ -49,14 +52,7 @@ export default {
     #episodeList{
         display: block;
         margin-right: 32px;
-    }
-
-    #episodeItem{
-        display: flex;
         list-style-type: none;
-        background-color: rgba(0, 0, 0, 0.2);
-        margin-bottom: 12px;
-        box-shadow: 0 -3px 1px rgba(0, 0, 0, 0.3);
     }
 
     .v1{
