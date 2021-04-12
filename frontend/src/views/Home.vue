@@ -3,9 +3,8 @@
   
 
   <div class="home">
-    <h1>Home</h1>
     <h4>Is logged in: {{ isLoggedIn }}</h4>
-    <h5 v-if="isLoggedIn">username: {{ loggedInUser.username }}</h5>
+    
     
     <div id="Categories"><Categories/></div>
     
@@ -58,6 +57,19 @@ export default {
   justify-content: space-between;
   
 }
+
+h4 {
+  background-color: rgb(9, 18, 71) ;
+  color: aliceblue;
+  margin: 2vw;
+}
+
+h5 {
+  background-color: rgb(9, 18, 71) ;
+  color: aliceblue;
+  margin: 2vw;
+}
+
 #Episodes {
   background-color: rgb(9, 18, 71) ;
   color: aliceblue;

@@ -27,7 +27,7 @@ export default {
             storedPrograms: [],
             currentChannel: '',
             searchPhrase:'sporten p4',
-            searchProgram: {},
+            searchProgram: [],
             buttonKey: 0
         }
     },

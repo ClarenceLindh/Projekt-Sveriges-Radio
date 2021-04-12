@@ -3,9 +3,11 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/favorites">Favorites</router-link> |
        <ChannelDropDown/>
-    <div id="login">
+    <div class="loginbtn" id="login">
         <router-link to="/login">Login</router-link>
     </div>
+       
+     
 </nav>
   
 </template>
@@ -14,9 +16,14 @@
 import ChannelDropDown from '../components/Channel_Drop.vue';
 export default {
     name: "Navbar",
-  components: {
+    components: {
     ChannelDropDown
   },
+
+  computed:{
+      
+            
+  }
 }
 
 </script>
@@ -32,6 +39,11 @@ export default {
 }
 
 #login{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
+}
+#logout{
     display: flex;
     justify-content: flex-end;
     margin-top: -20px;
