@@ -3,17 +3,17 @@
 
    <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-  <!-- <div class="Program-card">
+  <div class="Program-card">
 
  
     
       <span class="name">{{ card.name }}</span> <br>
       <span id="desc">{{ card.description }}</span> <br>
      
-          -->
+       
 
       
-    <!-- </div> -->
+     </div>
       <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
     <!-- <div class="Channel-card">
@@ -29,7 +29,7 @@
 
     
          <span class="title">{{ card.title }}</span> <br>
-      <span id="airtime">{{ card.airtime }} </span>
+      <span id="airtime">{{ card.Airtime }} </span>
       
       
     

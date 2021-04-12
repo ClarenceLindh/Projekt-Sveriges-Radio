@@ -6,21 +6,25 @@
 
     <h3 style="color:red" v-if="currentChannel">Program baserat på {{currentChannel}}</h3>
         <ol id="programList">
-            <li v-for="(program, index) in setPrograms" :key="index">
-                <div>
-                    <button @click="setButtonKey(program.id, program.name)" class="progButton" :value="program.id">{{program.name}}</button>
-                </div>
-                {{program.description}} - {{program.id}}
-                <br>
-                <br>
+            <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
+                         <Card :card="program"/> 
+
+
+                
             </li>
         </ol>
 </div>    
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Programs",
+
+    components: {
+        Card
+    },
+    
 
     data(){
         return {
