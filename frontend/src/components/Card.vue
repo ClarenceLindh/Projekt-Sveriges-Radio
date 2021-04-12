@@ -1,5 +1,5 @@
 <template>
-  <div id="card">
+  <div id="card" >
     <div class="Program-card" v-if="type == 'program'">
         <span class="name">{{ card.name }}</span><br>
         <button @click.stop="favoriteItem(card.id)">fav</button>
@@ -22,7 +22,7 @@
       <button @click.stop="shareItem(card.id)">share</button>
       <br>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
-      <span>{{ card.description }} </span>
+      <span id="desc">{{ card.description }} </span>
     
     </div>
   </div>
@@ -44,10 +44,10 @@ export default {
 
 <style scoped>
   #card{
-    color: rgba(230, 230, 255, .8);
+    color: rgba(255, 250, 235, .7);
     display: table;
     list-style-type: none;
-    background-color: rgba(200, 150, 255, 0.05);
+    background-color: rgba(60, 55, 65, .3);
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
@@ -58,15 +58,15 @@ export default {
   }
 
   #card:hover{
-    color: rgba(230, 230, 255, 1);
-    background-color: rgba(200, 150, 255, 0.1);
+    color: rgba(255, 250, 235, .9);
+    background-color: rgba(60, 55, 65, .7);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, .3), inset 3px 3px 4px rgba(240, 200, 255, .15);
   }
 
   #card:active{
     color: rgba(230, 230, 255, .6);
-    background-color: rgba(0, 0, 0, 0.1);
-    box-shadow: inset -3px -3px 4px rgba(220, 180, 255, .1), inset 4px 4px 4px rgba(0, 0, 0, .2);
+    background-color: rgba(0, 0, 0, .1);
+    box-shadow: inset -3px -3px 4px rgba(240, 200, 255, .1), inset 3px 3px 2px rgba(0, 0, 0, .2);
   }
 
   .Program-card > .name{
@@ -77,6 +77,18 @@ export default {
   .Episode-card > .title{
     font-size: 20px;
     font-weight: bold;
+  }
+
+  #desc{
+    color: rgba(255, 255, 255, .4);
+  }
+
+  .Episode-card:hover > #desc{
+    color: rgba(255, 255, 255, .6);
+  }
+
+  .Program-card:hover > #desc{
+    color: rgba(255, 255, 255, .6);
   }
 
   .Episode-card > #airtime{
@@ -94,7 +106,8 @@ export default {
 
   button{
     border: none;
-    background-color: rgba(64, 46, 120, .8);
+    background-color: rgba(80, 75, 85, .3);
+    color: rgba(230, 230, 255, .6);
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
     margin: 1px;
     margin-top: 0;
@@ -105,16 +118,21 @@ export default {
   }
 
   button:hover{
-    background-color: rgba(84, 66, 140, .8);
+    background-color: rgba(80, 75, 85, .8);
   }
   
   button:active{
+    color: rgba(230, 230, 255, .8);
     border: none;
-    background-color: rgba(44, 26, 100, .8);
+    background-color: rgba(80, 75, 85, .1);
     box-shadow: inset -2px -2px 2px rgba(220, 180, 255, .1), inset 2px 2px 2px rgba(0, 0, 0, .2);
   }
 
   span{
     vertical-align: middle;
+  }
+
+  .isSelected{
+    background-color: red;
   }
 </style>

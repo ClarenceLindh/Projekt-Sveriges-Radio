@@ -16,6 +16,7 @@ public class Episode {
     String description;
     String publishdateutc;
     String name;
+    String url;
 
 
     public Episode() {
@@ -23,22 +24,16 @@ public class Episode {
 
 
 
-    public Episode(long id,  String title, String description, String publishdateutc) {
+    public Episode(long id,  String title, String description, String url, String publishdateutc) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.url = url;
         this.publishdateutc = publishdateutc;
     }
 
-    public Episode(long id, long program_id, String title, String description, String publishdateutc) {
-        this.id = id;
-        this.program_id = program_id;
-        this.title = title;
-        this.description = description;
-        this.publishdateutc = publishdateutc;
-    }
-
-    public Episode(long id, long program_id, String title, String description, String publishdateutc, String name) {
+    public Episode(long id, long program_id, String title, String description,
+                   String publishdateutc, String name) {
         this.id = id;
         this.program_id = program_id;
         this.title = title;
@@ -81,6 +76,9 @@ public class Episode {
         this.description = description;
     }
 
+    public String getUrl() { return url; }
+
+    public void setUrl(String url) { this.url = url; }
 
     @JsonProperty("Airtime")
     public String getPublishdateutc() {
@@ -109,6 +107,7 @@ public class Episode {
                 ", description='" + description + '\'' +
                 ", publishdateutc='" + publishdateutc + '\'' +
                 ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

@@ -53,7 +53,7 @@ export default {
                 this.$store.commit('setProgramSearchPhrase',phrase);
                 this.$store.dispatch("fetchProgramBySearchPhrase")
             }else{
-                alert("Din sökfras måste vara minst 3 bokstäver långt")
+                alert("Din sökfras måste vara mer än 3 bokstäver långt")
             }
         }
     }

@@ -1,5 +1,5 @@
 <template>
-  <h1 id="title">Sveries Radio API</h1>
+  <h1 id="title">Sveriges Radios Vänskapskrets</h1>
     <p v-if="isLoggedIn" id="UserName"> {{ loggedInUser.username }}</p>
     <p v-if="!loggedInUser">Is logged in: {{ isLoggedIn }} </p> 
   <Navbar/>
@@ -42,8 +42,7 @@ export default {
 <style>
 body{
     margin: 0;
-    background-color: rgba(14, 10, 18, .9);
-    
+    background-color: #121212;
 }
 
 p{
@@ -71,10 +70,18 @@ p{
 
 #nav a {
   font-weight: bold;
-  color: blanchedalmond;
+  color: rgba(255, 235, 205, 1);
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+    color: #42b983;
+}
+
+#columnTitle{
+  color: rgba(255, 245, 225, 1);
+}
+
+#columnSubTitle{
+  color: #a4b4c4d5;
 }
 </style>

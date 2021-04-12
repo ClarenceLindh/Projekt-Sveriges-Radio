@@ -57,46 +57,38 @@ export default {
 }
 
 #Episodes {
-  background-color: rgba(32, 8, 136, .3) ;
-  color: aliceblue;
+  background-color: rgba(60, 55, 65, .3);
+  color: blanchedalmond;
   margin: 1vw;
   width: 55vw;
   margin-right: 0;
   height: 100%;
-  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, .6), inset 3px 3px 3px rgba(240, 200, 255, .05);
 }
 
 #Programs {
-  background-color: rgba(32, 8, 136, .3) ;
-  color: aliceblue;
+  background-color: rgba(60, 55, 65, .3);
+  color: blanchedalmond;
   margin: 1vw;
   margin-left: 0;
   margin-right: 0;
   width: 60%;
   height: 100%;
-  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, .6), inset 3px 3px 3px rgba(240, 200, 255, .05);
 }
 
 #Categories {
-  background-color: rgba(32, 8, 136, .3) ;
-  color: aliceblue;
+  background-color: rgba(60, 55, 65, .3);
+  color: blanchedalmond;
   margin: 1vw;
   margin-left: 0;
   width: 10vw;
   height: 100%;
-  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
-}
-
-#Friends {
-  background-color: rgba(8, 2, 68, 0.568) ;
-  color: aliceblue;
-  margin: 2vw;
-
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, .6), inset 3px 3px 3px rgba(240, 200, 255, .05);
 }
 
 body{
-  background-color: rgba(18, 15, 25, .5);
-  color: black;
+  background-color: rgba(60, 55, 65, .1);
 }
 
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div >
-<h1>Episodes</h1>
+<h1 id="columnTitle">Episodes</h1>
 
 
-<h3 style="color:gray">Alla episodes från programid {{currentProgram}}</h3>
+<h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
  <ol id="episodeList">
         <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode" :type="'episode'"/>
@@ -38,7 +38,7 @@ export default {
         },
 
         Clicked(episode){
-            alert("Du klickade på " + episode.title)
+            window.open(episode.url, '_blank').focus()
         }
     },
 

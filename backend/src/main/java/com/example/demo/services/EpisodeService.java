@@ -58,14 +58,15 @@ public class EpisodeService {
             //     6.Skapar en Episode med alla delar vi vill ha från episode delen i urlen. Sedan sparar vi det i vår episode lista
             //      och returnerar den!
             Episode EP = new Episode(
-                    (Integer) episode.get("id"),
+                    ((Number) episode.get("id")).longValue(),
                     (String) episode.get("title"),
                     (String) episode.get("description"),
+                    (String) episode.get("url"),
                     date
             );
+            System.out.println(EP);
             episodes.add(EP);
         }
-        System.out.println(episodes);
         return episodes;
     }
 
