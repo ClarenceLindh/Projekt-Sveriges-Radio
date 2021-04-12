@@ -1,16 +1,11 @@
 <template>
 <div class="programs">
     <h1>Programs</h1>
-    <input class="searchbar" type="text" placeholder="Search..">
-    <h3> Program searched for: <br> {{ searchProgram }}</h3>
-
-    <h3 style="color:red" v-if="currentChannel">Program baserat på {{currentChannel}}</h3>
+    <input class="searchbar" type="text" placeholder="Search.." v-model="searchPhrase">
+    <button @click="searchForProgram(searchPhrase)">sök</button>
         <ol id="programList">
             <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
                          <Card :card="program" :type="'program'"/> 
-
-
-                
             </li>
         </ol>
 </div>    
@@ -30,9 +25,8 @@ export default {
         return {
             storedPrograms: [],
             currentChannel: '',
-            searchPhrase:'sporten p4',
-            searchProgram: {},
-            buttonKey: 0
+            searchPhrase:'',
+            buttonKey: 0,
         }
     },
 
@@ -53,18 +47,16 @@ export default {
             this.$store.commit('addProgramID',id);
             this.$store.commit('setProgramName',name);
             this.$store.dispatch("fetchAllEpisodes")
+        },
+        searchForProgram(phrase){
+            if(phrase.length > 3){
+                this.$store.commit('setProgramSearchPhrase',phrase);
+                this.$store.dispatch("fetchProgramBySearchPhrase")
+            }else{
+                alert("Din sökfras måste vara minst 3 bokstäver långt")
+            }
         }
-    },
-
-    async mounted(){
-        this.$store.dispatch("fetchProgram")
-
-        // console.log(this.$route.params.searchPhrase )
-        // this.id = this.$route.params.searchPhrase
-        let searchProgram = await fetch('/rest/programs/search/' + this.searchPhrase)
-        this.searchProgram = await searchProgram.json()
-        console.log(this.searchProgram)
-    },
+    }
 }
 </script>
 

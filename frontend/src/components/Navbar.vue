@@ -27,8 +27,9 @@ export default {
     justify-content: flex-end;
     padding: 15px;
 
-    background: black;
+    background: rgba(60, 55, 65, .3);
     color: #42b983;
+    box-shadow: 0 6px 3px rgba(0, 0, 0, .2), inset 0 4px 6px rgba(240, 200, 255, .025);
 }
 
 #login{

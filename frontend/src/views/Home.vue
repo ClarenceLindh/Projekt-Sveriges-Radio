@@ -3,8 +3,6 @@
   
 
   <div class="home">
-    <h4>Is logged in: {{ isLoggedIn }}</h4>
-    <h5 v-if="isLoggedIn">username: {{ loggedInUser.username }}</h5>
     
     <div id="Categories"><Categories/></div>
     
@@ -57,23 +55,36 @@ export default {
   justify-content: space-between;
   
 }
-#Episodes {
-  background-color: rgb(16, 4, 68) ;
-  color: aliceblue;
-  margin: 2vw;
-  width: 30vw;
-}
-#Programs {
-  background-color: rgb(16, 4, 68) ;
-  color: aliceblue;
-  margin: 2vw;
 
-}
-#Categories {
-  background-color: rgb(16, 4, 68) ;
+#Episodes {
+  background-color: rgba(32, 8, 136, .4) ;
   color: aliceblue;
-  margin: 2vw;
+  margin: 1vw;
+  width: 55vw;
+  margin-right: 0;
+  height: 100%;
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
+}
+
+#Programs {
+  background-color: rgba(32, 8, 136, .4) ;
+  color: aliceblue;
+  margin: 1vw;
+  margin-left: 0;
+  margin-right: 0;
+  width: 60%;
+  height: 100%;
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
+}
+
+#Categories {
+  background-color: rgba(32, 8, 136, .4) ;
+  color: aliceblue;
+  margin: 1vw;
+  margin-left: 0;
   width: 10vw;
+  height: 100%;
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, .2), inset 3px 3px 2px rgba(240, 200, 255, .1);
 }
 
 #Friends {
@@ -83,9 +94,8 @@ export default {
 
 }
 
-
 body{
-  background-color: rgb(12, 10, 16);
+  background-color: rgba(18, 15, 25, .5);
   color: black;
 }
 

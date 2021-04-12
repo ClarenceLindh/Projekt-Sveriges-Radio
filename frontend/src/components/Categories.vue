@@ -1,14 +1,26 @@
 <template>
-  <div >
-<h1>Categories</h1>
-
-<h3 style="color:red">Alla kategorier totalt</h3>
+    <button @click="MaximizeWindow()">[x]</button>
+  <div v-if="isMaximized">
+    <h1>Categories</h1>
  <ul style="list-style-type:none;">
         <li v-for="(Category, index) in getAllCategories" :key="index" id="categoryList" @click="Clicked(Category)">
             <Card :card="Category" :type="'category'"/>
         </li>
     </ul>
 
+  </div>
+  <div v-if="!isMaximized">
+      <br>
+      C<br>
+      a<br>
+      t<br>
+      e<br>
+      g<br>
+      o<br>
+      r<br>
+      i<br>
+      e<br>
+      s<br><br>
   </div>
 </template>
 
@@ -21,6 +33,12 @@ export default {
         Card
     },
 
+    data() {
+        return{
+            isMaximized: true
+        }
+    },
+
     computed: {
         getAllCategories(){
             return this.$store.getters.getAllCategories
@@ -29,7 +47,18 @@ export default {
 
     methods: {
         Clicked(category){
-            alert("Du klickade på " + category.name)
+            this.$store.commit('setCategoryId',category.id)
+            this.$store.dispatch("fetchProgramByCategory")
+        },
+
+        MaximizeWindow(){
+            this.isMaximized = !this.isMaximized
+                var e = document.getElementById("Categories");
+            if(!this.isMaximized){
+                e.style.width = "auto";
+            }else{
+                e.style.width = "10vw";
+            }
         }
     },
 

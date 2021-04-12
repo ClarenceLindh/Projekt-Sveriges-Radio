@@ -41,7 +41,7 @@ public class ProgramService {
 
     public List<Program> getByChannelId(long id){
         RestTemplate template = new RestTemplate();
-        Map response = template.getForObject(programApi + "/index?channelid=" + id + "&format=json", Map.class);
+        Map response = template.getForObject(programApi + "/index?channelid=" + id + "&format=json&pagination=false", Map.class);
         List<Map>  progMaps = (List<Map>) response.get("programs");
         List<Program> programs = new ArrayList<>();
 
@@ -86,7 +86,9 @@ public class ProgramService {
 
     public List<Program> getByCategoryId( long categoryId) {
         RestTemplate template = new RestTemplate();
-        Map response = template.getForObject(programApi + "/index?&programcategoryid="+ categoryId + "&format=json", Map.class);
+        Map response =
+                template.getForObject(programApi + "/index?&programcategoryid="+ categoryId +
+                        "&format=json&pagination=false", Map.class);
         List<Map> programMaps = (List<Map>) response.get("programs");
         List<Program> programs = new ArrayList<>();
         for(Map progs : programMaps){
