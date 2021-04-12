@@ -22,12 +22,6 @@ export default {
         Card
     },
 
-    data(){
-        return {
-            currentProgram: ''
-        }
-    },
-
     computed: {
         getAllEpisodes(){
             this.updateProgramName()

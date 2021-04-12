@@ -57,7 +57,7 @@ export default {
 }
 
 #Episodes {
-  background-color: rgba(32, 8, 136, .4) ;
+  background-color: rgba(32, 8, 136, .3) ;
   color: aliceblue;
   margin: 1vw;
   width: 55vw;
@@ -67,7 +67,7 @@ export default {
 }
 
 #Programs {
-  background-color: rgba(32, 8, 136, .4) ;
+  background-color: rgba(32, 8, 136, .3) ;
   color: aliceblue;
   margin: 1vw;
   margin-left: 0;
@@ -78,7 +78,7 @@ export default {
 }
 
 #Categories {
-  background-color: rgba(32, 8, 136, .4) ;
+  background-color: rgba(32, 8, 136, .3) ;
   color: aliceblue;
   margin: 1vw;
   margin-left: 0;
