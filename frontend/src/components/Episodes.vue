@@ -5,8 +5,8 @@
 
 <h3 style="color:red">Alla episodes från programid {{currentProgram}}</h3>
  <ol id="episodeList">
-        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
-            <p>{{Episode.title}}</p> <div class="v1"></div> <p>Sändningstid: {{Episode.Airtime}}</p>
+        <li v-for="(Episode, index) in getAllEpisodes" :key="index" :card="Episode" id="episodeItem"> 
+         <Card :card={{Episode}}/> 
         </li>
     </ol>
 
@@ -14,8 +14,13 @@
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Episodes",
+
+    components:{
+        Card
+    },
 
     data(){
         return {
