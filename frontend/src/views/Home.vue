@@ -6,8 +6,7 @@
     <h1>Home</h1>
     <h4>Is logged in: {{ isLoggedIn }}</h4>
     <h5 v-if="isLoggedIn">username: {{ loggedInUser.username }}</h5>
-    <Programs/>
-    <Categories/>
+    
     <div id="Categories"><Categories/></div>
     
     <div id="Programs"><Programs/></div>
@@ -22,7 +21,7 @@
 import Programs from "../components/Programs.vue"
 import Categories from "../components/Categories.vue"
 import Episodes from "../components/Episodes.vue"
-import Friends from "../components/Friends.vue"
+
 
 
 export default {
@@ -32,7 +31,7 @@ export default {
     Programs,
     Categories,
     Episodes,
-    Friends,
+  
   },
 
   mounted (){

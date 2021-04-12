@@ -14,11 +14,11 @@ export default createStore({
     programId: 0,
     programName: '',
     category:[],
-    loggedInUser: null
+    loggedInUser: null,
     channel:[],
     episodes:[],
     friends:[],
-    favorites:[]
+    favorites:[],
     channelId: 0,
     channelName: '',
   },
@@ -49,17 +49,17 @@ export default createStore({
     
     setLoggedInUser(state, user) {
       state.loggedInUser = user
-    }
+    },
 
     setFriends(state,payload){
       state.Friends=payload;
     },
     setFavorites(state,payload){
       state.favorites=payload;
-    }    
+    } ,   
     setChannelName(state,payload) {
-    }
       state.channelName=payload
+    },
     setChannel(state,payload){
       state.channel=payload;
     },

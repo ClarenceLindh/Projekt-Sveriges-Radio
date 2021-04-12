@@ -21,12 +21,7 @@ export default {
     },
  methods:{
        
-       addIdToStore(id){
-           
-            this.$store.commit('addChannelID',id);
-            console.log(id)
-        },
-
+     
       saveChannel(){
           var e = document.getElementById("channels_drop");
           var strUser = e.options[e.selectedIndex].value;
