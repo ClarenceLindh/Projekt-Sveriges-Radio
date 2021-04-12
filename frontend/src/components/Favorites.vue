@@ -4,8 +4,8 @@
 <h3 style="color:red">Alla favoriter</h3>
 
  <ul style="list-style-type:none;">
-        <li v-for="(Favorites, index) in getAllFavorites" :key="index"> 
-            {{Favorites.name}}
+        <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
+        {{Favorite.program_id}} - {{Favorite.episode_id}}
         </li>
     </ul>
 

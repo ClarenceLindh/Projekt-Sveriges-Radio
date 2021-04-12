@@ -92,9 +92,10 @@ export default createStore({
     },
 
     async fetchAllFavorites(){
-      await axios.get("http://localhost:3000/rest/favorites/" + this.state.Userid)
+      
+            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser)
       .then(response => {
-        this.commit("setAllFavorites", response.data)
+        this.commit("setFavorites", response.data)
         console.log(response.data)
       })
     },
@@ -109,7 +110,7 @@ export default createStore({
     },
 
     async fetchAllFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.Userid)
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUser)
       .then(response => {
         this.commit("setAllFriends", response.data)
         console.log(response.data)
