@@ -24,6 +24,11 @@ module.exports = {
                 ws: true,
                 changeOrigin: true
             },
+            '/logout': {
+                target: 'http://localhost:8080',
+                ws: true,
+                changeOrigin: true
+            },
         },       
     }
 }

@@ -1,12 +1,18 @@
 import { createStore} from "vuex";
 import axios from 'axios';
 
+
+
+
+
+
 export default createStore({
   name: 'store',
 
   state: {
     program: [],
     category:[],
+    loggedInUser: null
   },
 
   mutations: {
@@ -16,6 +22,12 @@ export default createStore({
     setAllCategories(state, payload){
       state.category=payload;
     },
+    setChannel(state, payload){
+      state.channel=payload;
+    },
+    setLoggedInUser(state, user) {
+      state.loggedInUser = user
+    }
 
     
   },

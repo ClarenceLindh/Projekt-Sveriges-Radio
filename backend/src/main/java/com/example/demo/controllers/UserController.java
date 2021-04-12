@@ -42,6 +42,6 @@ public class UserController {
     @PostMapping("/login")
     public User login(@RequestBody User user, HttpServletRequest req) { return userService.login(user, req); }
 
-    @GetMapping("/rest/whoami")
+    @GetMapping("/auth/whoami")
     public User whoAmI() { return userService.findCurrentUser(); }
 }
