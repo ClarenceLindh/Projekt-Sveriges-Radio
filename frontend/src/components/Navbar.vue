@@ -16,7 +16,7 @@ export default {
     name: "Navbar",
   components: {
     ChannelDropDown
-  }
+  },
 }
 
 </script>

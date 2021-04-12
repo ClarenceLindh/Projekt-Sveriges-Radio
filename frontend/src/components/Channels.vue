@@ -1,13 +1,13 @@
 <template>
 <div class="channel">
-    <h1>Channels</h1>
+    <h1>id</h1>
 </div>    
 </template>
 
 <script>
 export default {
     name: "Channels",
-    
+
 }
 </script>
 
