@@ -16,8 +16,7 @@
     <!-- </div> -->
       <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
-    <!-- <div class="Channel-card">
-
+    <!-- <div class="Channel-card" >
    
       <span class="title">{{ card.name }}</span> <br>
     
@@ -25,14 +24,11 @@
      -->
    <!-- -------------------------------------------------------------------------------------------------------------------------------------------------------- -->
    
-     <div class="Episode-card">
+     <div class="Episode-card" v-if="card.title">
 
-    
          <span class="title">{{ card.title }}</span> <br>
-      <span id="airtime">{{ card.airtime }} </span>
+      <span id="airtime">{{ card.Airtime }} </span>
       
-      
-    
     </div>
  
 </template>

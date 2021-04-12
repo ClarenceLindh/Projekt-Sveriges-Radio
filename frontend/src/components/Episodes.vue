@@ -6,7 +6,7 @@
 <h3 style="color:red">Alla episodes från programid {{currentProgram}}</h3>
  <ol id="episodeList">
         <li v-for="(Episode, index) in getAllEpisodes" :key="index" :card="Episode" id="episodeItem"> 
-         <Card :card={{Episode}}/> 
+         <Card :card="Episode"/>
         </li>
     </ol>
 
