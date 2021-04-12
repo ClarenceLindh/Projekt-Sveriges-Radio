@@ -1,11 +1,13 @@
 <template>
-  <form @submit.prevent="login">
+  <form >
     <input v-model="username" type="text" placeholder="username" required>
     <input v-model="password" type="password" placeholder="password" required>
     <button @click="login">Login</button>
-    <button type="button" @click="register">Register</button>
+    <button @click="register">Register</button>
+    <button @click="logout">Logout</button>
   </form>
-  <button @click="logout">Logout</button>
+  
+
 </template>
 
 <script>
@@ -26,7 +28,9 @@ export default {
   methods: {
 
     logout(){
-      fetch ('/logout', {mode: 'no-cors'})
+      fetch ('/logout', {mode: 'no-cors'}),
+      alert ('Logged out'),
+      location.reload();
     },
 
      login (){
@@ -39,21 +43,21 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded"
         },
         mode: 'no-cors',
-        body: credentials
+        body: credentials,
       });
 
       let user =  fetch('/auth/whoami')
 
       try {
-        user =  user.json()
+        
         this.$store.commit('setLoggedInUser', user)
         console.log(user);
       } catch {
-        alert ('Wrong username/password')
+        alert ('Wrong username/password')        
       }
       if(response.url.includes('error')){
-        console.log('Wrong username/password')
-      }
+        console.log('Wrong username/password')        
+      } location.reload();
     },
 
     async register() {
@@ -67,7 +71,9 @@ export default {
         body: JSON.stringify(credentials)
       })
       if(response.url.includes('error')){
-        console.log('Wrong username/password')
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Registered user')
       }
     }
 
