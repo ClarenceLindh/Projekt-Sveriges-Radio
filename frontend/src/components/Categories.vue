@@ -5,7 +5,7 @@
 <h3 style="color:red">Alla kategorier totalt</h3>
  <ul style="list-style-type:none;">
         <li v-for="(Category, index) in getAllCategories" :key="index" id="categoryList" @click="Clicked(Category)">
-            <Card :card="Category"/>
+            <Card :card="Category" :type="'category'"/>
         </li>
     </ul>
 

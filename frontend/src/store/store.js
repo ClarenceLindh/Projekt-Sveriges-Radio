@@ -21,6 +21,7 @@ export default createStore({
     favorites:[],
     channelId: 0,
     channelName: '',
+    categoryId: 0,
   },
 
   mutations: {
@@ -75,6 +76,15 @@ export default createStore({
         console.log(response.data)
       })
     },
+
+    async fetchProgramByCategory(){
+      await axios.get("http://localhost:3000/rest/programs/programsByCategoryId/" + this.state.categoryId)
+      .then(response => {
+        this.commit("setProgram", response.data)
+        console.log(response.data)
+      })
+    },
+
     async fetchChannels(){
       await axios.get("http://localhost:3000/rest/channels")
       .then(response => {

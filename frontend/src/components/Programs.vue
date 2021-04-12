@@ -7,7 +7,7 @@
     <h3 style="color:red" v-if="currentChannel">Program baserat på {{currentChannel}}</h3>
         <ol id="programList">
             <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
-                         <Card :card="program"/> 
+                         <Card :card="program" :type="'program'"/> 
 
 
                 
@@ -71,10 +71,8 @@ export default {
 <style>
     #programList{
         display: block;
+        margin-right: 32px;
         list-style-type: none;
-        background-color: rgba(0, 0, 0, 0.2);
-        margin-bottom: 0;
-        box-shadow: 0 -3px 1px rgba(0, 0, 0, 0.3);
     }
 
     .progButton{

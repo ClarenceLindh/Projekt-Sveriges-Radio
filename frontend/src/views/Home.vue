@@ -58,10 +58,10 @@ export default {
   
 }
 #Episodes {
-  background-color: rgb(9, 18, 71) ;
+  background-color: rgb(16, 4, 68) ;
   color: aliceblue;
   margin: 2vw;
-
+  width: 30vw;
 }
 #Programs {
   background-color: rgb(16, 4, 68) ;
@@ -70,10 +70,10 @@ export default {
 
 }
 #Categories {
-  background-color: rgba(8, 2, 68, 0.568) ;
+  background-color: rgb(16, 4, 68) ;
   color: aliceblue;
   margin: 2vw;
-
+  width: 10vw;
 }
 
 #Friends {
