@@ -17,7 +17,10 @@
     </div>
      <div class="Episode-card" v-if="type == 'episode'">
     
-      <span class="title">{{ card.title }}</span> <br>
+      <span class="title">{{ card.title }}</span>
+      <button>fav</button>
+      <button>share</button>
+      <br>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
       <span>{{ card.description }} </span>
     
@@ -67,7 +70,6 @@ export default {
   }
 
   button{
-    display: flex;
     border: none;
     background-color: rgba(64, 46, 120, .8);
     box-shadow: 2px 2px 1px rgba(0, 0, 0, .2), inset 2px 2px 2px rgba(255, 255, 255, .05);
