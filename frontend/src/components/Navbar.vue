@@ -7,16 +7,7 @@
         <router-link to="/login">Login</router-link>
     </div>
        
-        <!-- 
-       <div v-if="isLoggedIn" class="logoutbtn" id="logout">
-        <button @onclick="logout">Logout</button>
-    </div>
-    <div v-else class="loginbtn" id="login">
-        <router-link to="/login">Login</router-link>
-    </div>
-    -->
-    
-    
+     
 </nav>
   
 </template>
@@ -30,12 +21,8 @@ export default {
   },
 
   computed:{
-      loggedInUser() {
-      return this.$store.state.loggedInUser
-    },
-    isLoggedIn() {
-      return this.loggedInUser != null
-    },        
+      
+            
   }
 }
 

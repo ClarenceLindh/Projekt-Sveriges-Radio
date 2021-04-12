@@ -115,9 +115,12 @@ export default createStore({
         console.log(response.data)
       })
     },
-
-    async actionWithValue(store,data){
-      console.log(data)
+    async fetchLoggedInUser(){
+      await axios.get("http://localhost:3000/auth/whoami" + this.state.loggedInUser)
+      .then(response => {
+        this.commit("setLoggedInUser", response.data)
+        console.log(response.data)
+      })
     }
 
   },
@@ -161,6 +164,10 @@ export default createStore({
 
     getAllFavorites(state){
       return state.favorites
+    },
+
+    getLoggedInUser(state){
+      return state.loggedInUser
     }
 
 

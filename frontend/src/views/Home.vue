@@ -4,7 +4,7 @@
 
   <div class="home">
     <h4>Is logged in: {{ isLoggedIn }}</h4>
-    <h5 v-if="isLoggedIn">username: {{ loggedInUser.username }}</h5>
+    
     
     <div id="Categories"><Categories/></div>
     

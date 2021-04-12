@@ -5,9 +5,12 @@
     <button @click="login">Login</button>
     <button @click="register">Register</button>
     <button @click="logout">Logout</button>
+    
+<!-- 
+    <button v-if="loggedInUser!=null" @click="logout">Logout</button>
+    <button v-else @click="login">Login</button>
+-->
   </form>
-  
-
 </template>
 
 <script>
@@ -25,12 +28,16 @@ export default {
   mounted(){
     console.log('mounted Login');
   },
-  methods: {
+
+  computed: {
+    
+  },
+
+  methods: {  
 
     logout(){
-      fetch ('/logout', {mode: 'no-cors'}),
-      alert ('Logged out'),
-      location.reload();
+      this.$store.commit('setLoggedInUser', null),
+      alert ('Logged out')
     },
 
      login (){
@@ -46,10 +53,10 @@ export default {
         body: credentials,
       });
 
-      let user =  fetch('/auth/whoami')
+      
 
       try {
-        
+        let user =  fetch('/auth/whoami')        
         this.$store.commit('setLoggedInUser', user)
         console.log(user);
       } catch {
@@ -57,7 +64,7 @@ export default {
       }
       if(response.url.includes('error')){
         console.log('Wrong username/password')        
-      } location.reload();
+      } 
     },
 
     async register() {
@@ -65,6 +72,7 @@ export default {
         username: this.username,
         password: this.password
       }
+      
       let response = await fetch ('/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
