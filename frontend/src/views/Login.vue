@@ -64,7 +64,8 @@ export default {
       }
       if(response.url.includes('error')){
         console.log('Wrong username/password')        
-      } 
+      }
+      
     },
 
     async register() {
@@ -72,7 +73,7 @@ export default {
         username: this.username,
         password: this.password
       }
-      
+
       let response = await fetch ('/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
