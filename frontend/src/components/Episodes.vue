@@ -5,7 +5,7 @@
 
 <h3 style="color:red">Alla episodes från programid {{currentProgram}}</h3>
  <ol id="episodeList">
-        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
+        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode"/>
         </li>
     </ol>
@@ -42,6 +42,10 @@ export default {
             console.log(newProgram)
             this.currentProgram = newProgram
         },
+
+        Clicked(episode){
+            alert("Du klickade på " + episode.title)
+        }
     },
 
     mounted(){
