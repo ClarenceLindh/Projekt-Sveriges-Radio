@@ -8,7 +8,7 @@
         <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
         {{Favorite.program_id}} - {{Favorite.episode_id}}
         </li>
-    </ul>
+</ul>
 
   </div>
 </template>

@@ -1,10 +1,14 @@
 <template>
   <div >
 <h1>Friendslist</h1>
+<h2>{{userId}}</h2>
 
-<h3 style="color:gray">Alla vänner {{getAllFriends}}</h3>
+<li>{{getFriends}}</li>
+
+<h3 style="color:gray">Alla vänner {{getFriends}}</h3>
  <ol id="friendList">
-        <li v-for="(Friend, index) in getAllFriends" :key="index" id="friendItem" @click="Clicked(Friend)"> 
+        <li v-for="(Friend, index) in getFriends" :key="index" 
+        id="friendItem" @click="Clicked(Friend)"> 
          <Card :card="Friend" :type="'friend'"/>
         </li>
     </ol>
@@ -30,13 +34,16 @@ export default {
     },
 
     computed: {
-        getAllFriends(){
-            return this.$store.getters.getAllFriends
+        getFriends(){
+            return this.$store.getters.getFriends
         },
+        userId(){
+            return this.$store.getters.getLoginUserId
+        }
     },
 
-    mounted(){
-        this.$store.dispatch("fetchAllFriends")
+    mounted(){   
+        this.$store.dispatch("fetchFriends")
     },
 }
 </script>

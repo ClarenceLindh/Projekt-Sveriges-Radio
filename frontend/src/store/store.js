@@ -82,7 +82,7 @@ export default createStore({
     },
 
     setFriends(state,payload){
-      state.Friends = payload;
+      state.friends = payload;
     },
 
     setFavorites(state,payload){
@@ -109,7 +109,7 @@ export default createStore({
     },
     setDate(state, payload) {
       state.date = payload;
-    }
+    },
 
   },
 
@@ -159,7 +159,7 @@ export default createStore({
 
     async fetchAllFavorites(){
       
-            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser)
+            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUserId)
       .then(response => {
         this.commit("setFavorites", response.data)
         console.log(response.data)
@@ -175,10 +175,10 @@ export default createStore({
       })
     },
 
-    async fetchAllFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUser)
+    async fetchFriends(){
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
       .then(response => {
-        this.commit("setAllFriends", response.data)
+        this.commit("setFriends", response.data)
         console.log(response.data)
       })
     },
@@ -248,7 +248,7 @@ export default createStore({
     getProgramId(state) {
       return state.programId
     },
-    getAllFriends(state){
+    getFriends(state){
       return state.friends
     },
 
@@ -275,6 +275,10 @@ export default createStore({
     getLoginStatus(state) {
       console.log(state.isLoggedIn)
       return state.isLoggedIn
+    },
+
+    getLoginUserId(state){
+      return state.loggedInUserId
     }
 },
 

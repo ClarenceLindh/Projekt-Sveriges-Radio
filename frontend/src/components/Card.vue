@@ -18,8 +18,8 @@
     </div>
 
     <div class="Friend-card" v-if="type == 'friend'">
-      <span class="name">{{ card.name }}</span><br>
-      <span id="desc">{{ card.description }}</span> <br>
+      <span class="name">{{ card.userid }}</span><br>
+      <span id="desc">{{ card.friendsid }}</span> <br>
     </div>
 
 
