@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.util.Map;
 
 @Entity
 @Table(name="episodes")
@@ -16,6 +17,8 @@ public class Episode {
     String description;
     String publishdateutc;
     String name;
+    String url;
+    boolean hasOnDemand;
 
 
     public Episode() {
@@ -23,31 +26,43 @@ public class Episode {
 
 
 
-    public Episode(long id,  String title, String description, String publishdateutc) {
+    public Episode(long id,  String title, String description, String url, String publishdateutc,
+     boolean hasOnDemand) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.url = url;
         this.publishdateutc = publishdateutc;
+        this.hasOnDemand = hasOnDemand;
     }
 
-    public Episode(long id, long program_id, String title, String description, String publishdateutc) {
-        this.id = id;
-        this.program_id = program_id;
-        this.title = title;
-        this.description = description;
-        this.publishdateutc = publishdateutc;
-    }
 
-    public Episode(long id, long program_id, String title, String description, String publishdateutc, String name) {
+    public Episode(long id, long program_id, String title, String description, String publishdateutc, String name, boolean hasOnDemand) {
         this.id = id;
         this.program_id = program_id;
         this.title = title;
         this.description = description;
         this.publishdateutc = publishdateutc;
         this.name = name;
+        this.hasOnDemand = hasOnDemand;
     }
 
+    public Episode(long id,  String title, String description, String publishdateutc, String name) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.publishdateutc = publishdateutc;
+        this.name = name;
 
+    }
+
+    public Episode(String title, String description, String publishdateutc, String name) {
+
+        this.title = title;
+        this.description = description;
+        this.publishdateutc = publishdateutc;
+        this.name = name;
+    }
 
     public long getId() {
         return id;
@@ -81,6 +96,13 @@ public class Episode {
         this.description = description;
     }
 
+    public String getUrl() { return url; }
+
+    public void setUrl(String url) { this.url = url; }
+
+    public boolean isHasOnDemand() { return hasOnDemand; }
+
+    public void setHasOnDemand(boolean hasOnDemand) { this.hasOnDemand = hasOnDemand; }
 
     @JsonProperty("Airtime")
     public String getPublishdateutc() {
@@ -109,6 +131,8 @@ public class Episode {
                 ", description='" + description + '\'' +
                 ", publishdateutc='" + publishdateutc + '\'' +
                 ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", hasOnDemand=" + hasOnDemand +
                 '}';
     }
 }

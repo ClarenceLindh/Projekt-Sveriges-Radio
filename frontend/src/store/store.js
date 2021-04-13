@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 
+
 export default createStore({
   name: 'store',
 
@@ -15,7 +16,9 @@ export default createStore({
     programName: '',
     category:[],
     categoryId: 0,
+    categoryName: '',
     loggedInUser: null,
+    isLoggedIn: "Login",
     channel:[],
     episodes:[],
     friends:[],
@@ -23,9 +26,19 @@ export default createStore({
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
+    currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3',
+    programList:[],
+    date:'2021-04-13',
+    episodeByChannel:[],
+    showLists: true
   },
 
   mutations: {
+
+    setBoolean(state,payload){
+      state.showLists = payload
+    },
+
     addChannelID(state,payload){
       state.channelId = payload;
     },
@@ -49,6 +62,12 @@ export default createStore({
     setAllCategories(state, payload){
       state.category = payload;
     },
+    setCategoryId(state, payload) {
+      state.categoryId = payload;
+    },
+    setCategoryName(state, payload) {
+      state.categoryName = payload;
+    },
     setAllEpisodes(state, payload){
       state.episodes = payload;
     },
@@ -60,18 +79,30 @@ export default createStore({
     setFriends(state,payload){
       state.Friends = payload;
     },
+
     setFavorites(state,payload){
       state.favorites = payload;
-    } ,   
+    },
+    
     setChannelName(state,payload) {
       state.channelName = payload
     },
+
     setChannel(state,payload){
       state.channel = payload;
     },
-    setCategoryId(state, payload) {
-      state.categoryId = payload;
+    
+    setNewAudioFile(state, payload) {
+      state.currentAudioFileURL = payload;
+    },
+
+    setUser(state, payload) {
+      state.loggedInUser = payload;
+    },
+    setEpisodeByChannel(state, payload){
+      state.episodeByChannel = payload;
     }
+
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -82,6 +113,15 @@ export default createStore({
       .then(response => {
         this.commit("setProgram", response.data)
         console.log(response.data)
+      })
+    },
+
+    async fetchUser(){
+      await axios.get("http://localhost:3000/auth/whoami")
+      .then(response => {
+        this.commit("setUser", response.data)
+        if(response != null)
+          console.log(response.data)
       })
     },
 
@@ -147,7 +187,15 @@ export default createStore({
         this.commit("setProgram", response.data)
         console.log(response.data)
       })
-    }
+    },
+    
+    async fetchEpisodesByChannel(){
+      await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
+      .then(response => {
+        this.commit("setEpisodeByChannel", response.data)
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + response.data)
+      })
+    },
 
   },
 
@@ -200,8 +248,25 @@ export default createStore({
       return state.favorites
     },
 
-    getLoggedInUser(state){
+    getCurrentAudioFile(state) {
+      return state.currentAudioFileURL
+    },
+
+    getAllEpisodesByChannel(state){
+      console.log(" sdfsdfsdfs" +state.episodeByChannel)
+    return state.episodeByChannel
+    },
+    getBoolean(state){
+      return state.showLists
+    },
+
+    getCurrentUser(state) {
       return state.loggedInUser
+    },
+
+    getLoginStatus(state) {
+      console.log(state.isLoggedIn)
+      return state.isLoggedIn
     }
 },
 

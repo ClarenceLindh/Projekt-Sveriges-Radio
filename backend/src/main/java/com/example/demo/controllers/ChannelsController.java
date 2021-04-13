@@ -29,6 +29,8 @@ private ChannelService ChannelService;
 }
 
 
+
+
 /*@GetMapping("/getChannelsFromId/{id}")
 public List<Channel> getChannelsFromId(@PathVariable long id){
 return ChannelService.getChannelsFromId(id);
