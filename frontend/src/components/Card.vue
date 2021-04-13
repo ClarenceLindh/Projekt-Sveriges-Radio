@@ -9,8 +9,7 @@
       </div>
       
      <div class="Episode-card" v-if="type == 'episode'">
-    
-      <span class="title">{{ card.title }}</span><br><br><br>
+      <span class="title">{{ card.title }}</span><br>
       <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
       <button @click.stop="shareItem(card.id, card.title, type)">share</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
@@ -18,9 +17,18 @@
     
     </div>
 
-    <div class="Friend-card">
-      <button @click.stop="deleteFriend(card.id)">del</button>
-      <span id="frens">{{ card.friendsid }}</span> <br>
+    <div class="Favorite-card" v-if="type == 'favorite'">
+      <span class="programname">{{ card.programname }}</span><br>
+      <span id="episodename">{{card.episodename}}</span><br><br>
+      <button>Delete</button>
+      <button @click.stop="shareItem(card.id)">share</button>
+      
+    
+    </div>
+
+    <div class="Friend-card" v-if="type == 'friend'">
+      <span class="name">{{ card.userid }}</span><br>
+      <span id="desc">{{ card.friendsid }}</span> <br>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
@@ -65,7 +73,7 @@ export default {
    
    
    async favoriteItem(id, name, type) {
-     if(type == "program"){
+    if(type == "program"){
       let credentials = {
         program_id: id,
         programname: name,
@@ -85,7 +93,7 @@ export default {
         alert ('Saved as favorite')
       }
       }
-      if(type == "episode"){
+    if(type == "episode"){
       let credentials = {
         program_id: 0,
         programname: '',
@@ -198,6 +206,12 @@ export default {
   }
 
   .Friend-card > .title{
+    font-weight: bold;
+    font-size: 2.5vh;
+    text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+  }
+
+  .Favorite-card > .title{
     font-weight: bold;
     font-size: 2.5vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);

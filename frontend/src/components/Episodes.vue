@@ -6,10 +6,6 @@
 <h3 id="columnSubTitle"  v-show="!isNinja" >Episoder baserade på program:  {{currentProgram}}</h3>
 <h3 id="columnSubTitle"  v-show="isNinja" >Episoder baserade på kanal:  {{currentChannel}}</h3>
 
-
-
-
-
 <div id="episodeList">
     <ol id="channel"  v-show="isNinja">
             <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem"> 
