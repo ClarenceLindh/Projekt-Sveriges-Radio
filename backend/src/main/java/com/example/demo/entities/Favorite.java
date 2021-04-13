@@ -14,7 +14,8 @@ public class Favorite {
     private long program_id;
     private long episode_id;
     private String time_added;
-
+    private String programname;
+    private String episodename;
     public Favorite() {
     }
 
@@ -64,14 +65,32 @@ public class Favorite {
         this.time_added = time_added;
     }
 
+    public String getProgramname() {
+        return programname;
+    }
+
+    public void setProgramname(String programname) {
+        this.programname = programname;
+    }
+
+    public String getEpisodename() {
+        return episodename;
+    }
+
+    public void setEpisodename(String episodename) {
+        this.episodename = episodename;
+    }
+
     @Override
     public String toString() {
-        return "\nFavoriteService{" +
+        return "Favorite{" +
                 "id=" + id +
-                ", user_id=" + userid +
+                ", userid=" + userid +
                 ", program_id=" + program_id +
                 ", episode_id=" + episode_id +
-                ", time_added=" + time_added +
+                ", time_added='" + time_added + '\'' +
+                ", programname='" + programname + '\'' +
+                ", episodename='" + episodename + '\'' +
                 '}';
     }
 }

@@ -1,14 +1,15 @@
 <template>
   <div >
 <h1>Favorites</h1>
+
+
 <h3 style="color:red">Alla favoriter</h3>
 
  <ul style="list-style-type:none;">
         <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
-        {{Favorite.program_id}} - {{Favorite.episode_id}}
+        {{Favorite.programname}} - {{Favorite.episodename}}
         </li>
     </ul>
-
   </div>
 </template>
 
@@ -20,11 +21,14 @@ export default {
         getAllFavorites(){
             return this.$store.getters.getAllFavorites
         },
+        
     },
 
     mounted(){
         this.$store.dispatch("fetchAllFavorites")
     },
+
+    
 }
 </script>
 

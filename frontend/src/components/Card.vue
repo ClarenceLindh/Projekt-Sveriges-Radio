@@ -31,9 +31,30 @@
 <script>
 export default {
   props: ["card", "type"],
+  
+  data(){
+    return {
+      programid: '',
+      programname:''
+    }
+  },
   methods: {
-    favoriteItem(id){
-      console.log("Clicked to favorite " + id)
+   async favoriteItem() {
+      let credentials = {
+        program_id: this.programid,
+        programname: this.programname
+      
+      } 
+      let response = await fetch ('/rest/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Saved as favorite')
+      }
     },
     shareItem(id){
       console.log("Clicked to share " + id)
