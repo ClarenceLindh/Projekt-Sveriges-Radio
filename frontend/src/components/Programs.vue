@@ -29,6 +29,8 @@ export default {
             searchProgram: [],
             buttonKey: 0,
             searchPhrase:'',
+            programid:'',
+            programname:''
         }
     },
 

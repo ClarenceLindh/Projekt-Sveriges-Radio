@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
 import Favorites from "../views/Favorites.vue";
+import Friends from "../views/Friends.vue"
 import Login from "../views/Login.vue";
 import Friends from "../views/Friends.vue"
 

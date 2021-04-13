@@ -1,15 +1,16 @@
 <template>
   <div >
 <h1>Favorites</h1>
-<p>Current user id: {{ currentUser }}</p>
+
+
 <h3 style="color:red">Alla favoriter</h3>
 
  <ul style="list-style-type:none;">
         <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
-        {{Favorite.program_id}} - {{Favorite.episode_id}}
+       {{Favorite.program_id}} - {{Favorite.programname}} - {{Favorite.episode_id}} - {{Favorite.episodename}} - 
+        <button>Delete</button>
         </li>
-</ul>
-
+    </ul>
   </div>
 </template>
 
@@ -28,6 +29,7 @@ export default {
             this.updateCurrentUser()
             return this.$store.getters.getAllFavorites
         },
+        
     },
 
     methods:{
@@ -39,6 +41,9 @@ export default {
     mounted(){
         this.$store.dispatch("fetchAllFavorites")
     },
+
+
+    
 }
 </script>
 

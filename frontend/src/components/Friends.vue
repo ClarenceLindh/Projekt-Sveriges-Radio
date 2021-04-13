@@ -16,8 +16,8 @@
   
 <!--
  <ul style="list-style-type:none;">
-        <li v-for="(Friends, index) in getAllFriends" :key="index"> 
-            {{Friends.name}}
+        <li v-for="(Friend, index) in getAllFriends" :key="index"> 
+        {{Friend.userid}} - {{Friend.friendsid}}
         </li>
     </ul>
 -->
@@ -45,6 +45,8 @@ export default {
     mounted(){   
         this.$store.dispatch("fetchFriends")
     },
+
+    
 }
 </script>
 
