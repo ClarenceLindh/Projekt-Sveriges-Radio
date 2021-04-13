@@ -17,7 +17,7 @@ public class FavoriteService {
     public List<Favorite> findById(long user_id) {
         if(favoriteRepo.findByUserid(user_id) != null){
             List<Favorite> favoriteList = favoriteRepo.findByUserid(user_id);
-            return favoriteList;
+             return favoriteList;
         }
         return null;
     }

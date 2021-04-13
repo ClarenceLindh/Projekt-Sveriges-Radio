@@ -29,6 +29,10 @@ export default {
             return this.$store.getters.getLoginUserId
         }
     },
+
+    mounted(){   
+        this.$store.dispatch("fetchFriends")
+    },
 }
 </script>
 

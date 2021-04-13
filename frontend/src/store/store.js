@@ -28,6 +28,7 @@ export default createStore({
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
+    addedFavorites:[],
     currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3',
     programList:[],
     date:'2021-04-13',
@@ -221,6 +222,10 @@ export default createStore({
   },
 
   getters: {
+    counter(state){
+      return state.count
+    },
+
     getProgram(state){
       return state.program
     },
