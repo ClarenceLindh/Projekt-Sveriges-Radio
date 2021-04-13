@@ -7,12 +7,7 @@
         <span id="desc">{{ card.description }}</span><br><br>
 
       </div>
-      <div class="Episode-card" v-if="type == 'episode'">
-    
-      <span class="name">{{ card.name }}</span><br>
-      <span id="desc">{{ card.description }}</span> <br>
-        
-    </div>
+      
      <div class="Episode-card" v-if="type == 'episode'">
     
       <span class="title">{{ card.title }}</span><br>
