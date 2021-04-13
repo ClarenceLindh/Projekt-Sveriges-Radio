@@ -3,7 +3,8 @@
 <h1 id="columnTitle">Episodes</h1>
 
 
-<h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
+<h3 id="columnSubTitle"  v-show="!isNinja" >Episoder baserade på program:  {{currentProgram}}</h3>
+<h3 id="columnSubTitle"  v-show="isNinja" >Episoder baserade på kanal:  {{currentChannel}}</h3>
 
 
 
@@ -41,10 +42,16 @@ export default {
 
         getAllEpisodes(){
             this.updateProgramName()
+            this.getChannelName()
+            
 
             return this.$store.getters.getAllEpisodes
-        },getChannelEpisode(){
-            this.updateProgramName()
+        },
+        getChannelEpisode(){
+             this.updateProgramName()
+            this.getChannelName()
+           
+            
 
             return this.$store.getters.getAllEpisodesByChannel
         },
@@ -56,7 +63,12 @@ export default {
 
     methods:{
 
-      
+      getChannelName(){
+
+          var newChannel = this.$store.getters.getChannelName
+          this.currentChannel = newChannel
+
+      },
         updateProgramName(){
             var newProgram = this.$store.getters.getProgramName
             console.log(newProgram)

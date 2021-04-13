@@ -1,7 +1,7 @@
 <template>
   <div id="card" >
     <div class="Program-card" v-if="type == 'program'">
-        <span class="name">{{ card.name }}</span><br>
+        <span class="name">{{ card.name }}</span><br><br><br>
         <button @click.stop="favoriteItem(card.id, card.name, type)">fav</button>
         <button @click.stop="shareItem(card.id)">share</button>
         <span id="desc">{{ card.description }}</span><br><br>
@@ -10,7 +10,7 @@
       
      <div class="Episode-card" v-if="type == 'episode'">
     
-      <span class="title">{{ card.title }}</span><br>
+      <span class="title">{{ card.title }}</span><br><br><br>
       <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
       <button @click.stop="shareItem(card.id)">share</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
@@ -92,7 +92,7 @@ export default {
     list-style-type: none;
     background-color: rgba(60, 55, 65, .3);
     margin: 0 auto;
-    padding: 0;
+    padding: 2vh;
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
@@ -115,13 +115,14 @@ export default {
 
   .Program-card > .name{
     font-weight: bold;
-    font-size: 2.5vh;
+     font-size: 2.5vh; 
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+    
   }
 
   .Episode-card > .title{
     font-weight: bold;
-    font-size: 2.5vh;
+     font-size: 2.5vh; 
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
