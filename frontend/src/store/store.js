@@ -22,8 +22,8 @@ export default createStore({
     isLoggedIn: "Login",
     channel:[],
     episodes:[],
-    friends:[],
     newFriends:[],
+    friends:[],
     favorites:[],
     channelId: 0,
     channelName: '',
@@ -82,12 +82,12 @@ export default createStore({
       state.loggedInUserId = user
     },
 
-    setFriends(state,payload){
-      state.friends = payload;
-    },
-
     setNewFriends(state,payload){
       state.newFriends = payload;
+    },
+
+    setFriends(state,payload){
+      state.friends = payload;
     },
 
     setFavorites(state,payload){
@@ -171,7 +171,6 @@ export default createStore({
       })
     },
 
-
     async fetchAllEpisodes(){
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.programId)
       .then(response => {
@@ -180,18 +179,18 @@ export default createStore({
       })
     },
 
-    async fetchFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
-      .then(response => {
-        this.commit("setFriends", response.data)
-        console.log(response.data)
-      })
-    },
-
     async findMyFriends() {
       await axios.get("http://localhost:3000/rest/findfriends/" + this.state.loggedInUserId)
       .then(response => {
         this.commit("setNewFriends", response.data)
+        console.log(response.data)
+      })
+    },
+
+    async fetchFriends(){
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
+      .then(response => {
+        this.commit("setFriends", response.data)
         console.log(response.data)
       })
     },
@@ -262,6 +261,11 @@ export default createStore({
     getProgramId(state) {
       return state.programId
     },
+
+    getNewFriends(state) {
+      return state.newFriends
+    },
+
     getFriends(state){
       return state.friends
     },

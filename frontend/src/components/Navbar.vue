@@ -49,6 +49,7 @@ export default {
           console.log(this.$store.getters.getLoginStatus)
         },
         refreshUser(){
+            this.$store.dispatch("findMyFriends")
             this.$store.dispatch("fetchFriends")
         }
   }
