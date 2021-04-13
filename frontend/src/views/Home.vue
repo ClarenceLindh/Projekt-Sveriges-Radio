@@ -11,6 +11,8 @@
     
     <div id="Episodes"><Episodes/></div>
 
+    <div id="Friends"><Friends/></div>
+
   </div>
   </body>
 </template>
@@ -19,6 +21,7 @@
 import Programs from "../components/Programs.vue"
 import Categories from "../components/Categories.vue"
 import Episodes from "../components/Episodes.vue"
+import Friends from "../components/Friends.vue"
 
 
 
@@ -29,6 +32,7 @@ export default {
     Programs,
     Categories,
     Episodes,
+    Friends
   
   },
 
