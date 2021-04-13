@@ -18,9 +18,9 @@
     
     </div>
 
-    <div class="Friend-card" v-if="type == 'friend'">
-      <span class="name">{{ card.userid }}</span><br>
-      <span id="desc">{{ card.friendsid }}</span> <br>
+    <div class="Friend-card">
+      <button @click.stop="deleteFriend(card.id)">del</button>
+      <span id="frens">{{ card.friendsid }}</span> <br>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
@@ -46,6 +46,24 @@ export default {
   props: ["card", "type"],
 
   methods: {
+    async deleteUser(id){
+      let credentials = {
+        id: id,
+      }
+      let response = await fetch ('/friends/', {
+        method: 'POST',
+        headers: { 'Content-Type' : 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else{
+        alert ('Friend deleted')
+      }
+
+    },
+   
+   
    async favoriteItem(id, name, type) {
      if(type == "program"){
       let credentials = {
@@ -173,6 +191,12 @@ export default {
   }
 
   .Episode-card > .title{
+    font-weight: bold;
+    font-size: 2.5vh;
+    text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+  }
+
+  .Friend-card > .title{
     font-weight: bold;
     font-size: 2.5vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);

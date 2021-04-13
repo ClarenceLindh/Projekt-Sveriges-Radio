@@ -8,7 +8,7 @@
  <ul style="list-style-type:none;">
         <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
        {{Favorite.program_id}} - {{Favorite.programname}} - {{Favorite.episode_id}} - {{Favorite.episodename}} - 
-        <button>Delete</button>
+        
         </li>
     </ul>
   </div>
