@@ -92,9 +92,9 @@ public class EpisodeService {
     //--------------------------Hämta all episodes från en kanal under en dag-------------------------------------------
     public List<Episode> getByChannelId(long id, String date){
         RestTemplate restTemplate = new RestTemplate();
-        System.out.println("datum är:" + date);
-        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id + "&date=" + date + "&format=Json", Map.class);
-        System.out.println("AAAAAAAAAAAAA" + response);
+        
+        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id + "&pagination=false&date=" + date + "&format=Json", Map.class);
+
         List<Map> scheduleMaps = (List<Map>) response.get("schedule");
         List<Episode> schedules = new ArrayList<>();
         for (Map schedule : scheduleMaps) {
@@ -107,7 +107,7 @@ public class EpisodeService {
             String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
 
 
-            Episode Ep = null;
+            Episode Ep;
             try {
                 Ep = new Episode(
 
@@ -136,7 +136,7 @@ public class EpisodeService {
 
             schedules.add(Ep);
     }
-        System.out.println("SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES" + schedules);
+
         return schedules;
 }
 
