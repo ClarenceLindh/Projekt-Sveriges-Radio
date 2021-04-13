@@ -25,8 +25,9 @@ export default {
         return {
             storedPrograms: [],
             currentChannel: '',
-            searchPhrase:'',
+            searchProgram: [],
             buttonKey: 0,
+            searchPhrase:'',
         }
     },
 

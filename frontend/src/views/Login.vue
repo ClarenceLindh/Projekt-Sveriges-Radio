@@ -27,7 +27,12 @@ export default {
   mounted(){
     console.log('mounted Login');
   },
-  methods: {
+
+  computed: {
+    
+  },
+
+  methods: {  
 
     logout(){
       fetch ('/logout', {mode: 'no-cors'})
@@ -44,21 +49,22 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded"
         },
         mode: 'no-cors',
-        body: credentials
+        body: credentials,
       });
 
-      let user =  fetch('/auth/whoami')
+      
 
       try {
         this.$store.commit('setLoggedInUser', user)
         console.log(user);
         location.reload()
       } catch {
-        alert ('Wrong username/password')
+        alert ('Wrong username/password')        
       }
       if(response.url.includes('error')){
-        console.log('Wrong username/password')
+        console.log('Wrong username/password')        
       }
+      
     },
 
     async register() {
@@ -66,13 +72,16 @@ export default {
         username: this.username,
         password: this.password
       }
+
       let response = await fetch ('/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       })
       if(response.url.includes('error')){
-        console.log('Wrong username/password')
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Registered user')
       }
     }
 

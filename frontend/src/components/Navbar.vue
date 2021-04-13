@@ -77,6 +77,11 @@ export default {
   right: 5px;
   bottom: 6.8vh;
 }
+#logout{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
+}
 
 #droppers{
   position: absolute;
