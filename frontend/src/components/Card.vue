@@ -2,7 +2,7 @@
   <div id="card">
     <div class="Program-card" v-if="type == 'program'">
         <span class="name">{{ card.name }}</span><br>
-        <button @click.stop="favoriteItem(card.id)">fav</button>
+        <button @click.stop="favoriteItem(card.id, card.name, type)">fav</button>
         <button @click.stop="shareItem(card.id)">share</button>
         <br>
         <span id="desc">{{ card.description }}</span> <br>
@@ -18,7 +18,7 @@
      <div class="Episode-card" v-if="type == 'episode'">
     
       <span class="title">{{ card.title }}</span><br>
-      <button @click.stop="favoriteItem(card.id)">fav</button>
+      <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
       <button @click.stop="shareItem(card.id)">share</button>
       <br>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
@@ -31,9 +31,53 @@
 <script>
 export default {
   props: ["card", "type"],
+  
+  data(){ },
+
+
   methods: {
-    favoriteItem(id){
-      console.log("Clicked to favorite " + id)
+   async favoriteItem(id, name, type) {
+     if(type == "program"){
+      let credentials = {
+        program_id: id,
+        programname: name,
+        episode_id: 0,
+        episodename:'',
+        user_id: this.$store.state.loggedInUser.id
+      
+      } 
+      let response = await fetch ('/rest/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Saved as favorite')
+      }
+      }
+      if(type == "episode"){
+      let credentials = {
+        program_id: 0,
+        programname: '',
+        episode_id: id,
+        episodename:name,
+        user_id: this.$store.state.loggedInUser.id
+      
+      } 
+      let response = await fetch ('/rest/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Saved as favorite')
+      }
+      }
+
     },
     shareItem(id){
       console.log("Clicked to share " + id)

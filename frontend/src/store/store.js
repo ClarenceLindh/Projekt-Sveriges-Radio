@@ -23,9 +23,15 @@ export default createStore({
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
+    addedFavorites:[],
+  
   },
 
   mutations: {
+    addaddedFavorites(state, payload){
+      state.addedFavorites= payload;
+    },
+
     addChannelID(state,payload){
       state.channelId = payload;
     },
@@ -111,7 +117,7 @@ export default createStore({
 
     async fetchAllFavorites(){
       
-            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser)
+            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser.id)
       .then(response => {
         this.commit("setFavorites", response.data)
         console.log(response.data)
@@ -128,9 +134,9 @@ export default createStore({
     },
 
     async fetchAllFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUser)
+      await axios.get("http://localhost:3000/rest/friends/24")
       .then(response => {
-        this.commit("setAllFriends", response.data)
+        this.commit("setFriends", response.data)
         console.log(response.data)
       })
     },
@@ -152,6 +158,10 @@ export default createStore({
   },
 
   getters: {
+    counter(state){
+      return state.count
+    },
+
     getProgram(state){
       return state.program
     },

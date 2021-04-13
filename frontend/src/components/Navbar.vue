@@ -2,9 +2,12 @@
 <nav id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/favorites">Favorites</router-link> |
+        <router-link to="/Friends">Friends</router-link> |
+
        <ChannelDropDown/>
     <div class="loginbtn" id="login">
         <router-link to="/login">Login</router-link>
+
     </div>
        
      
