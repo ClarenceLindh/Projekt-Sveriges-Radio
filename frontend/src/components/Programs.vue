@@ -3,9 +3,10 @@
     <h1>Programs</h1>
     <input type="text" placeholder="Search.." v-model="searchPhrase" id="searchBar">
     <button @click="searchForProgram(searchPhrase)">sök</button>
+   
         <ol id="programList">
-            <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
-                         <Card :card="program" :type="'program'"/> 
+            <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name, false)"> 
+                         <Card :card="program"  :type="'program'"/>  
             </li>
         </ol>
 </div>    
@@ -44,9 +45,10 @@ export default {
         updateChannelName(){
             this.currentChannel = this.$store.getters.getChannelName
         },
-        setButtonKey(id, name){
+        setButtonKey(id, name, boolean){
             this.$store.commit('addProgramID',id);
             this.$store.commit('setProgramName',name);
+            this.$store.commit('setBoolean',boolean)
             this.$store.dispatch("fetchAllEpisodes")
         },
         searchForProgram(phrase){
@@ -62,6 +64,11 @@ export default {
 
             f = document.getElementById("channels_drop");
             f.selectedIndex = 0;
+        },
+        AddToProgramList(id, name){
+            this.$store.commit('addProgramID',id);
+            this.$store.commit('setProgramName',name);
+            
         }
     }
 }
