@@ -52,6 +52,10 @@ public class UserService {
         return null;
     }
 
+    public List<User> getAsFriend(Long id){
+        return userRepo.getFriend(id);
+    }
+
     public void deleteById(long id) {
         userRepo.deleteById(id);
     }
