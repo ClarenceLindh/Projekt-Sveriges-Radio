@@ -4,7 +4,14 @@
 
 
 <h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
- <ol id="episodeList">
+ <ol id="channel">
+        <li v-for="(Episode, index) in getChannlEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+         <Card :card="Episode" :type="'episode'"/>
+        </li>
+    </ol>
+    
+    
+    <ol id="program">
         <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode" :type="'episode'"/>
         </li>
