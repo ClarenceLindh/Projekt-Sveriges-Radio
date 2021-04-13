@@ -52,7 +52,7 @@ export default {
         body: credentials,
       });
 
-      
+      let user =  this.$store.dispatch("fetchLoggedInUser")
 
       try {
         this.$store.commit('setLoggedInUser', user)
