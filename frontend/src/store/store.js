@@ -163,7 +163,7 @@ export default createStore({
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
       .then(response => {
         this.commit("setEpisodeByChannel", response.data)
-        console.log(response.data)
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + response.data)
       })
     },
 

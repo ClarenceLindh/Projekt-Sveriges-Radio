@@ -56,6 +56,14 @@ public class Episode {
 
     }
 
+    public Episode(String title, String description, String publishdateutc, String name) {
+
+        this.title = title;
+        this.description = description;
+        this.publishdateutc = publishdateutc;
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }

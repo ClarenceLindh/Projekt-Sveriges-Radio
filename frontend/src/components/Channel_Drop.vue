@@ -26,8 +26,8 @@ export default {
           var e = document.getElementById("channels_drop");
           var strUser = e.options[e.selectedIndex].value;
             this.$store.commit('addChannelID',strUser);
-            this.$store.dispatch("fetchProgram"),
             this.$store.dispatch("fetchEpisodesByChannel"),
+            this.$store.dispatch("fetchProgram"),
             this.$store.commit('setChannelName', e.options[e.selectedIndex].text)
       }
     },

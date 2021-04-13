@@ -5,7 +5,7 @@
 
 <h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
  <ol id="channel">
-        <li v-for="(Episode, index) in getChannlEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+        <li v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode" :type="'episode'"/>
         </li>
     </ol>
@@ -35,7 +35,7 @@ export default {
             this.updateProgramName()
 
             return this.$store.getters.getAllEpisodes
-        },getChannlEpisode(){
+        },getChannelEpisode(){
             this.updateProgramName()
 
             return this.$store.getters.getAllEpisodesByChannel
