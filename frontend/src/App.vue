@@ -35,7 +35,6 @@ export default {
       return this.loggedInUser != null
     }
   }
-  
 }
 </script>
 
