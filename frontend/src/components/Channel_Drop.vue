@@ -21,11 +21,13 @@ export default {
     },
 
  methods:{
-      saveChannel(){
+      saveChannel(boolean){
             var e = document.getElementById("channels_drop");
             var strUser = e.options[e.selectedIndex].value;
-          this.$store.commit('setBoolean',boolean);
+            this.$store.commit('setBoolean',boolean);
             this.$store.commit('addChannelID',strUser);
+            let today = new Date().toISOString().slice(0, 10)
+            this.$store.commit('setDate', today)
             this.$store.dispatch("fetchEpisodesByChannel"),
             this.$store.dispatch("fetchProgram"),
             this.$store.commit('setChannelName', e.options[e.selectedIndex].text)

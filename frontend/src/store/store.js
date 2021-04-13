@@ -187,9 +187,8 @@ export default createStore({
         this.commit("setProgram", response.data)
         console.log(response.data)
       })
-    }
-
-
+    },
+    
     async fetchEpisodesByChannel(){
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
       .then(response => {
