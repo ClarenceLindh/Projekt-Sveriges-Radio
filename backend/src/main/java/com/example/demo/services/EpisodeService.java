@@ -21,7 +21,9 @@ import java.util.Map;
 public class EpisodeService {
 
     private String episodeApi = "http://api.sr.se/api/v2/episodes/index";
+    private String scheduleApi = "http://api.sr.se/api/v2/";
 //http://api.sr.se/api/v2/episodes/index?programid=3718&fromdate=2012-08-27&todate=2012-08-31
+   // http://api.sr.se/api/v2/scheduledepisodes?channelid=164&date=2021-04-12
 
     // Skapa en episode repo för att få ut info från databasen.
     @Autowired
@@ -85,6 +87,51 @@ public class EpisodeService {
         }
         return episodes;
     }
+
+
+    //--------------------------Hämta all episodes från en kanal under en dag-------------------------------------------
+    public List<Episode> getByChannelId(long id, String date){
+        RestTemplate restTemplate = new RestTemplate();
+        System.out.println("datum är:" + date);
+        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id + "&date=" + date + "&format=Json", Map.class);
+        System.out.println("AAAAAAAAAAAAA" + response);
+        List<Map> scheduleMaps = (List<Map>) response.get("schedule");
+        List<Episode> schedules = new ArrayList<>();
+        for (Map schedule : scheduleMaps) {
+
+            Long test = ((Number) schedule.get("episodeid")).longValue(); /// SKIPPA
+
+            String publishdateutc = (String) schedule.get("starttimeutc");
+            String epoch = publishdateutc.substring(6, 19);
+            long airtime = Long.parseLong(epoch);
+            String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
+
+            if (test==null){
+                test.equals(0);
+                System.out.println(" VI HAR EN FIRRREEE I SJÖN");
+
+            }
+
+
+        Episode Ep = new Episode(
+
+                test,
+                (String) schedule.get("title"),
+                (String)schedule.get("description"),
+                broadcasttime,
+                (String) ((Map) schedule.get("program")).get("name")
+
+
+        );
+        schedules.add(Ep);
+    }
+        System.out.println("SEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES" + schedules);
+        return schedules;
+}
+
+
+
+
 
 
 //--------------------------------------Get episode by date-------------------------------------------------------------

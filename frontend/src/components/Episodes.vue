@@ -23,10 +23,15 @@ export default {
     },
 
     computed: {
+
         getAllEpisodes(){
             this.updateProgramName()
 
             return this.$store.getters.getAllEpisodes
+        },getChannlEpisode(){
+            this.updateProgramName()
+
+            return this.$store.getters.getAllEpisodesByChannel
         },
     },
 

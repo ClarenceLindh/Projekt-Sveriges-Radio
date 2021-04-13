@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 
+
 export default createStore({
   name: 'store',
 
@@ -23,7 +24,10 @@ export default createStore({
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
-    currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3'
+    currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3',
+    programList:[],
+    date:'2021-04-13',
+    episodeByChannel:[],
   },
 
   mutations: {
@@ -75,7 +79,11 @@ export default createStore({
     },
     setNewAudioFile(state, payload) {
       state.currentAudioFileURL = payload;
+    },
+    setEpisodeByChannel(state, payload){
+      state.episodeByChannel = payload;
     }
+
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -148,7 +156,16 @@ export default createStore({
 
     async actionWithValue(store,data){
       console.log(data)
-    }
+    },
+
+
+    async fetchEpisodesByChannel(){
+      await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
+      .then(response => {
+        this.commit("setEpisodeByChannel", response.data)
+        console.log(response.data)
+      })
+    },
 
   },
 
@@ -203,6 +220,11 @@ export default createStore({
 
     getCurrentAudioFile(state) {
       return state.currentAudioFileURL
+    },
+
+    getAllEpisodesByChannel(state){
+      console.log(" sdfsdfsdfs" +state.episodeByChannel)
+    return state.episodeByChannel
     }
 },
 

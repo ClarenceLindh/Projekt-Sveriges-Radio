@@ -3,9 +3,10 @@
     <h1>Programs</h1>
     <input class="searchbar" type="text" placeholder="Search.." v-model="searchPhrase">
     <button @click="searchForProgram(searchPhrase)">sök</button>
+   
         <ol id="programList">
             <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
-                         <Card :card="program" :type="'program'"/> 
+                         <Card :card="program"  :type="'program'"/>  
             </li>
         </ol>
 </div>    
@@ -55,6 +56,11 @@ export default {
             }else{
                 alert("Din sökfras måste vara mer än 3 bokstäver långt")
             }
+        },
+        AddToProgramList(id, name){
+            this.$store.commit('addProgramID',id);
+            this.$store.commit('setProgramName',name);
+            
         }
     }
 }
