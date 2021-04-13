@@ -8,7 +8,6 @@
     
     <div id="Episodes"><Episodes/></div>
 
-    <div id="Friends"><Friends/></div>
 
   </div>
   </body>
@@ -17,7 +16,7 @@
 <script>
 import Programs from "../components/Programs.vue"
 import Episodes from "../components/Episodes.vue"
-import Friends from "../components/Friends.vue"
+
 
 
 
@@ -26,8 +25,7 @@ export default {
   
   components: {
     Programs,
-    Episodes,
-    Friends
+    Episodes
   
   },
 
