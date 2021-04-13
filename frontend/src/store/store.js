@@ -24,14 +24,15 @@ export default createStore({
     episodes:[],
     newFriends:[],
     friends:[],
-    favorites:[],
+    favorites: [],
+    shares: [],
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
     addedFavorites:[],
     currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3',
     programList:[],
-    date:'2021-04-13',
+    date:'2021-04-14',
     episodeByChannel:[],
     showLists: true
   },
@@ -93,6 +94,10 @@ export default createStore({
 
     setFavorites(state,payload){
       state.favorites = payload;
+    },
+
+    setShares(state,payload){
+      state.shares = payload;
     },
     
     setChannelName(state,payload) {
@@ -164,11 +169,18 @@ export default createStore({
     },
 
     async fetchAllFavorites(){
-      
-            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUserId)
-      .then(response => {
+        await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUserId)
+        .then(response => {
         this.commit("setFavorites", response.data)
         console.log(response.data)
+      })
+    },
+
+    async fetchAllShares(){
+      await axios.get("http://localhost:3000/rest/shares/"+this.state.loggedInUserId)
+        .then(response => {
+          this.commit("setShares", response.data)
+          console.log(response.data)
       })
     },
 
@@ -184,7 +196,6 @@ export default createStore({
       await axios.get("http://localhost:3000/rest/findfriends/" + this.state.loggedInUserId)
       .then(response => {
         this.commit("setNewFriends", response.data)
-        console.log(response.data)
       })
     },
 
@@ -192,7 +203,6 @@ export default createStore({
       await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
       .then(response => {
         this.commit("setFriends", response.data)
-        console.log(response.data)
       })
     },
 
@@ -277,6 +287,10 @@ export default createStore({
 
     getAllFavorites(state){
       return state.favorites
+    },
+
+    getAllShares(state){
+      return state.shares
     },
 
     getCurrentAudioFile(state) {

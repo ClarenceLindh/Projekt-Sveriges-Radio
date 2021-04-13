@@ -36,7 +36,7 @@ public class EpisodeService {
 
         RestTemplate restTemplate = new RestTemplate();
         //2. Skapar en url och hämtar genom resttemplate och sparar i en map
-        Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&format=Json", Map.class);
+        Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&pagination=false&format=Json", Map.class);
 
         //3. Tar ut episodedeln från mappen och sparar i en lista
         List<Map> episodeMaps = (List<Map>) response.get("episodes");

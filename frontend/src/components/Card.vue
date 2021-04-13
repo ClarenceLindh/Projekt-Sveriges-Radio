@@ -1,18 +1,18 @@
 <template>
   <div id="card" >
     <div class="Program-card" v-if="type == 'program'">
-        <span class="name">{{ card.name }}</span><br>
+        <span class="name">{{ card.name }}</span><br><br><br>
         <button @click.stop="favoriteItem(card.id, card.name, type)">fav</button>
-        <button @click.stop="shareItem(card.id)">share</button>
+        <button @click.stop="shareItem(card.id, card.name, type)">share</button>
         <span id="desc">{{ card.description }}</span><br><br>
 
       </div>
       
      <div class="Episode-card" v-if="type == 'episode'">
     
-      <span class="title">{{ card.title }}</span><br>
+      <span class="title">{{ card.title }}</span><br><br><br>
       <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
-      <button @click.stop="shareItem(card.id)">share</button>
+      <button @click.stop="shareItem(card.id, card.title, type)">share</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
       <span id="desc">{{ card.description }} </span><br><br>
     
@@ -23,6 +23,20 @@
       <span id="desc">{{ card.friendsid }}</span> <br>
     </div>
 
+    <div class="Social-card" v-if="type == 'social'">
+      <h3 class="name">{{ card.username.username }}</h3>
+      <div id="programId" v-if="card.program_id != 0">
+        <h5>Program</h5>
+        <span>{{ card.program_id }}</span><br>
+        <span>{{ card.programname }}</span>
+      </div>
+      <div id="episodeId" v-if="card.episode_id != 0">
+        <h5>Episode</h5>
+        <span>{{ card.episode_id }}</span><br>
+        <span>{{ card.episodename }}</span>
+      </div>
+    </div>
+
 
   </div>
 </template>
@@ -30,9 +44,6 @@
 <script>
 export default {
   props: ["card", "type"],
-  
-  data(){ },
-
 
   methods: {
    async favoriteItem(id, name, type) {
@@ -78,8 +89,50 @@ export default {
       }
 
     },
-    shareItem(id){
-      console.log("Clicked to share " + id)
+   async shareItem(id, name, type) {
+     if(type == "program"){
+      let credentials = {
+        program_id: id,
+        programname: name,
+        episode_id: 0,
+        episodename:'',
+        userid: this.$store.state.loggedInUser.id
+      
+      } 
+      console.log("Share credantials done")
+      let response = await fetch ('/rest/shares', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Saved as share')
+      }
+      }
+      if(type == "episode"){
+      let credentials = {
+        program_id: 0,
+        programname: '',
+        episode_id: id,
+        episodename:name,
+        userid: this.$store.state.loggedInUser.id
+      
+      } 
+      console.log("Share credantials done")
+      let response = await fetch ('/rest/shares', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('Saved as share')
+      }
+      }
+
     }
   }
 };

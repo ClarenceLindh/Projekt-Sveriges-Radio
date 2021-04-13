@@ -1,6 +1,6 @@
 <template>
     <div >
-        <h1>Friendslist</h1>
+        <h1>Friends</h1>
         <h2>{{userId}}</h2>
 
         <div v-for="(friend, index) in getNewFriends" :key="index"> 

@@ -22,6 +22,14 @@ public class ShareService {
         return null;
     }
 
+    public List<Share> findAllForUsersFriends(long user_id) {
+        if(shareRepo.getSharesFromFriends(user_id) != null){
+            List<Share> shareList = shareRepo.getSharesFromFriends(user_id);
+            return shareList;
+        }
+        return null;
+    }
+
 //______________________________Add a Shares from a JSON body________________________
     public Share addShare(Share share){
         try {

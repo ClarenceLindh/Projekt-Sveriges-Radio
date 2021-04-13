@@ -11,9 +11,6 @@
 export default {
     name: "Channels",
 
-    data(){
-    },
-
     computed: {
         getChannel(){
             return this.$store.getters.getChannel
