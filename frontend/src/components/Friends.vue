@@ -2,6 +2,7 @@
   <div >
 <h1>Friendslist</h1>
 <h2>{{userId}}</h2>
+<p>{{getNewFriends}}</p>
 
 <li>{{getFriends}}</li>
 
@@ -37,13 +38,17 @@ export default {
         getFriends(){
             return this.$store.getters.getFriends
         },
+        getNewFriends(){
+            return this.$store.getters.getNewFriends
         userId(){
             return this.$store.getters.getLoginUserId
+        }
         }
     },
 
     mounted(){   
         this.$store.dispatch("fetchFriends")
+        this.$store.dispatch("fetchAllFriends")
     },
 }
 </script>

@@ -23,6 +23,7 @@ export default createStore({
     channel:[],
     episodes:[],
     friends:[],
+    newFriends:[],
     favorites:[],
     channelId: 0,
     channelName: '',
@@ -83,6 +84,10 @@ export default createStore({
 
     setFriends(state,payload){
       state.friends = payload;
+    },
+
+    setNewFriends(state,payload){
+      state.newFriends = payload;
     },
 
     setFavorites(state,payload){
@@ -182,6 +187,15 @@ export default createStore({
         console.log(response.data)
       })
     },
+
+    async findMyFriends() {
+      await axios.get("http://localhost:3000/rest/findfriends/" + this.state.loggedInUserId)
+      .then(response => {
+        this.commit("setNewFriends", response.data)
+        console.log(response.data)
+      })
+    },
+
     async fetchLoggedInUser(){
       await axios.get("http://localhost:3000/auth/whoami" + this.state.loggedInUser)
       .then(response => {
