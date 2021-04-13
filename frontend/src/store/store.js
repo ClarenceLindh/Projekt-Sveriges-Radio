@@ -15,7 +15,9 @@ export default createStore({
     programName: '',
     category:[],
     categoryId: 0,
+    categoryName: '',
     loggedInUser: null,
+    isLoggedIn: "Login",
     channel:[],
     episodes:[],
     friends:[],
@@ -50,6 +52,12 @@ export default createStore({
     setAllCategories(state, payload){
       state.category = payload;
     },
+    setCategoryId(state, payload) {
+      state.categoryId = payload;
+    },
+    setCategoryName(state, payload) {
+      state.categoryName = payload;
+    },
     setAllEpisodes(state, payload){
       state.episodes = payload;
     },
@@ -61,20 +69,25 @@ export default createStore({
     setFriends(state,payload){
       state.Friends = payload;
     },
+
     setFavorites(state,payload){
       state.favorites = payload;
-    } ,   
+    },
+    
     setChannelName(state,payload) {
       state.channelName = payload
     },
+
     setChannel(state,payload){
       state.channel = payload;
     },
-    setCategoryId(state, payload) {
-      state.categoryId = payload;
-    },
+    
     setNewAudioFile(state, payload) {
       state.currentAudioFileURL = payload;
+    },
+
+    setUser(state, payload) {
+      state.loggedInUser = payload;
     }
   },
 
@@ -86,6 +99,15 @@ export default createStore({
       .then(response => {
         this.commit("setProgram", response.data)
         console.log(response.data)
+      })
+    },
+
+    async fetchUser(){
+      await axios.get("http://localhost:3000/auth/whoami")
+      .then(response => {
+        this.commit("setUser", response.data)
+        if(response != null)
+          console.log(response.data)
       })
     },
 
@@ -203,6 +225,15 @@ export default createStore({
 
     getCurrentAudioFile(state) {
       return state.currentAudioFileURL
+    },
+
+    getCurrentUser(state) {
+      return state.loggedInUser
+    },
+
+    getLoginStatus(state) {
+      console.log(state.isLoggedIn)
+      return state.isLoggedIn
     }
 },
 

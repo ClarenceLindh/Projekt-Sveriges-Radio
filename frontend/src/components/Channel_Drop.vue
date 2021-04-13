@@ -19,15 +19,17 @@ export default {
             return this.$store.getters.getChannel
         },
     },
+
  methods:{
-       
-     
       saveChannel(){
-          var e = document.getElementById("channels_drop");
-          var strUser = e.options[e.selectedIndex].value;
+            var e = document.getElementById("channels_drop");
+            var strUser = e.options[e.selectedIndex].value;
             this.$store.commit('addChannelID',strUser);
             this.$store.dispatch("fetchProgram")
             this.$store.commit('setChannelName', e.options[e.selectedIndex].text)
+
+            var f = document.getElementById("category_drop");
+            f.selectedIndex = 0;
       }
     },
 

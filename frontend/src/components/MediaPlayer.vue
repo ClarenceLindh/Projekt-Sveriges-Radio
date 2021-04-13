@@ -2,8 +2,8 @@
     <div class="Player">
         <audio autoplay src=""
         type="audio/mpeg"
-        controls
-        id="media">
+        id="media"
+        controls>
         I'm sorry. You're browser doesn't support HTML5 <code>audio</code>.
         </audio>
     </div>
@@ -28,18 +28,19 @@ export default {
 
 <style>
     .Player{
-        background-color: rgba(60, 55, 65, .2);
+        background-color: rgba(30, 25, 35, 1);
         box-shadow: 0 6px 3px rgba(0, 0, 0, .6), inset 0 4px 6px rgba(240, 200, 255, .025);
-        position: relative;
+        position: fixed;
         bottom: 0;
         width: 100%;
-        height: 3.5rem;
-        margin-top: .5rem;
+        height: 6vh;
+        z-index: 99;
     }
 
     #media{
-        margin-top: 5px;
+        margin-top: 0.75vh;
         height: 80%;
         outline: none;
+        width: 98vw;
     }
 </style>
