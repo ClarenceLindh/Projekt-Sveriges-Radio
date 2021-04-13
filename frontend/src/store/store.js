@@ -202,7 +202,7 @@ export default createStore({
 
     getLoggedInUser(state){
       return state.loggedInUser
-    }
+    },
 },
 
   modules: {
