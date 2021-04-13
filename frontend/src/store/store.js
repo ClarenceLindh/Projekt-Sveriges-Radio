@@ -101,6 +101,9 @@ export default createStore({
     },
     setEpisodeByChannel(state, payload){
       state.episodeByChannel = payload;
+    },
+    setDate(state, payload) {
+      state.date = payload;
     }
 
   },
@@ -150,7 +153,8 @@ export default createStore({
     },
 
     async fetchAllFavorites(){
-      await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser)
+      
+            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser)
       .then(response => {
         this.commit("setFavorites", response.data)
         console.log(response.data)
@@ -187,7 +191,7 @@ export default createStore({
         console.log(response.data)
       })
     },
-    
+
     async fetchEpisodesByChannel(){
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
       .then(response => {
