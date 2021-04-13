@@ -9,7 +9,7 @@
       </div>
       
      <div class="Episode-card" v-if="type == 'episode'">
-      <span class="title">{{ card.title }}</span><br>
+      <span class="title">{{ card.title }}</span><br><br><br>
       <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
       <button @click.stop="shareItem(card.id, card.title, type)">share</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
@@ -199,27 +199,37 @@ export default {
     
   }
 
+  .Episode-card{
+    width: 99%;
+    padding-right: 30px;
+  }
+
+  .Program-card{
+    width: 99%;
+    padding-right: 30px;
+  }
+
   .Episode-card > .title{
     font-weight: bold;
-     font-size: 2.5vh; 
+     font-size: 2.4vh; 
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
   .Friend-card > .title{
     font-weight: bold;
-    font-size: 2.5vh;
+    font-size: 2.4vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
   .Favorite-card > .title{
     font-weight: bold;
-    font-size: 2.5vh;
+    font-size: 2.4vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
   #desc{
     color: rgba(255, 255, 255, .6);
-    font-size: 2vh;
+    font-size: 1.8vh;
     text-shadow: 3px 2px 2px rgba(0, 0, 0, .5);
   }
 
