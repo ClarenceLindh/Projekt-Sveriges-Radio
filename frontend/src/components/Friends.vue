@@ -3,8 +3,9 @@
         <h1>Friendslist</h1>
         <h2>{{userId}}</h2>
 
-        <h3 style="color:gray">Alla vänner {{getNewFriends}}</h3>
-        <h3 style="color:gray">Alla vänner {{getFriends}}</h3>
+        <div v-for="(friend, index) in getNewFriends" :key="index"> 
+            {{friend.username}}
+        </div>
     </div>
 </template>
 
