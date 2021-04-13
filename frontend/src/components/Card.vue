@@ -1,30 +1,33 @@
 <template>
   <div id="card">
     <div class="Program-card" v-if="type == 'program'">
-        <span class="name">{{ card.name }}</span><br>
-        <button @click.stop="favoriteItem(card.id)">fav</button>
-        <button @click.stop="shareItem(card.id)">share</button>
-        <br>
-        <span id="desc">{{ card.description }}</span> <br>
+      <span class="name">{{ card.name }}</span><br>
+      <button @click.stop="favoriteItem(card.id)">fav</button>
+      <button @click.stop="shareItem(card.id)">share</button>
+      <br>
+      <span id="desc">{{ card.description }}</span> <br>
+    </div>
 
-      </div>
-
-      <div class="Category-card" v-if="type == 'category'">
-    
+    <div class="Category-card" v-if="type == 'category'">
       <span class="name">{{ card.name }}</span><br>
       <span id="desc">{{ card.description }}</span> <br>
-        
     </div>
-     <div class="Episode-card" v-if="type == 'episode'">
-    
+     
+    <div class="Episode-card" v-if="type == 'episode'">
       <span class="title">{{ card.title }}</span><br>
       <button @click.stop="favoriteItem(card.id)">fav</button>
       <button @click.stop="shareItem(card.id)">share</button>
       <br>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
-      <span>{{ card.description }} </span>
-    
+      <span>{{ card.description }} </span>'
     </div>
+
+    <div class="Friend-card" v-if="type == 'friend'">
+      <span class="name">{{ card.name }}</span><br>
+      <span id="desc">{{ card.description }}</span> <br>
+    </div>
+
+
   </div>
 </template>
 
