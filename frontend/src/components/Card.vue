@@ -163,7 +163,7 @@ export default {
     list-style-type: none;
     background-color: rgba(60, 55, 65, .3);
     margin: 0 auto;
-    padding: 0;
+    padding: 2vh;
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
@@ -186,13 +186,14 @@ export default {
 
   .Program-card > .name{
     font-weight: bold;
-    font-size: 2.5vh;
+     font-size: 2.5vh; 
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+    
   }
 
   .Episode-card > .title{
     font-weight: bold;
-    font-size: 2.5vh;
+     font-size: 2.5vh; 
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
