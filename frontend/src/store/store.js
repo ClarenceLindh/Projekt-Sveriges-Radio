@@ -18,6 +18,7 @@ export default createStore({
     categoryId: 0,
     categoryName: '',
     loggedInUser: null,
+    loggedInUserId: 0,
     isLoggedIn: "Login",
     channel:[],
     episodes:[],
@@ -74,6 +75,10 @@ export default createStore({
     
     setLoggedInUser(state, user) {
       state.loggedInUser = user
+    },
+    
+    setLoggedInUserId(state, user) {
+      state.loggedInUserId = user
     },
 
     setFriends(state,payload){

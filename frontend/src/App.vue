@@ -24,6 +24,8 @@ export default {
     try {
       user = await user.json()
       this.$store.commit('setLoggedInUser', user)
+      this.$store.commit('setLoggedInUserId', this.$store.state.loggedInUser.id)
+      alert(this.$store.state.loggedInUserId)
       console.log(user);
     } catch {
       console.log('Not logged in')
