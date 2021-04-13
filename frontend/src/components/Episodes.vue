@@ -5,10 +5,6 @@
 
 <h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
 
-
-
-
-
 <div id="episodeList">
     <ol id="channel"  v-show="isNinja">
             <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem"> 

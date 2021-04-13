@@ -1,42 +1,37 @@
 <template>
   <div >
-<h1>Favorites</h1>
+<h1 >Favorites</h1>
 
 
 <h3 style="color:red">Alla favoriter</h3>
-
- <ul style="list-style-type:none;">
+<div id="favoriteList">
+ <ol style="list-style-type:none;">
         <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 
-       {{Favorite.program_id}} - {{Favorite.programname}} - {{Favorite.episode_id}} - {{Favorite.episodename}} - 
-        <button>Delete</button>
-        </li>
-    </ul>
+       <Card :card="Favorite"  :type="'favorite'"/>
+         </li>
+    </ol>
+   </div>
   </div>
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Favorites",
-
-    data(){
-        return{
-            currentUser: ''
-        }
+components: {
+        Card
     },
+    
 
     computed: {
         getAllFavorites(){
-            this.updateCurrentUser()
+           
             return this.$store.getters.getAllFavorites
         },
         
     },
 
-    methods:{
-        updateCurrentUser(){
-            this.currentUser = this.$store.state.loggedInUser
-        }
-    },
+    methods:{},
 
     mounted(){
         this.$store.dispatch("fetchAllFavorites")
@@ -47,6 +42,37 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
+      
+    #favoriteList{
+        display: block;
+        margin-left: -40px;
+        list-style-type: none;
+
+        overflow: auto;
+        max-height: 67vh;
+    }
+
+    #favoriteList::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(60, 55, 65, .3);
+    }
+
+    #favoriteList::-webkit-scrollbar{
+        width: 12px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    #favoriteList::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color:rgba(80, 75, 85, .5);
+    }
+
+.v1{
+  border-left: 6px dotted rgba(0, 0, 0, .3);
+  height: auto;
+    }
 </style>
