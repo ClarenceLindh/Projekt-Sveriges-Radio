@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 
+
 export default createStore({
   name: 'store',
 
@@ -15,20 +16,31 @@ export default createStore({
     programName: '',
     category:[],
     categoryId: 0,
+    categoryName: '',
     loggedInUser: null,
+    loggedInUserId: 0,
+    isLoggedIn: "Login",
     channel:[],
     episodes:[],
+    newFriends:[],
     friends:[],
-    favorites:[],
+    favorites: [],
+    shares: [],
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
     addedFavorites:[],
+    currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3',
+    programList:[],
+    date:'2021-04-14',
+    episodeByChannel:[],
+    showLists: true
   },
 
   mutations: {
-    addaddedFavorites(state, payload){
-      state.addedFavorites= payload;
+
+    setBoolean(state,payload){
+      state.showLists = payload
     },
 
     addChannelID(state,payload){
@@ -54,6 +66,12 @@ export default createStore({
     setAllCategories(state, payload){
       state.category = payload;
     },
+    setCategoryId(state, payload) {
+      state.categoryId = payload;
+    },
+    setCategoryName(state, payload) {
+      state.categoryName = payload;
+    },
     setAllEpisodes(state, payload){
       state.episodes = payload;
     },
@@ -61,22 +79,49 @@ export default createStore({
     setLoggedInUser(state, user) {
       state.loggedInUser = user
     },
+    
+    setLoggedInUserId(state, user) {
+      state.loggedInUserId = user
+    },
+
+    setNewFriends(state,payload){
+      state.newFriends = payload;
+    },
 
     setFriends(state,payload){
-      state.Friends = payload;
+      state.friends = payload;
     },
+
     setFavorites(state,payload){
       state.favorites = payload;
-    } ,   
+    },
+
+    setShares(state,payload){
+      state.shares = payload;
+    },
+    
     setChannelName(state,payload) {
       state.channelName = payload
     },
+
     setChannel(state,payload){
       state.channel = payload;
     },
-    setCategoryId(state, payload) {
-      state.categoryId = payload;
-    }
+    
+    setNewAudioFile(state, payload) {
+      state.currentAudioFileURL = payload;
+    },
+
+    setUser(state, payload) {
+      state.loggedInUser = payload;
+    },
+    setEpisodeByChannel(state, payload){
+      state.episodeByChannel = payload;
+    },
+    setDate(state, payload) {
+      state.date = payload;
+    },
+
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -87,6 +132,15 @@ export default createStore({
       .then(response => {
         this.commit("setProgram", response.data)
         console.log(response.data)
+      })
+    },
+
+    async fetchUser(){
+      await axios.get("http://localhost:3000/auth/whoami")
+      .then(response => {
+        this.commit("setUser", response.data)
+        if(response != null)
+          console.log(response.data)
       })
     },
 
@@ -115,14 +169,20 @@ export default createStore({
     },
 
     async fetchAllFavorites(){
-      
-            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser.id)
-      .then(response => {
+        await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUserId)
+        .then(response => {
         this.commit("setFavorites", response.data)
         console.log(response.data)
       })
     },
 
+    async fetchAllShares(){
+      await axios.get("http://localhost:3000/rest/shares/"+this.state.loggedInUserId)
+        .then(response => {
+          this.commit("setShares", response.data)
+          console.log(response.data)
+      })
+    },
 
     async fetchAllEpisodes(){
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.programId)
@@ -132,13 +192,21 @@ export default createStore({
       })
     },
 
-    async fetchAllFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUser.id)
+    async findMyFriends() {
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
       .then(response => {
-        this.commit("setAllFriends", response.data)
-        console.log(response.data)
+        this.commit("setNewFriends", response.data)
       })
     },
+    
+
+    async fetchFriends(){
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
+      .then(response => {
+        this.commit("setFriends", response.data)
+      })
+    },
+
     async fetchLoggedInUser(){
       await axios.get("http://localhost:3000/auth/whoami" + this.state.loggedInUser)
       .then(response => {
@@ -152,7 +220,15 @@ export default createStore({
         this.commit("setProgram", response.data)
         console.log(response.data)
       })
-    }
+    },
+
+    async fetchEpisodesByChannel(){
+      await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
+      .then(response => {
+        this.commit("setEpisodeByChannel", response.data)
+        
+      })
+    },
 
   },
 
@@ -201,7 +277,12 @@ export default createStore({
     getProgramId(state) {
       return state.programId
     },
-    getAllFriends(state){
+
+    getNewFriends(state) {
+      return state.newFriends
+    },
+
+    getFriends(state){
       return state.friends
     },
 
@@ -209,8 +290,33 @@ export default createStore({
       return state.favorites
     },
 
-    getLoggedInUser(state){
+    getAllShares(state){
+      return state.shares
+    },
+
+    getCurrentAudioFile(state) {
+      return state.currentAudioFileURL
+    },
+
+    getAllEpisodesByChannel(state){
+     
+    return state.episodeByChannel
+    },
+    getBoolean(state){
+      return state.showLists
+    },
+
+    getCurrentUser(state) {
       return state.loggedInUser
+    },
+
+    getLoginStatus(state) {
+      console.log(state.isLoggedIn)
+      return state.isLoggedIn
+    },
+
+    getLoginUserId(state){
+      return state.loggedInUserId
     }
 },
 

@@ -16,7 +16,7 @@ public class ShareController {
 
 //______________________________Get all Shares by user_id_______________________________
     @GetMapping("/shares/{id}")
-    public List<Share> getAllShares(@PathVariable long id){ return shareService.findById(id); }
+    public List<Share> getAllShares(@PathVariable long id){ return shareService.findAllForUsersFriends(id); }
 
 //__________________________Add a new Shares from a JSON object__________________________
     @PostMapping("/shares")

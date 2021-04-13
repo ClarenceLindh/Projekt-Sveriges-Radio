@@ -16,7 +16,7 @@ public class FriendsController {
 
 //______________________________Get all Friends by user_id_______________________________
     @GetMapping("/friends/{id}")
-    public List<Friend> getAll(@PathVariable long id){ return friendService.findById(id); }
+    public List<Friend> getAll(@PathVariable long id){ return friendService.getFriend(id); }
 
 //__________________________Add a new Friends from a JSON object__________________________
     @PostMapping("/friends")

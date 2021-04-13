@@ -29,6 +29,14 @@ public class FriendService {
         return null;
     }
 
+    public List<Friend> getFriend(long user_id) {
+        if(friendRepo.getFriend(user_id) != null){
+            List<Friend> friendList = friendRepo.getFriend(user_id);
+            return friendList;
+        }
+        return null;
+    }
+
 //______________________________Add a Friend from a JSON body________________________
     public Friend addFavorite(Friend friend) {
         try{

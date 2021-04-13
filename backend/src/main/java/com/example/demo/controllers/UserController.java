@@ -44,4 +44,7 @@ public class UserController {
 
     @GetMapping("/auth/whoami")
     public User whoAmI() { return userService.findCurrentUser(); }
+
+    @GetMapping("/rest/findfriends/{id}")
+    private List<User> findFriends(@PathVariable Long id){ return userService.getAsFriend(id); }
 }

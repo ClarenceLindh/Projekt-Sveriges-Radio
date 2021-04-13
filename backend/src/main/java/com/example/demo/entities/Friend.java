@@ -6,12 +6,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="friend_relationships")
+@SecondaryTable(name ="users")
 public class Friend {
     @Id // Berättar att det är en primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Aktiverar autoincrement
     private long id;
     private long userid;
     private long friendsid;
+    @Embedded
+    Username username;
 
     public Friend() {
     }
@@ -19,6 +22,21 @@ public class Friend {
     public Friend(long user_id, long friends_id) {
         this.userid = user_id;
         this.friendsid = friends_id;
+    }
+
+    public Friend(long id, long userid, long friendsid, Username username) {
+        this.id = id;
+        this.userid = userid;
+        this.friendsid = friendsid;
+        this.username = username;
+    }
+
+    public Username getUsername() {
+        return username;
+    }
+
+    public void setUsername(Username username) {
+        this.username = username;
     }
 
     public long getId() {
@@ -47,10 +65,11 @@ public class Friend {
 
     @Override
     public String toString() {
-        return "FriendsService{" +
+        return "Friend{" +
                 "id=" + id +
-                ", user_id=" + userid +
-                ", friends_id=" + friendsid +
+                ", userid=" + userid +
+                ", friendsid=" + friendsid +
+                ", username=" + username +
                 '}';
     }
 }

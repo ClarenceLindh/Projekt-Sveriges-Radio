@@ -1,48 +1,87 @@
 <template>
 <nav id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/favorites">Favorites</router-link> |
-       <ChannelDropDown/>
-    <div class="loginbtn" id="login">
-        <router-link to="/login">Login</router-link>
+    <div id="routers">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/favorites">Favorites</router-link> |
+      <router-link to="/friends" @click="refreshUser()">Friends</router-link> 
     </div>
-       
-     
+    <div id="droppers">
+       <ChannelDropDown/>
+       <CategoryDropDown/>
+    </div>
+    <div id="login">
+        <router-link to="/login">
+        <p id="loginText">{{ loginText }}</p>
+        </router-link>
+        </div>
 </nav>
   
 </template>
 
 <script>
-import ChannelDropDown from '../components/Channel_Drop.vue';
+import ChannelDropDown from '../components/Channel_Drop.vue'
+import CategoryDropDown from '../components/category_Drop.vue'
+
 export default {
     name: "Navbar",
-    components: {
-    ChannelDropDown
+
+  components: {
+    ChannelDropDown,
+    CategoryDropDown
   },
 
   computed:{
-      
-            
+        loginText(){
+          var testStuff
+          if(this.$store.getters.getCurrentUser != null){
+            testStuff = "Logout"
+          }else{
+            testStuff = "Login"
+          }
+          
+          this.updateChannelName()
+          return testStuff
+        }
+  },
+
+  methods:{
+        updateChannelName(){
+          console.log(this.$store.getters.getLoginStatus)
+        },
+        refreshUser(){
+            this.$store.dispatch("findMyFriends")
+            this.$store.dispatch("fetchFriends")
+            this.$store.dispatch("fetchAllShares")
+        }
   }
 }
-
 </script>
 
 <style>
 #nav{
-    display: block;
-    justify-content: flex-end;
-    padding: 15px;
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  width: 100%;
+  height: 8vh;
 
-    background: rgba(60, 55, 65, .3);
-    color: #42b983;
-    box-shadow: 0 6px 3px rgba(0, 0, 0, .2), inset 0 4px 6px rgba(240, 200, 255, .025);
+  background-color: rgba(60, 55, 65, .3);
+  color: #42b983;
+  box-shadow: 0 6px 3px rgba(0, 0, 0, .6), inset 0 4px 6px rgba(240, 200, 255, .025);
+}
+
+#routers{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 5px;
 }
 
 #login{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -20px;
+  position: absolute;
+  right: 5px;
+  bottom: 6.8vh;
 }
 #logout{
     display: flex;
@@ -50,11 +89,22 @@ export default {
     margin-top: -20px;
 }
 
+#droppers{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+}
+
 select{
     background: black;
+    outline: none;
+    border: solid 1px rgba(230, 230, 255, .6);
     color: blanchedalmond;
     height: 25px;
     font-size: 16px;
     font-weight: bold;
+    margin: 2px;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .3);
 }
 </style>

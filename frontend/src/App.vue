@@ -1,18 +1,22 @@
 <template>
-  <h1 id="title">Sveries Radio API</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <h1 id="title">Sveriges Radios Vänskapskrets</h1>
     <p v-if="isLoggedIn" id="UserName"> {{ loggedInUser.username }}</p>
-    <p v-if="!loggedInUser">Is logged in: {{ isLoggedIn }} </p> 
+    <p v-if="!isLoggedIn" id="notLoggedIn"> Not logged in </p> 
   <Navbar/>
+  <media-player />
   <router-view />
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
+import MediaPlayer from './components/MediaPlayer.vue'
 
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    MediaPlayer
   },
 
   async mounted () {
@@ -20,6 +24,7 @@ export default {
     try {
       user = await user.json()
       this.$store.commit('setLoggedInUser', user)
+      this.$store.commit('setLoggedInUserId', this.$store.state.loggedInUser.id)
       console.log(user);
     } catch {
       console.log('Not logged in')
@@ -35,15 +40,17 @@ export default {
       return this.loggedInUser != null
     }
   }
-  
 }
 </script>
 
 <style>
 body{
     margin: 0;
-    background-color: rgba(14, 10, 18, .9);
-    
+    background-color: #121212;
+}
+
+#title{
+  margin-top: 3px;
 }
 
 p{
@@ -51,10 +58,6 @@ p{
   margin-right: 5px;
   display: flex;
   float: right;
-}
-
-#UserName{
-  font-size: 25px;
 }
 
 #app {
@@ -71,10 +74,40 @@ p{
 
 #nav a {
   font-weight: bold;
-  color: blanchedalmond;
+  color: rgba(255, 235, 205, 1);
 }
 
 #nav a.router-link-exact-active {
+    color: #42b983;
+}
+
+#columnTitle{
+  color: rgba(255, 245, 225, 1);
+}
+
+#columnSubTitle{
+    color: rgba(255, 255, 255, .4);
+    text-shadow: 3px 2px 2px rgba(0, 0, 0, .3);
+}
+
+h1{
+  font-size: 3vh;
+  text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+}
+
+#UserName{
   color: #42b983;
+  margin-top: 5px;
+  display: block;
+  font-size: 3vh;
+  text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
+}
+
+#notLoggedIn{
+  color: #42b983;
+  margin-top: 5px;
+  display: block;
+  font-size: 2vh;
+  text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
 }
 </style>

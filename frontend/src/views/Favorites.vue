@@ -1,5 +1,5 @@
 <template>
-  <div class="favorites">
+  <div class="favs">
     
     
     <div id="Favorites"><Favorites/></div>
@@ -16,11 +16,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.favs{
+  
+}
 #Favorites {
-  background-color: rgba(8, 2, 68, 0.568) ;
-  color: aliceblue;
-  margin: 2vw;
+  background-color: rgba(60, 55, 65, .3);
+  color: blanchedalmond;
+  width: 100%;
+  
+  height: 100%;
+  box-shadow: 6px 6px 3px rgba(0, 0, 0, .6), inset 3px 3px 3px rgba(240, 200, 255, .05);
+  justify-content: center;
+  min-height: 15vh;
 
 }
 </style>

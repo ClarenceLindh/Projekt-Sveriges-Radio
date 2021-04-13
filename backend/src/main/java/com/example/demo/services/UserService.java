@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
@@ -50,6 +51,10 @@ public class UserService {
             return userRepo.findById(id).get();
         }
         return null;
+    }
+
+    public List<User> getAsFriend(Long id){
+        return userRepo.getFriend(id);
     }
 
     public void deleteById(long id) {

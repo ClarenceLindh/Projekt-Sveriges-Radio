@@ -1,58 +1,36 @@
 <template>
 <body>
-  
+  <div class="friends">
 
-  <div class="home">
-    
-    <div id="Programs"><Programs/></div>
-    
-    <div id="Episodes"><Episodes/></div>
+    <div id="Friends"><Friends/></div>
 
+    <div id="Social"><Social/></div>
 
   </div>
-  </body>
+</body>
 </template>
 
 <script>
-import Programs from "../components/Programs.vue"
-import Episodes from "../components/Episodes.vue"
-
-
+import Friends from "../components/Friends.vue"
+import Social from "../components/Social.vue"
 
 
 export default {
-  name: "Home",
-  
+  name: "friends",
   components: {
-    Programs,
-    Episodes
-  
+    Friends,
+    Social
   },
-
-  mounted (){
-    console.log('mounted Home');
-  },
-
-  computed:{
-    loggedInUser() {
-      return this.$store.state.loggedInUser
-    },
-    isLoggedIn() {
-      return this.loggedInUser != null
-    }
-  }
-
-};
+}
 </script>
-
 
 <style scoped>
 
-.home{
+.friends{
   display: flex;
 }
 
-#Episodes {
+#Social {
   background-color: rgba(60, 55, 65, .3);
   color: blanchedalmond;
   width: 49.5%;
@@ -65,7 +43,7 @@ export default {
   min-height: 15vh;
 }
 
-#Programs {
+#Friends {
   background-color: rgba(60, 55, 65, .3);
   color: blanchedalmond;
   margin: 0;
@@ -80,5 +58,4 @@ export default {
 body{
   background-color: rgba(60, 55, 65, .1);
 }
-
 </style>

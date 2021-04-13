@@ -19,9 +19,11 @@ import java.util.Map;
 
 @Service
 public class EpisodeService {
-
+    Long test;
     private String episodeApi = "http://api.sr.se/api/v2/episodes/index";
+    private String scheduleApi = "http://api.sr.se/api/v2/";
 //http://api.sr.se/api/v2/episodes/index?programid=3718&fromdate=2012-08-27&todate=2012-08-31
+   // http://api.sr.se/api/v2/scheduledepisodes?channelid=164&date=2021-04-12
 
     // Skapa en episode repo för att få ut info från databasen.
     @Autowired
@@ -34,7 +36,7 @@ public class EpisodeService {
 
         RestTemplate restTemplate = new RestTemplate();
         //2. Skapar en url och hämtar genom resttemplate och sparar i en map
-        Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&format=Json", Map.class);
+        Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&pagination=false&format=Json", Map.class);
 
         //3. Tar ut episodedeln från mappen och sparar i en lista
         List<Map> episodeMaps = (List<Map>) response.get("episodes");
@@ -57,17 +59,90 @@ public class EpisodeService {
 
             //     6.Skapar en Episode med alla delar vi vill ha från episode delen i urlen. Sedan sparar vi det i vår episode lista
             //      och returnerar den!
-            Episode EP = new Episode(
-                    (Integer) episode.get("id"),
-                    (String) episode.get("title"),
-                    (String) episode.get("description"),
-                    date
-            );
+            Episode EP = new Episode();
+            if(episode.containsKey("listenpodfile")) {
+                System.out.println(episode.get("listenpodfile"));
+                EP = new Episode(
+                        ((Number) episode.get("id")).longValue(),
+                        (String) episode.get("title"),
+                        (String) episode.get("description"),
+                        (String) ((Map) episode.get("listenpodfile")).get("url"),
+                        date,
+                        true
+                );
+                System.out.println("Fetching episode with on demand URL");
+            }else{
+                EP = new Episode(
+                        ((Number) episode.get("id")).longValue(),
+                        (String) episode.get("title"),
+                        (String) episode.get("description"),
+                        (String) episode.get("url"),
+                        date,
+                        false
+                );
+                System.err.println("Fetching episode WITHOUT on demand URL");
+            }
+            System.out.println(EP);
             episodes.add(EP);
         }
-        System.out.println(episodes);
         return episodes;
     }
+
+
+    //--------------------------Hämta all episodes från en kanal under en dag-------------------------------------------
+    public List<Episode> getByChannelId(long id, String date){
+        RestTemplate restTemplate = new RestTemplate();
+        
+        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id + "&pagination=false&date=" + date + "&format=Json", Map.class);
+
+        List<Map> scheduleMaps = (List<Map>) response.get("schedule");
+        List<Episode> schedules = new ArrayList<>();
+        for (Map schedule : scheduleMaps) {
+
+
+
+            String publishdateutc = (String) schedule.get("starttimeutc");
+            String epoch = publishdateutc.substring(6, 19);
+            long airtime = Long.parseLong(epoch);
+            String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
+
+
+            Episode Ep;
+            try {
+                Ep = new Episode(
+
+                        (Integer) schedule.get("episodeid"),
+                        (String) schedule.get("title"),
+                        (String) schedule.get("description"),
+                        broadcasttime,
+                        (String) ((Map) schedule.get("program")).get("name")
+
+
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally { Ep = new Episode(
+
+                    
+                    (String) schedule.get("title"),
+                    (String) schedule.get("description"),
+                    broadcasttime,
+                    (String) ((Map) schedule.get("program")).get("name")
+
+
+            );
+
+            }
+
+            schedules.add(Ep);
+    }
+
+        return schedules;
+}
+
+
+
+
 
 
 //--------------------------------------Get episode by date-------------------------------------------------------------
@@ -120,7 +195,8 @@ public class EpisodeService {
                     (String) episode.get("title"),
                     (String) episode.get("description"),
                     broadcasttime,
-                    (String) ((Map) episode.get("program")).get("name")
+                    (String) ((Map) episode.get("program")).get("name"),
+                    false
             );
             episodes.add(EP);
         }

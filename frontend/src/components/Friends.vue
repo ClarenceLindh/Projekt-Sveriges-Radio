@@ -1,32 +1,76 @@
 <template>
-  <div >
-<h1>Friendslist</h1>
-
- <ul style="list-style-type:none;">
-        <li v-for="(Friends, index) in getAllFriends" :key="index"> 
-            {{Friends.name}}
+    <div >
+        <h1>Friends</h1>
+        <h2>{{userId}}</h2>
+        
+        <ol>
+        <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
+            {{friend.username.username}} {{friend.id}}
+            <Card :card="friends"/>
+            
         </li>
-    </ul>
-
-  </div>
+        </ol>
+        <!--
+        <ol id="programList">
+            <li v-for="(program, index) in setPrograms"  
+            :key="index" @click="setButtonKey(program.id, program.name, false)"> 
+            <Card :card="program"  :type="'program'"/>  
+            </li>
+        </ol>
+            -->
+    </div>
 </template>
 
 <script>
+import Card from "./Card"
 export default {
     name: "Friends",
-
-    computed: {
-        getAllFriends(){
-            return this.$store.getters.getAllFriends
-        },
+    
+    component: {
+        Card
     },
 
-    mounted(){
-        this.$store.dispatch("fetchAllFriends")
+    computed: {
+        getNewFriends(){
+            return this.$store.getters.getNewFriends
+        },
+        userId(){
+            return this.$store.getters.getLoginUserId
+        }
+    },
+
+    mounted(){   
+        this.$store.dispatch("fetchFriends")
     },
 }
 </script>
 
 <style>
+#friendList{
+        display: block;
+        margin-left: -40px;
+
+        list-style-type: none;
+
+        overflow: auto;
+        max-height: 67vh;
+    }
+
+    #friendList::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(60, 55, 65, .3);
+    }
+
+    #friendList::-webkit-scrollbar{
+        width: 12px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    #friendList::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color:rgba(80, 75, 85, .5);
+    }
 
 </style>
