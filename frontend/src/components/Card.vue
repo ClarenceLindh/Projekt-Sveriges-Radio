@@ -16,6 +16,13 @@
       <span id="desc">{{ card.description }} </span><br><br>
     
     </div>
+
+    <div class="Friend-card" v-if="type == 'friend'">
+      <span class="name">{{ card.name }}</span><br>
+      <span id="desc">{{ card.description }}</span> <br>
+    </div>
+
+
   </div>
 </template>
 
