@@ -4,8 +4,21 @@
 
 
 <h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
- <ol id="episodeList">
-        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+
+
+
+
+
+
+ <ol id="channel"  v-show="isNinja">
+        <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+         <Card :card="Episode" :type="'episode'"/>
+        </li>
+    </ol>
+    
+    
+    <ol id="program" v-show="!isNinja">
+        <li  v-on:click="isNinja = !isNinja" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode" :type="'episode'"/>
         </li>
     </ol>
@@ -22,15 +35,28 @@ export default {
         Card
     },
 
+   
+
     computed: {
+
         getAllEpisodes(){
             this.updateProgramName()
 
             return this.$store.getters.getAllEpisodes
+        },getChannelEpisode(){
+            this.updateProgramName()
+
+            return this.$store.getters.getAllEpisodesByChannel
         },
+
+        isNinja(){
+            return this.$store.getters.getBoolean
+        }
     },
 
     methods:{
+
+      
         updateProgramName(){
             var newProgram = this.$store.getters.getProgramName
             console.log(newProgram)
@@ -55,6 +81,8 @@ export default {
 </script>
 
 <style>
+
+      
     #episodeList{
         display: block;
         margin-left: -40px;

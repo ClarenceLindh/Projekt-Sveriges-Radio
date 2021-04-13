@@ -6,6 +6,7 @@ import axios from 'axios';
 
 
 
+
 export default createStore({
   name: 'store',
 
@@ -25,10 +26,19 @@ export default createStore({
     channelId: 0,
     channelName: '',
     programSearchPhrase: '',
-    currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3'
+    currentAudioFileURL: 'http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3',
+    programList:[],
+    date:'2021-04-13',
+    episodeByChannel:[],
+    showLists: true
   },
 
   mutations: {
+
+    setBoolean(state,payload){
+      state.showLists = payload
+    },
+
     addChannelID(state,payload){
       state.channelId = payload;
     },
@@ -88,7 +98,11 @@ export default createStore({
 
     setUser(state, payload) {
       state.loggedInUser = payload;
+    },
+    setEpisodeByChannel(state, payload){
+      state.episodeByChannel = payload;
     }
+
   },
 
   //http://localhost:3000/rest/programs/channel/163 
@@ -175,6 +189,15 @@ export default createStore({
       })
     }
 
+
+    async fetchEpisodesByChannel(){
+      await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
+      .then(response => {
+        this.commit("setEpisodeByChannel", response.data)
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + response.data)
+      })
+    },
+
   },
 
   getters: {
@@ -228,6 +251,14 @@ export default createStore({
 
     getCurrentAudioFile(state) {
       return state.currentAudioFileURL
+    },
+
+    getAllEpisodesByChannel(state){
+      console.log(" sdfsdfsdfs" +state.episodeByChannel)
+    return state.episodeByChannel
+    },
+    getBoolean(state){
+      return state.showLists
     },
 
     getCurrentUser(state) {
