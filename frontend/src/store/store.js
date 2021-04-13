@@ -22,6 +22,7 @@ export default createStore({
     isLoggedIn: "Login",
     channel:[],
     episodes:[],
+    newFriends:[],
     friends:[],
     favorites:[],
     channelId: 0,
@@ -81,8 +82,12 @@ export default createStore({
       state.loggedInUserId = user
     },
 
+    setNewFriends(state,payload){
+      state.newFriends = payload;
+    },
+
     setFriends(state,payload){
-      state.Friends = payload;
+      state.friends = payload;
     },
 
     setFavorites(state,payload){
@@ -109,7 +114,7 @@ export default createStore({
     },
     setDate(state, payload) {
       state.date = payload;
-    }
+    },
 
   },
 
@@ -159,13 +164,12 @@ export default createStore({
 
     async fetchAllFavorites(){
       
-            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUser)
+            await axios.get("http://localhost:3000/rest/favorites/"+ this.state.loggedInUserId)
       .then(response => {
         this.commit("setFavorites", response.data)
         console.log(response.data)
       })
     },
-
 
     async fetchAllEpisodes(){
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.programId)
@@ -175,13 +179,22 @@ export default createStore({
       })
     },
 
-    async fetchAllFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUser)
+    async findMyFriends() {
+      await axios.get("http://localhost:3000/rest/findfriends/" + this.state.loggedInUserId)
       .then(response => {
-        this.commit("setAllFriends", response.data)
+        this.commit("setNewFriends", response.data)
         console.log(response.data)
       })
     },
+
+    async fetchFriends(){
+      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
+      .then(response => {
+        this.commit("setFriends", response.data)
+        console.log(response.data)
+      })
+    },
+
     async fetchLoggedInUser(){
       await axios.get("http://localhost:3000/auth/whoami" + this.state.loggedInUser)
       .then(response => {
@@ -248,7 +261,12 @@ export default createStore({
     getProgramId(state) {
       return state.programId
     },
-    getAllFriends(state){
+
+    getNewFriends(state) {
+      return state.newFriends
+    },
+
+    getFriends(state){
       return state.friends
     },
 
@@ -275,6 +293,10 @@ export default createStore({
     getLoginStatus(state) {
       console.log(state.isLoggedIn)
       return state.isLoggedIn
+    },
+
+    getLoginUserId(state){
+      return state.loggedInUserId
     }
 },
 

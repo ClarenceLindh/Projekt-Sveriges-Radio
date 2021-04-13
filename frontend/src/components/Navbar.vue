@@ -3,7 +3,7 @@
     <div id="routers">
       <router-link to="/">Home</router-link> |
       <router-link to="/favorites">Favorites</router-link> |
-    <router-link to="/friends">Friends</router-link> |
+      <router-link to="/friends" @click="refreshUser()">Friends</router-link> |
     </div>
     <div id="droppers">
        <ChannelDropDown/>
@@ -48,6 +48,10 @@ export default {
         updateChannelName(){
           console.log(this.$store.getters.getLoginStatus)
         },
+        refreshUser(){
+            this.$store.dispatch("findMyFriends")
+            this.$store.dispatch("fetchFriends")
+        }
   }
 }
 </script>
