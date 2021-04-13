@@ -2,10 +2,22 @@
     <div >
         <h1>Friendslist</h1>
         <h2>{{userId}}</h2>
-
-        <div v-for="(friend, index) in getNewFriends" :key="index"> 
-            {{friend.username}}
-        </div>
+        
+        <ol>
+        <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
+            {{friend.username.username}} {{friend.id}}
+            <Card :card="friends"/>
+            
+        </li>
+        </ol>
+        <!--
+        <ol id="programList">
+            <li v-for="(program, index) in setPrograms"  
+            :key="index" @click="setButtonKey(program.id, program.name, false)"> 
+            <Card :card="program"  :type="'program'"/>  
+            </li>
+        </ol>
+            -->
     </div>
 </template>
 
@@ -22,9 +34,6 @@ export default {
         getNewFriends(){
             return this.$store.getters.getNewFriends
         },
-        getFriends(){
-            return this.$store.getters.getFriends
-        },
         userId(){
             return this.$store.getters.getLoginUserId
         }
@@ -37,5 +46,31 @@ export default {
 </script>
 
 <style>
+#friendList{
+        display: block;
+        margin-left: -40px;
+
+        list-style-type: none;
+
+        overflow: auto;
+        max-height: 67vh;
+    }
+
+    #friendList::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(60, 55, 65, .3);
+    }
+
+    #friendList::-webkit-scrollbar{
+        width: 12px;
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    #friendList::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color:rgba(80, 75, 85, .5);
+    }
 
 </style>
