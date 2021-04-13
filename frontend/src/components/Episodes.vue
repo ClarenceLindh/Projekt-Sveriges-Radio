@@ -4,15 +4,23 @@
 
 
 <h3 id="columnSubTitle">Alla episodes från valt program {{currentProgram}}</h3>
- <ol id="channel">
-        <li v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+
+
+
+<p v-show="isNinja">insvisible like ninja</p>
+<p v-show="!isNinja">here i am</p>
+<button v-on:click="isNinja = !isNinja">toggle ninja skills</button>
+
+
+ <ol id="channel"  v-show="isNinja">
+        <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode" :type="'episode'"/>
         </li>
     </ol>
     
     
     <ol id="program">
-        <li v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+        <li  v-on:click="isNinja = !isNinja" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
          <Card :card="Episode" :type="'episode'"/>
         </li>
     </ol>
@@ -29,6 +37,8 @@ export default {
         Card
     },
 
+   
+
     computed: {
 
         getAllEpisodes(){
@@ -40,9 +50,15 @@ export default {
 
             return this.$store.getters.getAllEpisodesByChannel
         },
+
+        isNinja(){
+            return this.$store.getters.getBoolean
+        }
     },
 
     methods:{
+
+      
         updateProgramName(){
             var newProgram = this.$store.getters.getProgramName
             console.log(newProgram)
@@ -67,6 +83,8 @@ export default {
 </script>
 
 <style>
+
+      
     #episodeList{
         display: block;
         margin-right: 32px;

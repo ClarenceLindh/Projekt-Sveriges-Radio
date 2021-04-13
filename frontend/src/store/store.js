@@ -28,9 +28,15 @@ export default createStore({
     programList:[],
     date:'2021-04-13',
     episodeByChannel:[],
+    showLists: true
   },
 
   mutations: {
+
+    setBoolean(state,payload){
+      state.showLists = payload
+    },
+
     addChannelID(state,payload){
       state.channelId = payload;
     },
@@ -225,6 +231,9 @@ export default createStore({
     getAllEpisodesByChannel(state){
       console.log(" sdfsdfsdfs" +state.episodeByChannel)
     return state.episodeByChannel
+    },
+    getBoolean(state){
+      return state.showLists
     }
 },
 

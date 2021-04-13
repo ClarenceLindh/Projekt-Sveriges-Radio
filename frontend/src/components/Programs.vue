@@ -5,7 +5,7 @@
     <button @click="searchForProgram(searchPhrase)">sök</button>
    
         <ol id="programList">
-            <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name)"> 
+            <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name, false)"> 
                          <Card :card="program"  :type="'program'"/>  
             </li>
         </ol>
@@ -44,9 +44,10 @@ export default {
         updateChannelName(){
             this.currentChannel = this.$store.getters.getChannelName
         },
-        setButtonKey(id, name){
+        setButtonKey(id, name, boolean){
             this.$store.commit('addProgramID',id);
             this.$store.commit('setProgramName',name);
+            this.$store.commit('setBoolean',boolean)
             this.$store.dispatch("fetchAllEpisodes")
         },
         searchForProgram(phrase){
