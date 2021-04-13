@@ -53,10 +53,8 @@ export default {
         body: credentials,
       });
 
-      
-
       try {
-        let user =  fetch('/auth/whoami')        
+        let user =  fetch('/auth/whoami')
         this.$store.commit('setLoggedInUser', user)
         console.log(user);
       } catch {
