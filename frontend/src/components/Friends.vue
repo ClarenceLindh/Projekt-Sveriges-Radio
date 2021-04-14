@@ -1,15 +1,16 @@
 <template>
-    <div >
+    <div class="Friends">
         <h1>Friends</h1>
         <h2>{{userId}}</h2>
-        
-        <ol>
-        <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
+        <div id="friendList">
+        <ol style="list-style-type:none;">
+        <li v-for="(friend, index) in getNewFriends" :key="index"> 
             {{friend.username.username}} {{friend.id}}
-            <Card :card="Friend"  :type="'friend'"/>
+            <Card :card="friend"  :type="'friend'"/>
             
         </li>
         </ol>
+        </div>
     </div>
 </template>
 
@@ -32,7 +33,7 @@ export default {
     },
 
     mounted(){   
-        this.$store.dispatch("fetchFriends")
+        this.$store.dispatch("findMyFriends")
     },
 }
 </script>

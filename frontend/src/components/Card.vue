@@ -26,8 +26,7 @@
     </div>
 
     <div class="Friend-card" v-if="type == 'friend'">
-      <span class="name">{{ card.userid }}</span><br>
-      <span id="desc">{{ card.friendsid }}</span> <br>
+      <span class="relationId">{{ card.id }}</span><br>
       <button @click="deleteFriend(card.id)">Delete</button>
     </div>
 
@@ -56,7 +55,7 @@ export default {
   methods: {
     async deleteFriend(id){
       let credentials = {
-        friendId: id
+        relationId: id
       } 
       let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',

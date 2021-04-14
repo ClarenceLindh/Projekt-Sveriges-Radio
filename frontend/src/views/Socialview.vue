@@ -15,6 +15,7 @@ import Friends from "../components/Friends.vue"
 import Social from "../components/Social.vue"
 
 
+
 export default {
   name: "socialview",
   components: {

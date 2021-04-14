@@ -50,7 +50,7 @@ export default {
         },
         refreshUser(){
             this.$store.dispatch("findMyFriends")
-            this.$store.dispatch("fetchFriends")
+            this.$store.dispatch("findMyFriends")
             this.$store.dispatch("fetchAllShares")
         }
   }
