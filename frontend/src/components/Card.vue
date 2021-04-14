@@ -25,11 +25,6 @@
       <button @Click="shareItem(card.id)">share</button>
     </div>
 
-    <div class="Friend-card" v-if="type == 'friend'">
-      <span class="relationId">{{ card.id }}</span><br>
-      <button @click="deleteFriend(card.id)">Delete</button>
-    </div>
-
     <div class="Social-card" v-if="type == 'social'">
       <h3 class="name">{{ card.username.username }}</h3>
       <div id="programId" v-if="card.program_id != 0">

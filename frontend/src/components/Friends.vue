@@ -5,8 +5,10 @@
         <div id="friendList">
         <ol style="list-style-type:none;">
         <li v-for="(friend, index) in getNewFriends" :key="index"> 
-            {{friend.username.username}} {{friend.id}}
-            <Card :card="friend"  :type="'friend'"/>
+            {{friend.username.username}}
+            <span class="relationId">{{ friend.id }}</span>
+            <button @click="deleteFriend(friend.id)">Delete</button>
+            
             
         </li>
         </ol>
@@ -18,9 +20,28 @@
 import Card from "./Card"
 export default {
     name: "Friends",
+    props: ["card"],
     
     component: {
         Card
+    },
+    methods: {
+    async deleteFriend(id){
+      let credentials = {
+        relationId: id
+      } 
+      let response = await fetch ('/rest/friends/'+ id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        alert ('DELETED')
+      }
+
+    }
     },
 
     computed: {
