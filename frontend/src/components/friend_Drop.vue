@@ -38,9 +38,14 @@ export default {
             if(response.url.includes('error')){
                 console.log('Something went wrong. Try again')
             } else {
-                alert ('New friend added')
+                this.$store.dispatch("findMyFriends")
+                this.$store.dispatch("fetchAllShares")
+                this.$store.dispatch("fetchAllFavorites")
             }
         },
+        
+            
+       
     },
 
    async mounted(){

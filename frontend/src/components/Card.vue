@@ -21,18 +21,12 @@
       <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
-      <button @click="deleteFavorite(card.id), refreshStuff()">Delete</button>
-      <button @Click="shareItem(card.id)">share</button>
-
       <button v-if="card.episodename != ''" @click="play(card.episode_id)">Play me</button>
-
-      <button @click="deleteFavorite(card.id)">Delete</button>
-
+      <button @click="deleteFavorite(card.id), refreshStuff()">Delete</button>
       <button v-if="card.programname != ''" 
       @Click="shareItem(card.id, card.programname, 'program')">
         share
         </button>
-
       <button v-if="card.episodename != ''" 
       @Click="shareItem(card.id, card.episodename, 'episode')">
         share
@@ -134,7 +128,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('DELETED')
+        console.log ('DELETED')
       }
 
   },
@@ -158,7 +152,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as favorite')
+        console.log ('Saved as favorite')
       }
       }
     if(type == "episode"){
@@ -178,7 +172,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as favorite')
+        console.log ('Saved as favorite')
       }
       }
 
@@ -202,7 +196,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as share')
+        console.log ('Saved as share')
       }
       }
       if(type == "episode"){
@@ -223,7 +217,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as share')
+        console.log ('Saved as share')
       }
       }
 
