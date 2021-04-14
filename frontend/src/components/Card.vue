@@ -18,28 +18,61 @@
     </div>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
+      <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
-      <button>Delete</button>
-      <button @click.stop="shareItem(card.id)">share</button>
-      
-    
-    </div>
+      <button v-if="card.episodename != ''" @click="play(card.episode_id)">Play me</button>
+      <button @click="deleteFavorite(card.id), refreshStuff()">Delete</button>
+      <button v-if="card.programname != ''" 
+      @Click="shareItem(card.id, card.programname, 'program')">
+        share
+        </button>
+      <button v-if="card.episodename != ''" 
+      @Click="shareItem(card.id, card.episodename, 'episode')">
+        share
+        </button>
 
+
+    </div>
+    
     <div class="Friend-card" v-if="type == 'friend'">
-      <span class="name">{{ card.userid }}</span><br>
-      <span id="desc">{{ card.friendsid }}</span> <br>
+      <span class="username"> {{ card.username.username }} </span><br><br>
+      <button @click="deleteFriend(card.id), refreshStuff()">Delete</button>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
       <h3 class="name">{{ card.username.username }}</h3>
       <div id="programId" v-if="card.program_id != 0">
         <h5>Program</h5>
+
+      <button v-if="card.programname != ''" 
+      @Click="favoriteItem(card.id, card.programname, 'program')">
+        favorite
+        </button>
+
+      <button v-if="card.programname != ''" 
+      @Click="shareItem(card.id, card.programname, 'program')">
+        share
+        </button>
+
         <span>{{ card.program_id }}</span><br>
         <span>{{ card.programname }}</span>
       </div>
       <div id="episodeId" v-if="card.episode_id != 0">
         <h5>Episode</h5>
+
+      <button v-if="card.episodename != ''" 
+      @Click="favoriteItem(card.id, card.episodename, 'episode')">
+        favorite
+        </button>
+
+      <button v-if="card.episodename != ''" 
+      @Click="shareItem(card.id, card.episodename, 'episode')">
+        share
+        </button>
+
+        <button @click="play(card.episode_id)">Play me</button>
+
         <span>{{ card.episode_id }}</span><br>
         <span>{{ card.episodename }}</span>
       </div>
@@ -54,22 +87,51 @@ export default {
   props: ["card", "type"],
 
   methods: {
-    async deleteUser(id){
+    play(url){
+      window.open('https://sverigesradio.se/avsnitt/' + url, "_blank").focus
+    },
+
+
+    refreshStuff(){
+            this.$store.dispatch("findMyFriends")
+            this.$store.dispatch("fetchAllShares")
+            this.$store.dispatch("fetchAllFavorites")
+        },
+
+    async deleteFriend(id){
       let credentials = {
-        id: id,
-      }
-      let response = await fetch ('/friends/', {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json'},
+        relationId: id,
+      } 
+      let response = await fetch ('/rest/friends/'+ id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       })
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
-      } else{
-        alert ('Friend deleted')
+      } else {
+        console.log(id + ' deleted')
+        
       }
 
     },
+
+    async deleteFavorite(id) {
+      let credentials = {
+        favoriteID: id
+      } 
+      let response = await fetch ('/rest/favorites/'+ id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(credentials)
+      })
+      if(response.url.includes('error')){
+        console.log('Something went wrong. Try again')
+      } else {
+        console.log ('DELETED')
+      }
+
+  },
    
    
    async favoriteItem(id, name, type) {
@@ -90,7 +152,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as favorite')
+        console.log ('Saved as favorite')
       }
       }
     if(type == "episode"){
@@ -110,7 +172,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as favorite')
+        console.log ('Saved as favorite')
       }
       }
 
@@ -134,7 +196,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as share')
+        console.log ('Saved as share')
       }
       }
       if(type == "episode"){
@@ -155,7 +217,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Saved as share')
+        console.log ('Saved as share')
       }
       }
 

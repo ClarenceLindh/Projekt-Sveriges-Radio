@@ -19,11 +19,11 @@ export default createStore({
     categoryName: '',
     loggedInUser: null,
     loggedInUserId: 0,
+    allUsers:[],
     isLoggedIn: "Login",
     channel:[],
     episodes:[],
     newFriends:[],
-    friends:[],
     favorites: [],
     shares: [],
     channelId: 0,
@@ -84,13 +84,14 @@ export default createStore({
       state.loggedInUserId = user
     },
 
+    setAllUsers(state, payload) {
+      state.allUsers = payload
+    },
+
     setNewFriends(state,payload){
       state.newFriends = payload;
     },
 
-    setFriends(state,payload){
-      state.friends = payload;
-    },
 
     setFavorites(state,payload){
       state.favorites = payload;
@@ -139,6 +140,15 @@ export default createStore({
       await axios.get("http://localhost:3000/auth/whoami")
       .then(response => {
         this.commit("setUser", response.data)
+        if(response != null)
+          console.log(response.data)
+      })
+    },
+
+    async fetchAllUsers(){
+      await axios.get("http://localhost:3000/rest/users")
+      .then(response => {
+        this.commit("setAllUsers", response.data)
         if(response != null)
           console.log(response.data)
       })
@@ -199,14 +209,6 @@ export default createStore({
       })
     },
     
-
-    async fetchFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
-      .then(response => {
-        this.commit("setFriends", response.data)
-      })
-    },
-
     async fetchLoggedInUser(){
       await axios.get("http://localhost:3000/auth/whoami" + this.state.loggedInUser)
       .then(response => {
@@ -226,7 +228,7 @@ export default createStore({
       await axios.get("http://localhost:3000/rest/episodes/" + this.state.channelId + "/" + this.state.date )
       .then(response => {
         this.commit("setEpisodeByChannel", response.data)
-        
+        console.log(response.data)
       })
     },
 
@@ -282,10 +284,6 @@ export default createStore({
       return state.newFriends
     },
 
-    getFriends(state){
-      return state.friends
-    },
-
     getAllFavorites(state){
       return state.favorites
     },
@@ -308,6 +306,10 @@ export default createStore({
 
     getCurrentUser(state) {
       return state.loggedInUser
+    },
+
+    getAllUsers(state) {
+      return state.allUsers
     },
 
     getLoginStatus(state) {

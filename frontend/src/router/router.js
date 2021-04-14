@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
 import Favorites from "../views/Favorites.vue";
-import Friends from "../views/Friends.vue"
+import Socialview from "../views/Socialview.vue"
 import Login from "../views/Login.vue";
 
 
@@ -24,9 +24,9 @@ const routes = [
     component: Login
   },
   {
-    path:"/friends",
-    name: "Friends",
-    component: Friends
+    path:"/socialview",
+    name: "Socialview",
+    component: Socialview
   }
   
 ];

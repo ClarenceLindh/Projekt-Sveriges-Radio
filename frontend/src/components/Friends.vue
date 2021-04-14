@@ -1,32 +1,27 @@
 <template>
     <div >
         <h1>Friends</h1>
+        <div id="doppers">
+            <FriendDrop/>
+        </div>
         <h2>{{userId}}</h2>
         
         <ol>
         <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
-            {{friend.username.username}} {{friend.id}}
-            <Card :card="friends"/>
-            
+            <Card :card="friend"  :type="'friend'"/>
         </li>
         </ol>
-        <!--
-        <ol id="programList">
-            <li v-for="(program, index) in setPrograms"  
-            :key="index" @click="setButtonKey(program.id, program.name, false)"> 
-            <Card :card="program"  :type="'program'"/>  
-            </li>
-        </ol>
-            -->
     </div>
 </template>
 
 <script>
 import Card from "./Card"
+import FriendDrop from '../components/friend_Drop.vue'
 export default {
     name: "Friends",
-    
-    component: {
+
+    components:{
+        FriendDrop,
         Card
     },
 
@@ -40,12 +35,12 @@ export default {
     },
 
     mounted(){   
-        this.$store.dispatch("fetchFriends")
+        this.$store.dispatch("findMyFriends")
     },
 }
 </script>
 
-<style>
+<style scoped>
 #friendList{
         display: block;
         margin-left: -40px;
@@ -72,5 +67,22 @@ export default {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color:rgba(80, 75, 85, .5);
     }
+
+#droppers{
+    background-color: red;
+}
+
+select{
+    background: black;
+    outline: none;
+    border: solid 1px rgba(230, 230, 255, .6);
+    color: blanchedalmond;
+    height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 2px;
+    width: 80%;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, .3);
+}
 
 </style>

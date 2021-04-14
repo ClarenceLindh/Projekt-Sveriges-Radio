@@ -4,6 +4,7 @@ package com.example.demo.services;
 import com.example.demo.entities.Episode;
 import com.example.demo.repositories.EpisodeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -93,48 +94,55 @@ public class EpisodeService {
     public List<Episode> getByChannelId(long id, String date){
         RestTemplate restTemplate = new RestTemplate();
         
-        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id + "&pagination=false&date=" + date + "&format=Json", Map.class);
+        Map response =
+                restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id +
+                        "&date=" + date + "&pagination=false&format=Json", Map.class);
 
         List<Map> scheduleMaps = (List<Map>) response.get("schedule");
         List<Episode> schedules = new ArrayList<>();
         for (Map schedule : scheduleMaps) {
+            if (schedule.get("episodeid") != null) {
+                int id2 = 0;
+                if (schedule.containsKey("episodeid")) {
+                    id2 = (int) schedule.get("episodeid");
+                    Map response2 = restTemplate.getForObject(scheduleApi + "episodes/get?id=" + id2 +
+                                    "&pagination=false&format=json",
+                            Map.class);
 
+                    String publishdateutc = (String) schedule.get("starttimeutc");
+                    String epoch = publishdateutc.substring(6, 19);
+                    long airtime = Long.parseLong(epoch);
+                    String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
 
+                    Map testwhateverjagbryrmiginte = (Map)response2.get("episode");
+                    String newUrl = (String)testwhateverjagbryrmiginte.get("url");
 
-            String publishdateutc = (String) schedule.get("starttimeutc");
-            String epoch = publishdateutc.substring(6, 19);
-            long airtime = Long.parseLong(epoch);
-            String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
+                    System.out.println(testwhateverjagbryrmiginte + ", Eller kanske lite");
+                    System.out.println(newUrl + ", eller nae");
 
+                    Episode Ep = new Episode();
+                    try {
+                        if (schedule.containsKey("episodeid")) {
+                            Ep = new Episode(
 
-            Episode Ep;
-            try {
-                Ep = new Episode(
+                                    (Integer) schedule.get("episodeid"),
+                                    (String) schedule.get("title"),
+                                    (String) schedule.get("description"),
+                                    broadcasttime,
+                                    (String) ((Map) schedule.get("program")).get("name"),
+                                    newUrl,
+                                    false
 
-                        (Integer) schedule.get("episodeid"),
-                        (String) schedule.get("title"),
-                        (String) schedule.get("description"),
-                        broadcasttime,
-                        (String) ((Map) schedule.get("program")).get("name")
+                            );
 
-
-                );
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally { Ep = new Episode(
-
-                    
-                    (String) schedule.get("title"),
-                    (String) schedule.get("description"),
-                    broadcasttime,
-                    (String) ((Map) schedule.get("program")).get("name")
-
-
-            );
-
+                            schedules.add(Ep);
+                        } else
+                            System.out.println("Naah, dawg");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-
-            schedules.add(Ep);
     }
 
         return schedules;
@@ -146,7 +154,6 @@ public class EpisodeService {
 
 
 //--------------------------------------Get episode by date-------------------------------------------------------------
-
 
     public List<Episode> getByDate(long id, String date) {
 
@@ -166,7 +173,6 @@ public class EpisodeService {
         Map response = restTemplate.getForObject(episodeApi + "?programid=" + id + "&fromdate=" + localDate
                 + "&todate=" + localDate1 + "&format=Json", Map.class);
 
-
         //        4. Skapar en map för att hämta allt från episodes delen i url'en
         List<Map> episodeMaps = (List<Map>) response.get("episodes");
 
@@ -185,9 +191,11 @@ public class EpisodeService {
             String epoch = publishdateutc.substring(6, 19);
             long airtime = Long.parseLong(epoch);
             String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
+            String url;
 
-        //     7. Skapar en Episode med alla delar vi vill ha från episode delen i urlen. Sedan sparar vi det i vår episode lista
-        //      och returnerar den!
+
+            //     7. Skapar en Episode med alla delar vi vill ha från episode delen i urlen. Sedan sparar vi det i vår episode lista
+            //      och returnerar den!
 
             Episode EP = new Episode(
                     (Integer) episode.get("id"),

@@ -8,15 +8,15 @@
 
 <div id="episodeList">
     <ol id="channel"  v-show="isNinja">
-            <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem"> 
-            <Card :card="Episode" :type="'episode'"/>
+            <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
+                <Card :card="Episode" :type="'episode'"/>
             </li>
         </ol>
         
         
         <ol id="program" v-show="!isNinja">
-            <li  v-on:click="isNinja = !isNinja" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
-            <Card :card="Episode" :type="'episode'"/>
+            <li  v-on:click="isNinja = !isNinja, Clicked(Episode)" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
+                <Card :card="Episode" :type="'episode'"/>
             </li>
         </ol>
     </div>
