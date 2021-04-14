@@ -21,7 +21,7 @@
       <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
-      <button @click="deleteFavorite(card.id)">Delete</button>
+      <button @click="deleteFavorite(card.id), refreshFavorites()">Delete</button>
       <button @Click="shareItem(card.id)">share</button>
     </div>
 
@@ -48,6 +48,9 @@ export default {
   props: ["card", "type"],
 
   methods: {
+    refreshFavorites(){
+            this.$store.dispatch("fetchAllFavorites")
+        },
     async deleteFriend(id){
       let credentials = {
         relationId: id
