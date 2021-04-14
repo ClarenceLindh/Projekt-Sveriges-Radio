@@ -1,8 +1,8 @@
 <template>
   <div id="loginForms">
     <form @submit.prevent="login">
-      <input id="inputu" v-model="username" type="text" placeholder="username" required>
-      <input id="inpusp" v-model="password" type="password" placeholder="password" required>
+      <input id="input" v-model="username" type="text" placeholder="username" required>
+      <input id="input" v-model="password" type="password" placeholder="password" required>
       <button @click="login">Login</button>
       <button type="button" @click="register">Register</button>
     </form>
@@ -121,18 +121,16 @@ export default {
   
   
   #loginForms{
-    background: black;
-    outline: none;
-    border: solid 1px rgba(230, 230, 255, .6);
-    color: blanchedalmond;
-    height: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    margin: 2px;
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, .3);
-    max-width: 75%;
+    position: relative;
+    display: table;
+    margin: 20px auto;
+    height: 25vh;
+    width: 30%;
+    background-color: rgba(60, 55, 65, .3);
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
   }
-  #inputu{
+
+  #input{
     background: black;
     outline: none;
     border: solid 1px rgba(230, 230, 255, .6);
