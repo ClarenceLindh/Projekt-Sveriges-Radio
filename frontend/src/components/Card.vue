@@ -1,27 +1,28 @@
 <template>
   <div id="card" >
     <div class="Program-card" v-if="type == 'program'">
-        <span class="name">{{ card.name }}</span><br><br><br>
+        <span class="name">{{ card.name }}</span><br>
         <button @click.stop="favoriteItem(card.id, card.name, type)">fav</button>
-        <button @click.stop="shareItem(card.id, card.name, type)">share</button>
+        <button @click.stop="shareItem(card.id)">share</button>
         <span id="desc">{{ card.description }}</span><br><br>
 
       </div>
       
      <div class="Episode-card" v-if="type == 'episode'">
-      <span class="title">{{ card.title }}</span><br><br><br>
+      <span class="title">{{ card.title }}</span><br>
       <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
-      <button @click.stop="shareItem(card.id, card.title, type)">share</button>
+      <button @click.stop="shareItem(card.id)">share</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
       <span id="desc">{{ card.description }} </span><br><br>
     
     </div>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
+      <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
-      <button>Delete</button>
-      <button @click.stop="shareItem(card.id)">share</button>
+      <button @click="deleteFavorite(card.id)">Delete</button>
+      <button @Click="shareItem(card.id)">share</button>
       
     
     </div>
@@ -31,20 +32,6 @@
       <span id="desc">{{ card.friendsid }}</span> <br>
     </div>
 
-    <div class="Social-card" v-if="type == 'social'">
-      <h3 class="name">{{ card.username.username }}</h3>
-      <div id="programId" v-if="card.program_id != 0">
-        <h5>Program</h5>
-        <span>{{ card.program_id }}</span><br>
-        <span>{{ card.programname }}</span>
-      </div>
-      <div id="episodeId" v-if="card.episode_id != 0">
-        <h5>Episode</h5>
-        <span>{{ card.episode_id }}</span><br>
-        <span>{{ card.episodename }}</span>
-      </div>
-    </div>
-
 
   </div>
 </template>
@@ -52,26 +39,29 @@
 <script>
 export default {
   props: ["card", "type"],
+  
+  data(){ },
+
 
   methods: {
-    async deleteUser(id){
+     async deleteFavorite(id) {
+    
       let credentials = {
-        id: id,
-      }
-      let response = await fetch ('/friends/', {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json'},
+        favoriteID: id
+      } 
+      let response = await fetch ('/rest/favorites/'+ id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       })
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
-      } else{
-        alert ('Friend deleted')
+      } else {
+        alert ('DELETED')
       }
-
-    },
-   
-   
+      
+  },
+    
    async favoriteItem(id, name, type) {
     if(type == "program"){
       let credentials = {
@@ -115,52 +105,12 @@ export default {
       }
 
     },
-   async shareItem(id, name, type) {
-     if(type == "program"){
-      let credentials = {
-        program_id: id,
-        programname: name,
-        episode_id: 0,
-        episodename:'',
-        userid: this.$store.state.loggedInUser.id
-      
-      } 
-      console.log("Share credantials done")
-      let response = await fetch ('/rest/shares', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(credentials)
-      })
-      if(response.url.includes('error')){
-        console.log('Something went wrong. Try again')
-      } else {
-        alert ('Saved as share')
-      }
-      }
-      if(type == "episode"){
-      let credentials = {
-        program_id: 0,
-        programname: '',
-        episode_id: id,
-        episodename:name,
-        userid: this.$store.state.loggedInUser.id
-      
-      } 
-      console.log("Share credantials done")
-      let response = await fetch ('/rest/shares', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(credentials)
-      })
-      if(response.url.includes('error')){
-        console.log('Something went wrong. Try again')
-      } else {
-        alert ('Saved as share')
-      }
-      }
-
+    shareItem(id){
+      console.log("Clicked to share " + id)
     }
   }
+  
+  
 };
 </script>
 
@@ -171,7 +121,7 @@ export default {
     list-style-type: none;
     background-color: rgba(60, 55, 65, .3);
     margin: 0 auto;
-    padding: 2vh;
+    padding: 0;
     margin-bottom: 18px;
     box-shadow: 4px 4px 2px rgba(0, 0, 0, .3), inset 2px 2px 2px rgba(240, 200, 255, .1);
     min-height: 4vh;
@@ -194,42 +144,25 @@ export default {
 
   .Program-card > .name{
     font-weight: bold;
-     font-size: 2.5vh; 
+    font-size: 2.5vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
-    
-  }
-
-  .Episode-card{
-    width: 99%;
-    padding-right: 30px;
-  }
-
-  .Program-card{
-    width: 99%;
-    padding-right: 30px;
   }
 
   .Episode-card > .title{
     font-weight: bold;
-     font-size: 2.4vh; 
-    text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
-  }
-
-  .Friend-card > .title{
-    font-weight: bold;
-    font-size: 2.4vh;
+    font-size: 2.5vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
   .Favorite-card > .title{
     font-weight: bold;
-    font-size: 2.4vh;
+    font-size: 2.5vh;
     text-shadow: 4px 3px 2px rgba(0, 0, 0, .3);
   }
 
   #desc{
     color: rgba(255, 255, 255, .6);
-    font-size: 1.8vh;
+    font-size: 2vh;
     text-shadow: 3px 2px 2px rgba(0, 0, 0, .5);
   }
 
