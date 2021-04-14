@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsername(String username);
-
+/*
     @Query(value = "SELECT username, " +
             "friend_relationships.relation, users.id, users.password "+
             "FROM friend_relationships "+
@@ -19,4 +19,5 @@ public interface UserRepo extends JpaRepository<User, Long> {
             "ON friend_relationships.friendsid=users.id " +
             "WHERE friend_relationships.userid = ?1", nativeQuery = true)
     List<User> getFriend (Long id);
+ */
 }

@@ -59,7 +59,7 @@ export default {
         id: id,
       }
       let response = await fetch ('/friends/', {
-        method: 'POST',
+        method: 'DELETE',
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify(credentials)
       })

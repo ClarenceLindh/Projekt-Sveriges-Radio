@@ -6,18 +6,10 @@
         <ol>
         <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
             {{friend.username.username}} {{friend.id}}
-            <Card :card="friends"/>
+            
             
         </li>
         </ol>
-        <!--
-        <ol id="programList">
-            <li v-for="(program, index) in setPrograms"  
-            :key="index" @click="setButtonKey(program.id, program.name, false)"> 
-            <Card :card="program"  :type="'program'"/>  
-            </li>
-        </ol>
-            -->
     </div>
 </template>
 
