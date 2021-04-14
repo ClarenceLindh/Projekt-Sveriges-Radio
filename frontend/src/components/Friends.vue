@@ -1,30 +1,22 @@
 <template>
-    <div >
+    <div class=Friends>
         <h1>Friends</h1>
         <h2>{{userId}}</h2>
         
-        <ol>
-        <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
-            {{friend.username.username}} {{friend.id}}
-            <Card :card="friends"/>
+        <ol id="friendList">
+        <li  v-for="(friends, index) in getNewFriends" :key="index"> 
+            <Card :card="friends" :type="'friend'"/>
             
         </li>
         </ol>
-        <!--
-        <ol id="programList">
-            <li v-for="(program, index) in setPrograms"  
-            :key="index" @click="setButtonKey(program.id, program.name, false)"> 
-            <Card :card="program"  :type="'program'"/>  
-            </li>
-        </ol>
-            -->
+     
     </div>
 </template>
 
 <script>
 import Card from "./Card"
 export default {
-    name: "Friends",
+  
     
     component: {
         Card

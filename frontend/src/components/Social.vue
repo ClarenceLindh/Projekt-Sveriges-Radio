@@ -3,7 +3,7 @@
         <h1>Social</h1>
         <ol id="socialList">
             <li v-for="(share, index) in getAllShares"  :key="index"> 
-                         <Card :card="share"  :type="'social'"/>  
+             <Card :card="share"  :type="'social'"/>  
             </li>
         </ol>
     </div>
@@ -19,6 +19,7 @@ export default {
 
     computed:{
         getAllShares(){
+            console.log("EEEEE" + this.$store.getters.getAllShares)
             return this.$store.getters.getAllShares
         }
     },

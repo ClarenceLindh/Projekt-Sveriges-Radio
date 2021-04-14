@@ -1,5 +1,7 @@
 <template>
   <div id="card" >
+    
+    
     <div class="Program-card" v-if="type == 'program'">
         <span class="name">{{ card.name }}</span><br><br><br>
         <button @click.stop="favoriteItem(card.id, card.name, type)">fav</button>
@@ -27,8 +29,8 @@
     </div>
 
     <div class="Friend-card" v-if="type == 'friend'">
-      <span class="name">{{ card.userid }}</span><br>
-      <span id="desc">{{ card.friendsid }}</span> <br>
+      <span class="name">{{ card.username.username}}</span><br>
+      <span id="desc">{{ card.id }}</span> <br>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
@@ -38,9 +40,9 @@
         <span>{{ card.program_id }}</span><br>
         <span>{{ card.programname }}</span>
       </div>
-      <div id="episodeId" v-if="card.episode_id != 0">
+      <div id="episodeId" v-if="card.episodeid != 0">
         <h5>Episode</h5>
-        <span>{{ card.episode_id }}</span><br>
+        <span>{{ card.episodeid }}</span><br>
         <span>{{ card.episodename }}</span>
       </div>
     </div>
