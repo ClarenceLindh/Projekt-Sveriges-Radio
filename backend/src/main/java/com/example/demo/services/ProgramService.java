@@ -90,7 +90,7 @@ public class ProgramService {
         List<Map> programMaps = (List<Map>) response.get("programs");
         List<Program> programs = new ArrayList<>();
         for(Map progs : programMaps){
-           Long id = ((Number) progs.get("id")).longValue();
+            Long id = ((Number) progs.get("id")).longValue();
             String name = (String) progs.get("name");
             String description = (String) progs.get("description");
             Program program = new Program(id, name, description, categoryId);
@@ -122,8 +122,6 @@ public class ProgramService {
                 programs.add(program);
             }
         }
-
-        //debug
         return programs;
     }
 }

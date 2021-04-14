@@ -20,19 +20,6 @@ export default {
     components: {
         Card
     },
-    
-
-    data(){
-        return {
-            storedPrograms: [],
-            currentChannel: '',
-            searchProgram: [],
-            buttonKey: 0,
-            searchPhrase:'',
-            programid:'',
-            programname:''
-        }
-    },
 
     computed: {
         setPrograms(){
