@@ -85,7 +85,11 @@ export default {
     async deleteFavorite(id) {
       let credentials = {
         favoriteID: id
-      } 
+      }, 
+      async deleteFavorite(id) {
+      let credentials ={
+        favoriteID: id,
+      }
       let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'},
