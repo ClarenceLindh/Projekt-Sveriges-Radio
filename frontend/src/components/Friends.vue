@@ -1,6 +1,6 @@
 <template>
     <div >
-        <h1>Friends</h1>
+        <h1>Vänner</h1>
         <div id="doppers">
             <FriendDrop/>
         </div>

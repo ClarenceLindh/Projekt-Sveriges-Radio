@@ -1,6 +1,6 @@
 <template>
     <div class="Social">
-        <h1>Social</h1>
+        <h1>Vänners delningar</h1>
         <ol id="socialList">
             <li v-for="(share, index) in getAllShares"  :key="index"> 
                 <Card :card="share"  :type="'social'"/>  
