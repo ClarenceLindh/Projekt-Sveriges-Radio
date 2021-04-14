@@ -36,7 +36,7 @@ public class UserService {
 
     public User register(User user) {
         return detailsService.addUser(user);
-    }
+    } // i my user detail service högst upp
 
     public List<User> getAll() {
         return userRepo.findAll();

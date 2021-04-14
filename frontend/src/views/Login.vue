@@ -39,11 +39,11 @@ export default {
       location.reload()
     },
 
-     login (){
+     async login (){
       const credentials = 'username=' + encodeURIComponent(this.username) 
       + '&password=' + encodeURIComponent (this.password)
       
-      let response =  fetch ("/login", {
+      let response =  await fetch ("/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded"
@@ -52,19 +52,9 @@ export default {
         body: credentials,
       });
 
-      let user =  this.$store.dispatch("fetchLoggedInUser")
-
-      try {
-        this.$store.commit('setLoggedInUser', user)
-        console.log(user);
-        setTimeout(() => location.reload(), 100)
-      } catch {
-        alert ('Wrong username/password')        
-      }
-      if(response.url.includes('error')){
-        console.log('Wrong username/password')        
-      }
+      console.log(response)
       
+      setTimeout(() => location.reload(), 1)
     },
 
     async register() {
@@ -81,7 +71,7 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('Registered user')
+        alert ('Användare registrerad')
       }
     }
 
