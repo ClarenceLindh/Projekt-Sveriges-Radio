@@ -56,6 +56,16 @@ public class Episode {
 
     }
 
+    public Episode(long id, String title, String description, String publishdateutc, String name, String url, boolean hasOnDemand) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.publishdateutc = publishdateutc;
+        this.name = name;
+        this.url = url;
+        this.hasOnDemand = hasOnDemand;
+    }
+
     public Episode(String title, String description, String publishdateutc, String name) {
 
         this.title = title;
