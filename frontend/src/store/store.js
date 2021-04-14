@@ -23,7 +23,6 @@ export default createStore({
     channel:[],
     episodes:[],
     newFriends:[],
-    friends:[],
     favorites: [],
     shares: [],
     channelId: 0,
@@ -88,9 +87,6 @@ export default createStore({
       state.newFriends = payload;
     },
 
-    setFriends(state,payload){
-      state.friends = payload;
-    },
 
     setFavorites(state,payload){
       state.favorites = payload;
@@ -199,14 +195,6 @@ export default createStore({
       })
     },
     
-
-    async fetchFriends(){
-      await axios.get("http://localhost:3000/rest/friends/" + this.state.loggedInUserId)
-      .then(response => {
-        this.commit("setFriends", response.data)
-      })
-    },
-
     async fetchLoggedInUser(){
       await axios.get("http://localhost:3000/auth/whoami" + this.state.loggedInUser)
       .then(response => {
@@ -282,9 +270,6 @@ export default createStore({
       return state.newFriends
     },
 
-    getFriends(state){
-      return state.friends
-    },
 
     getAllFavorites(state){
       return state.favorites

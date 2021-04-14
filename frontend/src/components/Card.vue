@@ -26,9 +26,20 @@
     
     </div>
 
+    <!--
+    <div class="Favorite-card" v-if="type == 'favorite'">
+      <span class="favoriteID">{{ card.id }}</span><br>
+      <span class="programname">{{ card.programname }}</span><br>
+      <span id="episodename">{{card.episodename}}</span><br><br>
+      <button @click="deleteFavorite(card.id)">Delete</button>
+      <button @Click="shareItem(card.id)">share</button>
+    </div>
+      -->
+
     <div class="Friend-card" v-if="type == 'friend'">
       <span class="name">{{ card.userid }}</span><br>
       <span id="desc">{{ card.friendsid }}</span> <br>
+      <button @click="deleteFriend(card.id)">Delete</button>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
@@ -54,7 +65,7 @@ export default {
   props: ["card", "type"],
 
   methods: {
-    async deleteUser(id){
+    async deleteFriend(id){
       let credentials = {
         id: id,
       }

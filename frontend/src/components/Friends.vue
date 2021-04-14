@@ -6,7 +6,7 @@
         <ol>
         <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
             {{friend.username.username}} {{friend.id}}
-            
+            <Card :card="Friend"  :type="'friend'"/>
             
         </li>
         </ol>

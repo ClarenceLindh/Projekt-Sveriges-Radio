@@ -3,7 +3,7 @@
     <div id="routers">
       <router-link to="/">Home</router-link> |
       <router-link to="/favorites">Favorites</router-link> |
-      <router-link to="/friends" @click="refreshUser()">Friends</router-link> 
+      <router-link to="/socialview" @click="refreshUser()">Friends</router-link> 
     </div>
     <div id="droppers">
        <ChannelDropDown/>
