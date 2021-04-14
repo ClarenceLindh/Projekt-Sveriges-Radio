@@ -35,7 +35,6 @@ public class ProgramService {
                 (String) program.get("description")
         );
         // debug
-        System.out.println(progs);
         return progs;
     }
 
@@ -64,7 +63,6 @@ public class ProgramService {
 
             programs.add(program);
         }
-        System.out.println(programs.toString());
         return programs;
     }
 
@@ -126,7 +124,6 @@ public class ProgramService {
         }
 
         //debug
-        System.out.println(programs.toString());
         return programs;
     }
 }
