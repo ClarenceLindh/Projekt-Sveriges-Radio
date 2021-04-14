@@ -24,11 +24,9 @@
       <button @click="deleteFavorite(card.id)">Delete</button>
       <button @Click="shareItem(card.id)">share</button>
     </div>
-
+    
     <div class="Friend-card" v-if="type == 'friend'">
-      <span class="name">{{ card.userid }}</span><br>
-      <span id="desc">{{ card.friendsid }}</span> <br>
-      <button @click="deleteFriend(card.id)">Delete</button>
+      <span class="username"> {{ card.username.username }} </span>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">

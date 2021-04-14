@@ -5,9 +5,7 @@
         
         <ol>
         <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
-            {{friend.username.username}} {{friend.id}}
-            <Card :card="Friend"  :type="'friend'"/>
-            
+            <Card :card="friend"  :type="'friend'"/>
         </li>
         </ol>
     </div>
@@ -17,8 +15,8 @@
 import Card from "./Card"
 export default {
     name: "Friends",
-    
-    component: {
+
+    components:{
         Card
     },
 
