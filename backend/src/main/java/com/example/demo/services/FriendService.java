@@ -40,6 +40,7 @@ public class FriendService {
 //______________________________Add a Friend from a JSON body________________________
     public Friend addFavorite(Friend friend) {
         try{
+            System.err.println("HJALMAR");
             return friendRepo.save(friend);
         } catch (Exception ex){
             ex.printStackTrace();
