@@ -19,6 +19,7 @@ export default createStore({
     categoryName: '',
     loggedInUser: null,
     loggedInUserId: 0,
+    allUsers:[],
     isLoggedIn: "Login",
     channel:[],
     episodes:[],
@@ -83,6 +84,10 @@ export default createStore({
       state.loggedInUserId = user
     },
 
+    setAllUsers(state, payload) {
+      state.allUsers = payload
+    },
+
     setNewFriends(state,payload){
       state.newFriends = payload;
     },
@@ -135,6 +140,15 @@ export default createStore({
       await axios.get("http://localhost:3000/auth/whoami")
       .then(response => {
         this.commit("setUser", response.data)
+        if(response != null)
+          console.log(response.data)
+      })
+    },
+
+    async fetchAllUsers(){
+      await axios.get("http://localhost:3000/rest/users")
+      .then(response => {
+        this.commit("setAllUsers", response.data)
         if(response != null)
           console.log(response.data)
       })
@@ -270,7 +284,6 @@ export default createStore({
       return state.newFriends
     },
 
-
     getAllFavorites(state){
       return state.favorites
     },
@@ -293,6 +306,10 @@ export default createStore({
 
     getCurrentUser(state) {
       return state.loggedInUser
+    },
+
+    getAllUsers(state) {
+      return state.allUsers
     },
 
     getLoginStatus(state) {

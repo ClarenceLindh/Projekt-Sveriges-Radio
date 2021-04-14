@@ -23,6 +23,22 @@
       <span id="episodename">{{card.episodename}}</span><br><br>
       <button @click="deleteFavorite(card.id), refreshStuff()">Delete</button>
       <button @Click="shareItem(card.id)">share</button>
+
+      <button v-if="card.episodename != ''" @click="play(card.episode_id)">Play me</button>
+
+      <button @click="deleteFavorite(card.id)">Delete</button>
+
+      <button v-if="card.programname != ''" 
+      @Click="shareItem(card.id, card.programname, 'program')">
+        share
+        </button>
+
+      <button v-if="card.episodename != ''" 
+      @Click="shareItem(card.id, card.episodename, 'episode')">
+        share
+        </button>
+
+
     </div>
     
     <div class="Friend-card" v-if="type == 'friend'">
@@ -34,11 +50,35 @@
       <h3 class="name">{{ card.username.username }}</h3>
       <div id="programId" v-if="card.program_id != 0">
         <h5>Program</h5>
+
+      <button v-if="card.programname != ''" 
+      @Click="favoriteItem(card.id, card.programname, 'program')">
+        favorite
+        </button>
+
+      <button v-if="card.programname != ''" 
+      @Click="shareItem(card.id, card.programname, 'program')">
+        share
+        </button>
+
         <span>{{ card.program_id }}</span><br>
         <span>{{ card.programname }}</span>
       </div>
       <div id="episodeId" v-if="card.episode_id != 0">
         <h5>Episode</h5>
+
+      <button v-if="card.episodename != ''" 
+      @Click="favoriteItem(card.id, card.episodename, 'episode')">
+        favorite
+        </button>
+
+      <button v-if="card.episodename != ''" 
+      @Click="shareItem(card.id, card.episodename, 'episode')">
+        share
+        </button>
+
+        <button @click="play(card.episode_id)">Play me</button>
+
         <span>{{ card.episode_id }}</span><br>
         <span>{{ card.episodename }}</span>
       </div>
@@ -53,6 +93,10 @@ export default {
   props: ["card", "type"],
 
   methods: {
+    play(url){
+      window.open('https://sverigesradio.se/avsnitt/' + url, "_blank").focus
+    },
+
 
     refreshStuff(){
             this.$store.dispatch("findMyFriends")

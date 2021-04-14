@@ -91,11 +91,12 @@ public class EpisodeService {
 
 
     //--------------------------Hämta all episodes från en kanal under en dag-------------------------------------------
-    @Async
     public List<Episode> getByChannelId(long id, String date){
         RestTemplate restTemplate = new RestTemplate();
         
-        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id + "&date=" + date + "&format=Json", Map.class);
+        Map response =
+                restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id +
+                        "&date=" + date + "&pagination=false&format=Json", Map.class);
 
         List<Map> scheduleMaps = (List<Map>) response.get("schedule");
         List<Episode> schedules = new ArrayList<>();
@@ -133,7 +134,6 @@ public class EpisodeService {
                                     false
 
                             );
-                            Thread.sleep(10L);
 
                             schedules.add(Ep);
                         } else
