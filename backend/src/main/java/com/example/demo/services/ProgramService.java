@@ -41,11 +41,11 @@ public class ProgramService {
     public List<Program> getByChannelId(long id){
         RestTemplate template = new RestTemplate();
         Map response = template.getForObject(programApi + "/index?channelid=" + id + "&format=json&pagination=false", Map.class);
-        List<Map>  progMaps = (List<Map>) response.get("programs");
+        List<Map> progMaps = (List<Map>) response.get("programs");
         List<Program> programs = new ArrayList<>();
 
         for (Map prog: progMaps){
-            Long progId = ((Number) prog.get("id")).longValue();
+            Integer progId = (Integer) prog.get("id");
             String name = (String) prog.get("name");
             String description = (String) prog.get("description");
 
