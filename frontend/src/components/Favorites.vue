@@ -1,6 +1,6 @@
 <template>
   <div >
-<h1 >Favorites</h1>
+<h1 >Favoriter</h1>
 
 
 

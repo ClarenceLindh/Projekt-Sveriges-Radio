@@ -1,6 +1,6 @@
 <template>
     <select name="channels" id="friend_drop" @change="addFriend()">
-        <option value="" selected disabled hidden>Users</option>
+        <option value="" selected disabled hidden>Lägg till vän</option>
         <option  v-for="(user, index) in getUsers" :key="index"  :value="user.id" > 
                 {{user.username}}
         </option>

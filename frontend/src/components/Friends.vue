@@ -4,7 +4,6 @@
         <div id="doppers">
             <FriendDrop/>
         </div>
-        <h2>{{userId}}</h2>
         
         <ol>
         <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 

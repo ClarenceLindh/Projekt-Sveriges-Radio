@@ -1,9 +1,9 @@
 <template>
 <nav id="nav">
     <div id="routers">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/favorites">Favorites</router-link> |
-      <router-link to="/socialview" @click="refreshUser()">Friends</router-link> 
+      <router-link to="/">Startsida</router-link> |
+      <router-link to="/favorites">Favoriter</router-link> |
+      <router-link to="/socialview" @click="refreshUser()">Vänner</router-link> 
     </div>
     <div id="droppers">
        <ChannelDropDown/>
@@ -34,9 +34,9 @@ export default {
         loginText(){
           var testStuff
           if(this.$store.getters.getCurrentUser != null){
-            testStuff = "Logout"
+            testStuff = "Logga ut"
           }else{
-            testStuff = "Login"
+            testStuff = "Logga in"
           }
           
           this.updateChannelName()

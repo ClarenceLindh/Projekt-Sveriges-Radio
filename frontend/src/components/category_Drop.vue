@@ -1,6 +1,6 @@
 <template>
     <select name="categories" id="category_drop" @change="saveCategory()">
-        <option value="" selected disabled hidden>Categories</option>
+        <option value="" selected disabled hidden>Kategorier</option>
         <option  v-for="(category, index) in getCategories" :key="index"  :value="category.id" > 
                 {{category.name}}
         </option>

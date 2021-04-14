@@ -1,10 +1,10 @@
 <template>
   <div >
-<h1 id="columnTitle">Episodes</h1>
+<h1 id="columnTitle">Avsnitt</h1>
 
 
-<h3 id="columnSubTitle"  v-show="!isNinja" >Episoder baserade på program:  {{currentProgram}}</h3>
-<h3 id="columnSubTitle"  v-show="isNinja" >Episoder baserade på kanal:  {{currentChannel}}</h3>
+<h3 id="columnSubTitle"  v-show="!isNinja" >Avsnitt baserade på program:  {{currentProgram}}</h3>
+<h3 id="columnSubTitle"  v-show="isNinja" >Avsnitt baserade på kanal:  {{currentChannel}}</h3>
 
 <div id="episodeList">
     <ol id="channel"  v-show="isNinja">
@@ -15,7 +15,7 @@
         
         
         <ol id="program" v-show="!isNinja">
-            <li  v-on:click="isNinja = !isNinja, Clicked(Episode)" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
+            <li  v-on:click=" Clicked(Episode)" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
                 <Card :card="Episode" :type="'episode'"/>
             </li>
         </ol>

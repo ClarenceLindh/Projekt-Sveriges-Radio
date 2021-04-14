@@ -1,6 +1,6 @@
 <template>
     <select name="channels" id="channels_drop" @change="saveChannel(true)">
-        <option value="" selected disabled hidden>Channels</option>
+        <option value="" selected disabled hidden>Kanaler</option>
         <option  v-for="(channel, index) in getChannel" :key="index"  :value="channel.id" > 
                 {{channel.name}}
         </option>

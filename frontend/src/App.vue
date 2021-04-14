@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <h1 id="title">Sveriges Radios Vänskapskrets</h1>
     <p v-if="isLoggedIn" id="UserName"> {{ loggedInUser.username }}</p>
-    <p v-if="!isLoggedIn" id="notLoggedIn"> Not logged in </p> 
+    <p v-if="!isLoggedIn" id="notLoggedIn"> Inte inloggad </p> 
   <Navbar/>
   <media-player />
   <router-view />

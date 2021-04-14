@@ -1,8 +1,8 @@
 <template>
 <div class="programs">
-    <h1>Programs</h1>
-    <input type="text" placeholder="Search.." v-model="searchPhrase" id="searchBar">
-    <button @click="searchForProgram(searchPhrase)">sök</button>
+    <h1>Program</h1>
+    <input type="text" placeholder="Sök..." v-model="searchPhrase" id="searchBar">
+    <button @click="searchForProgram(searchPhrase)">Sök</button>
    
         <ol id="programList">
             <li v-for="(program, index) in setPrograms"  :key="index" @click="setButtonKey(program.id, program.name, false)"> 

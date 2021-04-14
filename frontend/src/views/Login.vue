@@ -3,11 +3,11 @@
     <form @submit.prevent="login">
       <input id="input" v-model="username" type="text" placeholder="username" required>
       <input id="input" v-model="password" type="password" placeholder="password" required>
-      <button @click="login">Login</button>
-      <button type="button" @click="register">Register</button>
+      <button @click="login">Logga in</button>
+      <button type="button" @click="register">Registrera</button>
     </form>
     <div id="logout">
-      <button @click="logout">Logout</button>
+      <button @click="logout">Logga ut</button>
     </div>
   </div>
 </template>

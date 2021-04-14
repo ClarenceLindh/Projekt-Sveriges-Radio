@@ -2,34 +2,33 @@
   <div id="card" >
     <div class="Program-card" v-if="type == 'program'">
         <span class="name">{{ card.name }}</span><br><br><br>
-        <button @click.stop="favoriteItem(card.id, card.name, type)">fav</button>
-        <button @click.stop="shareItem(card.id, card.name, type)">share</button>
+        <button @click.stop="favoriteItem(card.id, card.name, type)">Favoritmarkera ❤</button>
+        <button @click.stop="shareItem(card.id, card.name, type)">Dela ⤴</button>
         <span id="desc">{{ card.description }}</span><br><br>
 
       </div>
       
      <div class="Episode-card" v-if="type == 'episode'">
       <span class="title">{{ card.title }}</span><br><br><br>
-      <button @click.stop="favoriteItem(card.id, card.title, type)">fav</button>
-      <button @click.stop="shareItem(card.id, card.title, type)">share</button>
+      <button @click.stop="favoriteItem(card.id, card.title, type)">Favoritmarkera ❤</button>
+      <button @click.stop="shareItem(card.id, card.title, type)">Dela ⤴</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
       <span id="desc">{{ card.description }} </span><br><br>
     
     </div>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
-      <button v-if="card.episodename != ''" @click="play(card.episode_id)">Play me</button>
-      <button @click="deleteFavorite(card.id), refreshStuff()">Delete</button>
+      <button v-if="card.episodename != ''" @click="play(card.episode_id)">Spela upp ▶</button>
+      <button @click="deleteFavorite(card.id), refreshStuff()">Ta bort ✖</button>
       <button v-if="card.programname != ''" 
       @Click="shareItem(card.id, card.programname, 'program')">
-        share
+        Dela ⤴
         </button>
       <button v-if="card.episodename != ''" 
       @Click="shareItem(card.id, card.episodename, 'episode')">
-        share
+        Dela ⤴
         </button>
 
 
@@ -37,7 +36,7 @@
     
     <div class="Friend-card" v-if="type == 'friend'">
       <span class="username"> {{ card.username.username }} </span><br><br>
-      <button @click="deleteFriend(card.id), refreshStuff()">Delete</button>
+      <button @click="deleteFriend(card.id), refreshStuff()">Ta bort ✖</button>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
@@ -47,30 +46,30 @@
 
       <button v-if="card.programname != ''" 
       @Click="favoriteItem(card.id, card.programname, 'program')">
-        favorite
+        Favoritmarkera ❤
         </button>
 
       <button v-if="card.programname != ''" 
       @Click="shareItem(card.id, card.programname, 'program')">
-        share
+        Dela ⤴
         </button>
 
         <span>{{ card.program_id }}</span><br>
         <span>{{ card.programname }}</span>
       </div>
       <div id="episodeId" v-if="card.episode_id != 0">
-        <h5>Episode</h5>
-        
-      <button @click="play(card.episode_id)">Play me</button>
+        <h5>Avsnitt</h5>
+
+      <button @click="play(card.episode_id)">Spela upp ▶</button>
 
       <button v-if="card.episodename != ''" 
       @Click="favoriteItem(card.id, card.episodename, 'episode')">
-        favorite
+        Favoritmarkera ❤
         </button>
 
       <button v-if="card.episodename != ''" 
       @Click="shareItem(card.id, card.episodename, 'episode')">
-        share
+        Dela ⤴
         </button>
 
         
