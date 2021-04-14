@@ -41,7 +41,7 @@ public class MyUserDetailsService implements UserDetailsService {
         // encrypt password before saving
         user.setPassword(encoder.encode(user.getPassword()));
         try {
-            return userRepo.save(user);
+            return userRepo.save(user); // skickar till db direkt.
         } catch (Exception ex) {
             ex.printStackTrace();
         }
