@@ -34,13 +34,13 @@ export default createStore({
     programList:[],
     date:'2021-04-14',
     episodeByChannel:[],
-    showLists: true
+    toggleList: true
   },
 
   mutations: {
 
-    setBoolean(state,payload){
-      state.showLists = payload
+    setToggleList(state,payload){
+      state.toggleList = payload
     },
 
     addChannelID(state,payload){
@@ -300,8 +300,8 @@ export default createStore({
      
     return state.episodeByChannel
     },
-    getBoolean(state){
-      return state.showLists
+    getToggleList(state){
+      return state.toggleList
     },
 
     getCurrentUser(state) {

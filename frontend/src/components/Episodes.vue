@@ -3,18 +3,18 @@
 <h1 id="columnTitle">Avsnitt</h1>
 
 
-<h3 id="columnSubTitle"  v-show="!isNinja" >Avsnitt baserade på program:  {{currentProgram}}</h3>
-<h3 id="columnSubTitle"  v-show="isNinja" >Avsnitt baserade på kanal:  {{currentChannel}}</h3>
+<h3 id="columnSubTitle"  v-show="!toggleList" >Avsnitt baserade på program:  {{currentProgram}}</h3>
+<h3 id="columnSubTitle"  v-show="toggleList" >Avsnitt baserade på kanal:  {{currentChannel}}</h3>
 
 <div id="episodeList">
-    <ol id="channel"  v-show="isNinja">
+    <ol id="channel"  v-show="toggleList">
             <li  v-for="(Episode, index) in getChannelEpisode" :key="index" id="episodeItem" @click="Clicked(Episode)"> 
                 <Card :card="Episode" :type="'episode'"/>
             </li>
         </ol>
         
         
-        <ol id="program" v-show="!isNinja">
+        <ol id="program" v-show="!toggleList">
             <li  v-on:click=" Clicked(Episode)" v-for="(Episode, index) in getAllEpisodes" :key="index" id="episodeItem"> 
                 <Card :card="Episode" :type="'episode'"/>
             </li>
@@ -52,8 +52,8 @@ export default {
             return this.$store.getters.getAllEpisodesByChannel
         },
 
-        isNinja(){
-            return this.$store.getters.getBoolean
+        toggleList(){
+            return this.$store.getters.getToggleList
         }
     },
 
@@ -82,9 +82,7 @@ export default {
         }
     },
 
-    mounted(){
-        this.$store.dispatch("fetchAllEpisodes")
-    },
+   
 }
 </script>
 
