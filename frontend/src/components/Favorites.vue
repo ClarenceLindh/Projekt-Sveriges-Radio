@@ -3,7 +3,7 @@
 <h1 >Favorites</h1>
 
 
-<h3 style="color:red">Alla favoriter</h3>
+
 <div id="favoriteList">
  <ol style="list-style-type:none;">
         <li v-for="(Favorite, index) in getAllFavorites" :key="index"> 

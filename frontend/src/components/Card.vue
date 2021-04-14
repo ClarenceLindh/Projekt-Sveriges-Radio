@@ -21,12 +21,13 @@
       <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
-      <button @click="deleteFavorite(card.id)">Delete</button>
+      <button @click="deleteFavorite(card.id), refreshStuff()">Delete</button>
       <button @Click="shareItem(card.id)">share</button>
     </div>
     
     <div class="Friend-card" v-if="type == 'friend'">
-      <span class="username"> {{ card.username.username }} </span>
+      <span class="username"> {{ card.username.username }} </span><br><br>
+      <button @click="deleteFriend(card.id), refreshStuff()">Delete</button>
     </div>
 
     <div class="Social-card" v-if="type == 'social'">
@@ -52,11 +53,18 @@ export default {
   props: ["card", "type"],
 
   methods: {
+
+    refreshStuff(){
+            this.$store.dispatch("findMyFriends")
+            this.$store.dispatch("fetchAllShares")
+            this.$store.dispatch("fetchAllFavorites")
+        },
+
     async deleteFriend(id){
       let credentials = {
-        friendId: id
+        relationId: id,
       } 
-      let response = await fetch ('/rest/favorites/'+ id, {
+      let response = await fetch ('/rest/friends/'+ id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
@@ -64,7 +72,8 @@ export default {
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
       } else {
-        alert ('DELETED')
+        console.log(id + ' deleted')
+        
       }
 
     },
