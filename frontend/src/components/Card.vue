@@ -60,6 +60,8 @@
       </div>
       <div id="episodeId" v-if="card.episode_id != 0">
         <h5>Episode</h5>
+        
+      <button @click="play(card.episode_id)">Play me</button>
 
       <button v-if="card.episodename != ''" 
       @Click="favoriteItem(card.id, card.episodename, 'episode')">
@@ -71,7 +73,7 @@
         share
         </button>
 
-        <button @click="play(card.episode_id)">Play me</button>
+        
 
         <span>{{ card.episode_id }}</span><br>
         <span>{{ card.episodename }}</span>
