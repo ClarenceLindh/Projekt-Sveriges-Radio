@@ -93,71 +93,52 @@ public class EpisodeService {
     //--------------------------Hämta all episodes från en kanal under en dag-------------------------------------------
     public List<Episode> getByChannelId(long id, String date){
         RestTemplate restTemplate = new RestTemplate();
-        
-        Map response =
-                restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" + id +
-                        "&date=" + date + "&pagination=false&format=Json", Map.class);
+
+        //Hämtar alla episodes ifrån en kanal
+        Map response = restTemplate.getForObject(scheduleApi + "scheduledepisodes?channelid=" +
+                                id + "&date=" + date + "&pagination=false&format=Json", Map.class);
 
         List<Map> scheduleMaps = (List<Map>) response.get("schedule");
         List<Episode> schedules = new ArrayList<>();
 
-
         for (Map schedule : scheduleMaps) {
-
-
-
-
+            //Kollar så att objektet vi hämtat faktiskt är en episode
             if (schedule.get("episodeid") != null) {
-
-
                 int id2 = (int) schedule.get("episodeid");
 
-                    Map response2 = restTemplate.getForObject(scheduleApi + "episodes/get?id=" + id2 +
-                                    "&pagination=false&format=json",
-                            Map.class);
+                //Hämtar en specifik episode, för att kunna hämta URL'en
+                Map response2 = restTemplate.getForObject(scheduleApi + "episodes/get?id=" + id2
+                                                    + "&pagination=false&format=json", Map.class);
 
-                Map hämtaepisodefrånnyresponse = (Map)response2.get("episode");
-                String newUrl = (String)hämtaepisodefrånnyresponse.get("url");  // Hämta url från förra variablen.
+                Map getEpisodeFromResponse = (Map)response2.get("episode");
+                String newUrl = (String)getEpisodeFromResponse.get("url");  // Hämta url från förra variablen.
 
-                System.out.println(hämtaepisodefrånnyresponse + ", Eller kanske lite");
+                System.out.println(getEpisodeFromResponse + ", Eller kanske lite");
                 System.out.println(newUrl + ", eller nae");
 
+                String publishdateutc = (String) schedule.get("starttimeutc");
+                String epoch = publishdateutc.substring(6, 19);
+                long airtime = Long.parseLong(epoch);
+                String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
+                        .format(new java.util.Date(airtime));
 
+                Episode Ep = new Episode();
+                Ep = new Episode(
+                        (Integer) schedule.get("episodeid"),
+                        (String) schedule.get("title"),
+                        (String) schedule.get("desc ription"),
+                        broadcasttime,
+                        (String) ((Map) schedule.get("program")).get("name"),
+                        newUrl,
+                        false
+                );
 
-                    String publishdateutc = (String) schedule.get("starttimeutc");
-                    String epoch = publishdateutc.substring(6, 19);
-                    long airtime = Long.parseLong(epoch);
-                    String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
-
-
-
-
-                    Episode Ep = new Episode();
-                    try {
-                            Ep = new Episode(
-
-                                    (Integer) schedule.get("episodeid"),
-                                    (String) schedule.get("title"),
-                                    (String) schedule.get("desc ription"),
-                                    broadcasttime,
-                                    (String) ((Map) schedule.get("program")).get("name"),
-                                    newUrl,
-                                    false
-
-                            );
-
-                            schedules.add(Ep);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
+            schedules.add(Ep);
             } else
                 System.out.println("Naah, dawg");
+        }
+    return schedules;
     }
-
-        return schedules;
-}
 
 
 
