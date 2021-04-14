@@ -18,23 +18,12 @@
     </div>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
-      <span class="programname">{{ card.programname }}</span><br>
-      <span id="episodename">{{card.episodename}}</span><br><br>
-      <button>Delete</button>
-      <button @click.stop="shareItem(card.id)">share</button>
-      
-    
-    </div>
-
-    <!--
-    <div class="Favorite-card" v-if="type == 'favorite'">
       <span class="favoriteID">{{ card.id }}</span><br>
       <span class="programname">{{ card.programname }}</span><br>
       <span id="episodename">{{card.episodename}}</span><br><br>
       <button @click="deleteFavorite(card.id)">Delete</button>
       <button @Click="shareItem(card.id)">share</button>
     </div>
-      -->
 
     <div class="Friend-card" v-if="type == 'friend'">
       <span class="name">{{ card.userid }}</span><br>
@@ -67,17 +56,17 @@ export default {
   methods: {
     async deleteFriend(id){
       let credentials = {
-        id: id,
-      }
-      let response = await fetch ('/friends/', {
+        friendId: id
+      } 
+      let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',
-        headers: { 'Content-Type' : 'application/json'},
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(credentials)
       })
       if(response.url.includes('error')){
         console.log('Something went wrong. Try again')
-      } else{
-        alert ('Friend deleted')
+      } else {
+        alert ('DELETED')
       }
 
     },
@@ -85,11 +74,7 @@ export default {
     async deleteFavorite(id) {
       let credentials = {
         favoriteID: id
-      }, 
-      async deleteFavorite(id) {
-      let credentials ={
-        favoriteID: id,
-      }
+      } 
       let response = await fetch ('/rest/favorites/'+ id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'},
