@@ -20,7 +20,7 @@ public class FriendsController {
 
 //__________________________Add a new Friends from a JSON object__________________________
     @PostMapping("/friends")
-    public Friend register(@RequestBody Friend friend){ return friendService.addFavorite(friend); }
+    public Friend register(@RequestBody Friend friend){ return friendService.addFriend(friend); }
 
 //_________________________________Delete a Friends by ID_________________________________
     @DeleteMapping("/friends/{id}")

@@ -57,7 +57,7 @@ export default {
       try {
         this.$store.commit('setLoggedInUser', user)
         console.log(user);
-        location.reload()
+        setTimeout(() => location.reload(), 100)
       } catch {
         alert ('Wrong username/password')        
       }

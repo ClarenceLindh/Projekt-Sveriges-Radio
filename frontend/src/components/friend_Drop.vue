@@ -40,7 +40,6 @@ export default {
             } else {
                 this.$store.dispatch("findMyFriends")
                 this.$store.dispatch("fetchAllShares")
-                this.$store.dispatch("fetchAllFavorites")
             }
         },
         

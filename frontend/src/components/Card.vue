@@ -5,7 +5,6 @@
         <button @click.stop="favoriteItem(card.id, card.name, type)">Favoritmarkera ❤</button>
         <button @click.stop="shareItem(card.id, card.name, type)">Dela ⤴</button>
         <span id="desc">{{ card.description }}</span><br><br>
-
       </div>
       
      <div class="Episode-card" v-if="type == 'episode'">
@@ -14,7 +13,6 @@
       <button @click.stop="shareItem(card.id, card.title, type)">Dela ⤴</button>
       <span id="airtime">{{ card.Airtime }} </span><br><br>
       <span id="desc">{{ card.description }} </span><br><br>
-    
     </div>
 
     <div class="Favorite-card" v-if="type == 'favorite'">
@@ -30,8 +28,6 @@
       @Click="shareItem(card.id, card.episodename, 'episode')">
         Dela ⤴
         </button>
-
-
     </div>
     
     <div class="Friend-card" v-if="type == 'friend'">
@@ -43,20 +39,18 @@
       <h3 class="name">{{ card.username.username }}</h3>
       <div id="programId" v-if="card.program_id != 0">
         <h5>Program</h5>
-
       <button v-if="card.programname != ''" 
       @Click="favoriteItem(card.id, card.programname, 'program')">
         Favoritmarkera ❤
         </button>
-
       <button v-if="card.programname != ''" 
       @Click="shareItem(card.id, card.programname, 'program')">
         Dela ⤴
         </button>
-
         <span>{{ card.program_id }}</span><br>
         <span>{{ card.programname }}</span>
       </div>
+
       <div id="episodeId" v-if="card.episode_id != 0">
         <h5>Avsnitt</h5>
 
