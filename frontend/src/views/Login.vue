@@ -121,6 +121,7 @@ export default {
   
   
   #loginForms{
+    padding: 2vh;
     position: relative;
     display: table;
     margin: 20px auto;
@@ -146,15 +147,16 @@ export default {
   #logout{
     display: flex;
     height: 23px;
-    width: 60px;
+    width: 100px;
     position: absolute;
     bottom: 15px;
     right: 5px;
+    padding: 1vh;
   }
 
   #logout > button{
     height: 29px;
-    width: 60px;
+    width: 100px;
   }
 
   button{
