@@ -1,7 +1,7 @@
 <template>
     <select name="channels" id="channels_drop" @change="saveChannel(true)">
         <option value="" selected disabled hidden>Kanaler</option>
-        <option  v-for="(channel, index) in getChannel" :key="index"  :value="channel.id" > 
+        <option  v-for="(channel, index) in getChannel" :key="index"  :value="channel.id" >  <!--false=boolean till episodeToggle-->
                 {{channel.name}}
         </option>
     </select> 
@@ -18,10 +18,10 @@ export default {
     },
 
  methods:{
-      saveChannel(boolean){
+      saveChannel(toggleEpisode){
             var e = document.getElementById("channels_drop");
             var strUser = e.options[e.selectedIndex].value;
-            this.$store.commit('setBoolean',boolean);
+            this.$store.commit('setToggleList',toggleEpisode);
             this.$store.commit('addChannelID',strUser);
             let today = new Date().toISOString().slice(0, 10)
             this.$store.commit('setDate', today)

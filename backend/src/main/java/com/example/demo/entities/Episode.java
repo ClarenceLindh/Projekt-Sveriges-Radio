@@ -47,14 +47,7 @@ public class Episode {
         this.hasOnDemand = hasOnDemand;
     }
 
-    public Episode(long id,  String title, String description, String publishdateutc, String name) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.publishdateutc = publishdateutc;
-        this.name = name;
 
-    }
 
     public Episode(long id, String title, String description, String publishdateutc, String name, String url, boolean hasOnDemand) {
         this.id = id;
@@ -66,13 +59,6 @@ public class Episode {
         this.hasOnDemand = hasOnDemand;
     }
 
-    public Episode(String title, String description, String publishdateutc, String name) {
-
-        this.title = title;
-        this.description = description;
-        this.publishdateutc = publishdateutc;
-        this.name = name;
-    }
 
     public long getId() {
         return id;

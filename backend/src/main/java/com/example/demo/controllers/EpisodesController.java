@@ -19,27 +19,34 @@ public class EpisodesController {
     // Skickar med ett id för att sedan få ut alla episodes från ett program!
 
     @GetMapping("/rest/episodes/{id}")
-    public List<Episode> getById(@PathVariable long id) {
+    public List<Episode> getByProgramId(@PathVariable long id) {
         return episodeService.getbyProgramid(id);
     }
 
 
+    //---------------------------Hämta alla episodes från Channelid från api'n----------------------------------------
+
+
     @GetMapping("/rest/episodes/{id}/{date}")
-    public List<Episode> getbyPid(@PathVariable long id, @PathVariable String date) {
+    public List<Episode> getbyChannelId(@PathVariable long id, @PathVariable String date) {
         return episodeService.getByChannelId(id, date);
     }
 
 
 
-    //----------------------------------Hitta en episode beroende på dag---------------------------------------------------
-// Skickar med ett programid och ett datum för att sedan få ut alla sändningar som sänds från det programmet den dagen
-    @GetMapping("/rest/episodes/day/{id}/{date}")
-    private List<Episode> getEpisodesByDay(@PathVariable long id, @PathVariable String date) {
-        return episodeService.getByDate(id, date);
-    }
 
 
 //(EJ AKTUELL LÄNGRE) _Hämta alla episodes från databasen genom att kalla på servicen som är kopplad till repot(EJ AKTUELL LÄNGRE)
+
+    //----------------------------------Hitta en episode beroende på dag---------------------------------------------------
+// Skickar med ett programid och ett datum för att sedan få ut alla sändningar som sänds från det programmet den dagen
+//    @GetMapping("/rest/episodes/day/{id}/{date}")
+//    private List<Episode> getEpisodesByDay(@PathVariable long id, @PathVariable String date) {
+//        return episodeService.getByDate(id, date);
+//    }
+
+
+
 
     @GetMapping("/rest/episodes/all")
     public List<Episode> getAllEpisodes() {

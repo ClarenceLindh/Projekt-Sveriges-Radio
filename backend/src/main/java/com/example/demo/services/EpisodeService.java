@@ -30,7 +30,7 @@ public class EpisodeService {
     @Autowired
     private EpisodeRepo episodeRepo;
 
-    //___________Hämta alla episode från ett program i api'n genom id (ENDAST EN SIDA, &page=(sida) för nästa)___________
+    //____________________________Hämta alla episode från ett program i api'n genom id _________________________________
 
     // 1. Tar emot ett programid
     public List<Episode> getbyProgramid(long id) {
@@ -100,34 +100,45 @@ public class EpisodeService {
 
         List<Map> scheduleMaps = (List<Map>) response.get("schedule");
         List<Episode> schedules = new ArrayList<>();
+
+
         for (Map schedule : scheduleMaps) {
+
+
+
+
             if (schedule.get("episodeid") != null) {
-                int id2 = 0;
-                if (schedule.containsKey("episodeid")) {
-                    id2 = (int) schedule.get("episodeid");
+
+
+                int id2 = (int) schedule.get("episodeid");
+
                     Map response2 = restTemplate.getForObject(scheduleApi + "episodes/get?id=" + id2 +
                                     "&pagination=false&format=json",
                             Map.class);
+
+                Map hämtaepisodefrånnyresponse = (Map)response2.get("episode");
+                String newUrl = (String)hämtaepisodefrånnyresponse.get("url");  // Hämta url från förra variablen.
+
+                System.out.println(hämtaepisodefrånnyresponse + ", Eller kanske lite");
+                System.out.println(newUrl + ", eller nae");
+
+
 
                     String publishdateutc = (String) schedule.get("starttimeutc");
                     String epoch = publishdateutc.substring(6, 19);
                     long airtime = Long.parseLong(epoch);
                     String broadcasttime = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(airtime));
 
-                    Map testwhateverjagbryrmiginte = (Map)response2.get("episode");
-                    String newUrl = (String)testwhateverjagbryrmiginte.get("url");
 
-                    System.out.println(testwhateverjagbryrmiginte + ", Eller kanske lite");
-                    System.out.println(newUrl + ", eller nae");
+
 
                     Episode Ep = new Episode();
                     try {
-                        if (schedule.containsKey("episodeid")) {
                             Ep = new Episode(
 
                                     (Integer) schedule.get("episodeid"),
                                     (String) schedule.get("title"),
-                                    (String) schedule.get("description"),
+                                    (String) schedule.get("desc ription"),
                                     broadcasttime,
                                     (String) ((Map) schedule.get("program")).get("name"),
                                     newUrl,
@@ -136,17 +147,65 @@ public class EpisodeService {
                             );
 
                             schedules.add(Ep);
-                        } else
-                            System.out.println("Naah, dawg");
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-            }
+
+            } else
+                System.out.println("Naah, dawg");
     }
 
         return schedules;
 }
+
+
+
+
+
+///--------------------------------------------GAMMAL KOD 0.1--------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -245,7 +304,7 @@ public class EpisodeService {
 
 
 
-///////////////////////////////////////////////// GAMMAL KOD ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////// GAMMAL KOD 0.0///////////////////////////////////////////////////////////
 
 //    private String parseDate(String date, int index){
 ////Insert "-" into string to form a date, using index to describe where to split
