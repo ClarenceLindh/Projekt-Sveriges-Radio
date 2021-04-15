@@ -5,8 +5,8 @@
             <FriendDrop/>
         </div>
         
-        <ol>
-        <li id="friendList" v-for="(friend, index) in getNewFriends" :key="index"> 
+        <ol id="friendList">
+        <li v-for="(friend, index) in getNewFriends" :key="index"> 
             <Card :card="friend"  :type="'friend'"/>
         </li>
         </ol>
@@ -66,10 +66,6 @@ export default {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
         background-color:rgba(80, 75, 85, .5);
     }
-
-#droppers{
-    background-color: red;
-}
 
 select{
     background: black;
